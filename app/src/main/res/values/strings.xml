@@ -11,21 +11,23 @@
     <string name="prompt_email">Email</string>
     <string name="prompt_password">Password</string>
     <string name="prompt_alias">Alias</string>
-    <string name="action_sign_in">Sign in or register</string>
     <string name="action_sign_in_short">Sign in</string>
     <string name="welcome">"Welcome !"</string>
     <string name="invalid_username">Not a valid username</string>
     <string name="invalid_password">Password must be >5 characters</string>
     <string name="login_failed">"Login failed"</string>
     <!-- Strings used for fragments for navigation -->
-    <string name="first_fragment_label">First Fragment</string>
-    <string name="second_fragment_label">Second Fragment</string>
     <string name="next">Next</string>
     <string name="previous">Previous</string>
 
-    <string name="hello_first_fragment">Hello first fragment</string>
-    <string name="hello_second_fragment">Hello second fragment. Arg: %1$s</string>
     <string name="Add">Add</string>
     <string name="title_activity_register">Title Activity</string>
     <string name="Registro">Register</string>
+    <string name="alias">Alias</string>
+    <string name="finalizar">Finalizar</string>
+    <string name="fechaNacimiento">Fecha Nac. DD/MM/AAAA</string>
+    <string name="UserName">Nombre</string>
+    <string name="UserSurname">Apellido</string>
+    <string name="PersonalNumberUser">N° Documento</string>
+    <string name="UserAddress">Domicilio</string>
 </resources>
