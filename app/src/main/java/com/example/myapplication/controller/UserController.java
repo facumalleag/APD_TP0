@@ -11,6 +11,9 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.Enumeration;
 import java.util.Properties;
+import java.util.Random;
+import java.util.concurrent.ThreadLocalRandom;
+import java.util.stream.IntStream;
 
 import javax.activation.DataHandler;
 import javax.mail.Address;
@@ -35,6 +38,12 @@ public class UserController {
     private String correrohost="aplicacionmorfi@gmail.com";
     private String subject="Registro exitoso!";
     private  String passwordmail="AndroidTPO123";
+
+    private String subjectRecupero="Registro exitoso!";
+    private String mailCodigoRecupero= "Su codigo de verificacion es: ";
+
+    private int codigo;
+
     Session session;
 
 
@@ -98,4 +107,66 @@ public class UserController {
 
 
     }
+
+    public void enviarMailCodeRecovery(String dato_email) {
+        StrictMode.ThreadPolicy policy=new StrictMode.ThreadPolicy.Builder().permitAll().build();
+        StrictMode.setThreadPolicy(policy);
+
+        Properties properties=new Properties();
+        properties.put("mail.smtp.host", "smtp.gmail.com");
+        properties.put("mail.smtp.socketFactory.port", "465");
+        properties.put("mail.smtp.socketFactory.class", "javax.net.ssl.SSLSocketFactory");
+        properties.put("mail.smtp.auth", "true");
+        properties.put("mail.smtp.port", "465");
+
+        Random random = new Random();
+        //IntStream codigo= null;
+        codigo= ThreadLocalRandom.current().nextInt(1000,10000);
+
+
+        try{
+            session = Session.getDefaultInstance(properties, new Authenticator() {
+                @Override
+                protected PasswordAuthentication getPasswordAuthentication() {
+                    return new PasswordAuthentication(correrohost, passwordmail);
+                }
+            });
+            if (session!=null){
+                Message  message=new MimeMessage(session);
+                message.setFrom(new InternetAddress((correrohost)));
+                message.setSubject(subjectRecupero);
+                message.setRecipients(Message.RecipientType.TO,InternetAddress.parse(dato_email));
+                message.setContent(mailCodigoRecupero + codigo,"text/html; chrset=utf-8");
+                Transport.send(message);
+            }
+
+
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+
+
+    }
+
+    public int getCodRecupero(String mail){
+
+
+        return codigo;
+    }
+
+    public Usuario getUsuario(String dni) {
+        Usuario resultado = null;
+        for (Usuario consulta : coleccion_usuarios) {
+            if (consulta.getDni().equals(dni)) {
+                resultado = consulta;
+                break;
+            }
+        }
+        return resultado;
+    }
+
+    public boolean comprobarCodigoRecupero(int codigo_input){
+        return true;
+    }
+
 }

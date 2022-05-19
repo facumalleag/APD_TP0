@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    tools:context=".RecuperoPWDActivity">
+
+
+    <ImageView
+        android:id="@+id/imgViewLogo"
+        android:layout_width="125dp"
+        android:layout_height="147dp"
+        android:layout_marginTop="7dp"
+        android:contentDescription="@string/welcome"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/ic_group"
+        tools:ignore="ImageContrastCheck" />
+
+    <TextView
+        android:id="@+id/txtViewSubtituloRecupero"
+        android:layout_width="279dp"
+        android:layout_height="67dp"
+        android:layout_marginStart="40dp"
+        android:layout_marginTop="96dp"
+        android:layout_marginEnd="40dp"
+        android:text="@string/Subtitulo_Recupero"
+        android:textAlignment="center"
+        android:textColor="@android:color/darker_gray"
+        android:textSize="16sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imgViewLogo" />
+
+    <com.google.android.material.textfield.TextInputEditText
+        android:id="@+id/editTextEmailRecupero"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="132dp"
+        android:autofillHints="Email"
+        android:ems="10"
+        android:hint="@string/enter_email"
+        android:inputType="textEmailAddress"
+        android:minHeight="48dp"
+        android:textColor="#78909C"
+        android:textColorHint="#78909C"
+        app:layout_constraintBottom_toTopOf="@+id/btnRestablecerPWD"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.435"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <TextView
+        android:id="@+id/txtVEmail"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="75dp"
+        android:text="@string/prompt_email"
+        android:textColor="#4A5568"
+        android:textSize="15sp"
+        app:layout_constraintBottom_toTopOf="@+id/editTextEmailRecupero"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <Button
+        android:id="@+id/btnRestablecerPWD"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="160dp"
+        android:backgroundTint="@color/color_boton"
+        android:fontFamily="sans-serif-medium"
+        android:text="@string/btn_restablecer"
+        android:textColor="@color/white"
+        app:cornerRadius="@dimen/corner_button"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.445"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <TextView
+        android:id="@+id/txtViewTituloRecupero"
+        android:layout_width="274dp"
+        android:layout_height="42dp"
+        android:layout_marginTop="20dp"
+        android:text="@string/Titulo_recupero"
+        android:textAlignment="center"
+        android:textColor="@android:color/darker_gray"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imgViewLogo" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

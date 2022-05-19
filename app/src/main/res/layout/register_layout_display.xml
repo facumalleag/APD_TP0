@@ -4,73 +4,123 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/white"
     tools:context=".RegisterLayout">
 
     <TextView
-        android:id="@+id/textView"
-        android:layout_width="329dp"
-        android:layout_height="68dp"
-        android:layout_marginTop="36dp"
-        android:layout_marginEnd="40dp"
+        android:id="@+id/txtViewSubtituloRecupero"
+        android:layout_width="291dp"
+        android:layout_height="69dp"
+        android:layout_marginStart="60dp"
+        android:layout_marginTop="24dp"
+        android:layout_marginEnd="60dp"
         android:textAlignment="center"
         android:textColor="@android:color/darker_gray"
-        android:textSize="24sp"
+        android:textSize="29sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageView" />
 
     <ImageView
         android:id="@+id/imageView"
-        android:layout_width="197dp"
-        android:layout_height="160dp"
+        android:layout_width="125dp"
+        android:layout_height="147dp"
         android:layout_marginStart="148dp"
-        android:layout_marginTop="60dp"
+        android:layout_marginTop="7dp"
         android:layout_marginEnd="148dp"
         android:contentDescription="@string/imagen_login"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView"
-        app:srcCompat="@drawable/ic_launcher_foreground" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/logocook" />
 
     <EditText
-        android:id="@+id/editTextTextEmailAddress"
+        android:id="@+id/editTextEmailRecupero"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="65dp"
+        android:layout_marginTop="40dp"
         android:autofillHints="Email"
         android:ems="10"
         android:hint="@string/enter_email"
         android:inputType="textEmailAddress"
         android:minHeight="48dp"
+        android:textColor="#78909C"
         android:textColorHint="#78909C"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageView" />
+        app:layout_constraintTop_toBottomOf="@+id/txtViewSubtituloRecupero" />
 
     <EditText
         android:id="@+id/editTextTextAlias"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="38dp"
+        android:layout_marginTop="88dp"
         android:autofillHints="Password"
         android:ems="10"
         android:hint="@string/alias"
         android:inputType="text"
         android:minHeight="48dp"
+        android:textColor="#78909C"
         android:textColorHint="#78909C"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.519"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTextTextEmailAddress" />
+        app:layout_constraintTop_toBottomOf="@+id/editTextEmailRecupero" />
 
-    <Button
-        android:id="@+id/btnSiguiente"
+    <TextView
+        android:id="@+id/txtVEmail"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="56dp"
-        android:text="@string/next"
+        android:layout_marginStart="88dp"
+        android:text="@string/prompt_email"
+        android:textColor="#4A5568"
+        android:textSize="15sp"
+        app:layout_constraintBottom_toTopOf="@+id/editTextEmailRecupero"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <TextView
+        android:id="@+id/txtVAlias"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="88dp"
+        android:text="@string/alias"
+        android:textColor="#4A5568"
+        android:textSize="15sp"
+        app:layout_constraintBottom_toTopOf="@+id/editTextTextAlias"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <Button
+        android:id="@+id/btnRestablecerPWD"
+        android:layout_width="201dp"
+        android:layout_height="54dp"
+        android:layout_marginTop="84dp"
+        android:backgroundTint="@color/color_boton"
+        android:fontFamily="sans-serif-medium"
+        android:includeFontPadding="true"
+        android:text="@string/boton_registro"
+        android:textColor="@color/white"
+        app:cornerRadius="@dimen/corner_button"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/editTextTextAlias" />
+
+    <TextView
+        android:id="@+id/txtVRecuperoPWD"
+        android:layout_width="320dp"
+        android:layout_height="63dp"
+        android:layout_marginStart="50dp"
+        android:layout_marginEnd="50dp"
+        android:layout_marginBottom="28dp"
+        android:autoLink="all"
+        android:clickable="true"
+        android:minHeight="48dp"
+        android:onClick="RecuperarPassword"
+        android:text="@string/recupero_contraseña"
+        android:textColor="@android:color/holo_red_light"
+        app:layout_constraintBottom_toTopOf="@+id/editTextTextAlias"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

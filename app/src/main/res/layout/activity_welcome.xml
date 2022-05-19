@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context=".WelcomeActivity"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    >
+
+    <ImageView
+    android:id="@+id/fondopng"
+        android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_marginBottom="8dp"
+    android:scaleType="centerCrop"
+        android:src="@drawable/fondopng"
+    app:layout_constraintBottom_toBottomOf="parent"
+    app:layout_constraintEnd_toEndOf="parent"
+    app:layout_constraintHorizontal_bias="1.0"
+    app:layout_constraintStart_toStartOf="parent"
+    app:layout_constraintTop_toTopOf="parent"
+    app:layout_constraintVertical_bias="0.0"
+    />
+
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <ImageView
+            android:id="@+id/fondoblank"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="408dp"
+            android:src="@drawable/fondoblanc"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.461"
+            app:layout_constraintStart_toStartOf="parent">
+
+        </ImageView>
+
+        <ImageView
+            android:id="@+id/fondoLogo"
+            android:layout_width="201dp"
+            android:layout_height="163dp"
+            android:layout_marginTop="92dp"
+            android:src="@drawable/logocook"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.484"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/txtvFrase"
+            android:layout_width="228dp"
+            android:layout_height="78dp"
+            android:layout_marginTop="168dp"
+            android:text="@string/welcome"
+            android:textAlignment="center"
+            android:textColor="@color/white"
+            android:textSize="28sp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.497"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/fondoLogo" />
+
+        <Button
+            android:id="@+id/btnComenzar"
+            android:layout_width="122dp"
+            android:layout_height="56dp"
+            android:layout_marginTop="128dp"
+            android:backgroundTint="@color/color_boton"
+            android:text="@string/comenzar"
+            android:textColor="#212121"
+            app:cornerRadius="@dimen/corner_button"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.498"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/txtvFrase" />
+
+        <TextView
+            android:id="@+id/txtvFrase2"
+            android:layout_width="186dp"
+            android:layout_height="30dp"
+            android:text="@string/frase_bienvenida"
+            android:textAlignment="center"
+            android:textColor="@color/color2"
+            app:layout_constraintBottom_toTopOf="@+id/btnComenzar"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.497"
+            app:layout_constraintStart_toStartOf="parent" />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</FrameLayout>

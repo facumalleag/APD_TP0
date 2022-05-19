@@ -1,33 +1,69 @@
 <resources>
     <string name="app_name">InstaMorfi</string>
+    <!-- Strings used for activity Welocme -->
+    <string name="welcome">Cocina con nosotros</string>
+    <string name="frase_bienvenida">"Encontrá las mejores recetas"</string>
+    <string name="comenzar">"Comenzar"</string>
+
+    <!-- Strings used for activity Main -->
+    <string name="no_tienes_cuenta">¿Aún no tienes cuenta?</string>
+    <string name="Registrate">Regístrate</string>
+    <string name="ForgotPassword">¿Olvidaste tu contraseña?</string>
+    <string name="enter_email">Ingresá tu email</string>
+    <string name="enter_password">Ingresá tu contraseña</string>
+    <string name="prompt_email">Email</string>
+    <string name="prompt_password">Contraseña</string>
+
+    <!-- Strings used for activty Login -->
+
+
+    <!-- Strings used for activty Register -->
     <string name="edit_message">Enter a message</string>
     <string name="button_send">Send</string>
-    <string name="saludos_text">Bienvenido</string>
+    <string name="boton_registro">Comenzar registro</string>
+    <string name="alias">Alias</string>
+    <string name="recupero_contraseña">El mail ingresado ya se encuentra registrado. Si no recuerda su contraseña puede recuperar la misma: <u>recuperar contraseña</u></string>
+
+
+    <!-- Strings used for activty RecuperoPassword -->
+    <string name="btn_restablecer">Restablecer contraseña</string>
+    <string name="Titulo_recupero">Restablecer contraseña</string>
+    <string name="Subtitulo_Recupero">Introduce tu correo electronico y te enviaremos un codigo para restablcer tu contraseña.</string>
+
+    <!-- Strings used for activty Ingreso Codigo Recupero -->
+    <string name="btn_ingresar_codigo">Ingresar Codigo</string>
+    <string name="Subtitulo_Codigo_recupero">Ingresa el codigo recibido por mail</string>
+    <string name="text_no_llego_codigo">¿No recibiste el código?</string>
+    <string name="numero_codigo">-</string>
+    <string name="reenviar_codigo">Reenviar</string>
+
+
+
     <string name="imagen_login">login</string>
-    <string name="enter_email">Enter your email</string>
-    <string name="enter_password">Enter your password</string>
-    <string name="login">Log In</string>
+    <string name="login">Iniciar Sesión</string>
     <string name="title_activity_login">LoginActivity</string>
-    <string name="prompt_email">Email</string>
-    <string name="prompt_password">Password</string>
+
     <string name="prompt_alias">Alias</string>
     <string name="action_sign_in_short">Sign in</string>
-    <string name="welcome">"Welcome !"</string>
+
     <string name="invalid_username">Not a valid username</string>
     <string name="invalid_password">Password must be >5 characters</string>
     <string name="login_failed">"Login failed"</string>
     <!-- Strings used for fragments for navigation -->
-    <string name="next">Next</string>
+
     <string name="previous">Previous</string>
 
     <string name="Add">Add</string>
     <string name="title_activity_register">Title Activity</string>
-    <string name="Registro">Register</string>
-    <string name="alias">Alias</string>
+
+    <!-- Strings used for activity RecoverPassword -->
+
     <string name="finalizar">Finalizar</string>
-    <string name="fechaNacimiento">Fecha Nac. DD/MM/AAAA</string>
+    <string name="fechaNacimiento">Nacimento DD/MM/AAAA</string>
     <string name="UserName">Nombre</string>
     <string name="UserSurname">Apellido</string>
     <string name="PersonalNumberUser">N° Documento</string>
     <string name="UserAddress">Domicilio</string>
+    <string name="Cancel">Cancel</string>
+    <string name="RecoveryCode">Codigo Recupero</string>
 </resources>
