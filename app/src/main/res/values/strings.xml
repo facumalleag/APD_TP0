@@ -37,11 +37,21 @@
     <string name="numero_codigo">-</string>
     <string name="reenviar_codigo">Reenviar</string>
 
-
+    <!-- Strings used for Alta Usuario Login -->
+    <string name="title_altausuario">Finalizar registro</string>
+    <string name="Alta_Nombre_User">Nombre</string>
+    <string name="UserSurname">Apellido</string>
+    <string name="TelefonoUser">Teléfono</string>
+    <string name="PrefijoUser">Prefijo</string>
+    <string name="Mas54">+54</string>
+    <string name="finalizar">Finalizar registro</string>
+    <string name="terminosYcondiciones">Estoy de acuerdo y acepto los terminos y condiciones</string>
+    <string name="RegistroExitoso">Registro exitoso</string>
+    <string name="Frase_reg_exitoso">Dentro de un momento te redireccionaremos a la pagina de inicio de la aplicación.</string>
 
     <string name="imagen_login">login</string>
     <string name="login">Iniciar Sesión</string>
-    <string name="title_activity_login">LoginActivity</string>
+
 
     <string name="prompt_alias">Alias</string>
     <string name="action_sign_in_short">Sign in</string>
@@ -58,12 +68,10 @@
 
     <!-- Strings used for activity RecoverPassword -->
 
-    <string name="finalizar">Finalizar</string>
-    <string name="fechaNacimiento">Nacimento DD/MM/AAAA</string>
+
     <string name="UserName">Nombre</string>
-    <string name="UserSurname">Apellido</string>
-    <string name="PersonalNumberUser">N° Documento</string>
-    <string name="UserAddress">Domicilio</string>
+
+
     <string name="Cancel">Cancel</string>
     <string name="RecoveryCode">Codigo Recupero</string>
 </resources>

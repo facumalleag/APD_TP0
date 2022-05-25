@@ -36,9 +36,6 @@ public class RegisterLayout extends AppCompatActivity {
         TextView textView = findViewById(R.id.txtViewSubtituloRecupero);
         textView.setText(message);
 
-        Button boton = findViewById(R.id.btnRestablecerPWD);
-        boton.setEnabled(false);
-
         comenzar = findViewById(R.id.btnRestablecerPWD);
         comenzar.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -112,7 +109,7 @@ public class RegisterLayout extends AppCompatActivity {
         String dato_alias = alias.getText().toString();
 
 
-        if (coleccionUsuarios.validarDaatosRegistro(dato_alias, dato_email) == true) {
+        if (coleccionUsuarios.validarDaatosRegistro(dato_alias, dato_email)) {
             //enviarmail al usuario acerca de su registracion exitosa
             coleccionUsuarios.enviarMailConfirmacionRegistro(dato_alias, dato_email);
             Intent intent = new Intent(this, AltaUsuarioActivity.class);

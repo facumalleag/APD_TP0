@@ -3,6 +3,7 @@ package com.example.myapplication;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
@@ -16,20 +17,22 @@ import com.example.myapplication.controller.UserController;
 public class CodeRecoveryActivity extends AppCompatActivity {
     private UserController coleccionUsuarios=UserController.getInstancia();
     Button boton;
+    TextView reenvio;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_code_recovery);
-        Bundle extra = getIntent().getExtras();
-        String email=extra.toString();
+        Intent intent = getIntent();
+        String email = intent.getStringExtra(MainActivity.EXTRA_MESSAGE);
 
-
-        TextView reenvio=findViewById(R.id.txtVReenvioCod);
+        reenvio=findViewById(R.id.txtVReenvioCod);
         reenvio.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 reenviarCodigo(email);
+                reenvio.setEnabled(false);
+                reenvio.setBackgroundColor(4124);
             }
         });
 
@@ -49,8 +52,7 @@ public class CodeRecoveryActivity extends AppCompatActivity {
             newString= (String) savedInstanceState.getSerializable("STRING_I_NEED"); }*/
 
 
-        boton=findViewById(R.id.coderecovery);
-        boton.setEnabled(false);
+        boton=findViewById(R.id.btnCodeRecovery);
 
         EditText num1 = findViewById(R.id.editTextNumber);
         EditText num2 = findViewById(R.id.editTextNumber2);
@@ -70,7 +72,11 @@ public class CodeRecoveryActivity extends AppCompatActivity {
 
             @Override
             public void afterTextChanged(Editable editable) {
-                num2.requestFocus();
+                if (num1.length()<1){
+                    num1.requestFocus();
+                }else{
+                    num2.requestFocus();
+                }
             }
         });
 
@@ -88,7 +94,12 @@ public class CodeRecoveryActivity extends AppCompatActivity {
 
             @Override
             public void afterTextChanged(Editable editable) {
-                num3.requestFocus();
+
+                if (num2.length()<1){
+                    num1.requestFocus();
+                }else{
+                    num3.requestFocus();
+                }
             }
         });
 
@@ -106,7 +117,12 @@ public class CodeRecoveryActivity extends AppCompatActivity {
 
             @Override
             public void afterTextChanged(Editable editable) {
-                num4.requestFocus();
+                if (num3.length()<1){
+                    num2.requestFocus();
+                }else{
+                    num4.requestFocus();
+                }
+
             }
         });
 
@@ -124,7 +140,15 @@ public class CodeRecoveryActivity extends AppCompatActivity {
 
             @Override
             public void afterTextChanged(Editable editable) {
-                boton.setEnabled(true);
+                if (num4.length()<1){
+                    num3.requestFocus();
+                    boton.setEnabled(false);
+                    boton.setBackgroundColor(Color.parseColor("#AEACAD"));
+                }else{
+                    boton.setEnabled(true);
+                    boton.setBackgroundColor(Color.parseColor("#5985EB"));
+                }
+
             }
         });
 
@@ -134,6 +158,15 @@ public class CodeRecoveryActivity extends AppCompatActivity {
 
     public void reenviarCodigo(String email){
         coleccionUsuarios.enviarMailCodeRecovery(email);
+    }
+
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        Intent intent = new Intent(this,RegisterLayout.class);
+        startActivity(intent);
+        finish();
     }
 
 }

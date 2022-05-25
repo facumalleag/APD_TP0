@@ -8,6 +8,7 @@ import android.util.Patterns;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ProgressBar;
 
 import com.example.myapplication.controller.UserController;
 import com.google.android.material.textfield.TextInputEditText;
@@ -18,11 +19,15 @@ public class RecuperoPWDActivity extends AppCompatActivity {
 
     Button btn_restablecer;
     TextInputEditText editTextEmailRecupero;
+    ProgressBar loadingProgressBar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_recupero_pwd);
+
+        loadingProgressBar=findViewById(R.id.IDprogressBar);
+        loadingProgressBar.setVisibility(View.GONE);
 
         btn_restablecer=findViewById(R.id.btnRestablecerPWD);
         editTextEmailRecupero=findViewById((R.id.editTextEmailRecupero));
@@ -36,6 +41,7 @@ public class RecuperoPWDActivity extends AppCompatActivity {
                     editTextEmailRecupero.setError("Correo invalido");
                     return;
                 }
+                loadingProgressBar.setVisibility(View.VISIBLE);
                 coleccionUsuarios.enviarMailCodeRecovery(email);
                 continuarIngresoCodigo(email);
             }

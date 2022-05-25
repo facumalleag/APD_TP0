@@ -39,7 +39,7 @@ public class UserController {
     private String subject="Registro exitoso!";
     private  String passwordmail="AndroidTPO123";
 
-    private String subjectRecupero="Registro exitoso!";
+    private String subjectRecupero="Mail de Recupero de Contraseña";
     private String mailCodigoRecupero= "Su codigo de verificacion es: ";
 
     private int codigo;
@@ -119,10 +119,8 @@ public class UserController {
         properties.put("mail.smtp.auth", "true");
         properties.put("mail.smtp.port", "465");
 
-        Random random = new Random();
-        //IntStream codigo= null;
-        codigo= ThreadLocalRandom.current().nextInt(1000,10000);
-
+        Random r = new Random();
+        int codigo = (r.nextInt(9999-1000 +1) + 1000);
 
         try{
             session = Session.getDefaultInstance(properties, new Authenticator() {

@@ -13,6 +13,11 @@
         <item name="android:statusBarColor" tools:targetApi="l">?attr/colorPrimaryVariant</item>
         <!-- Customize your theme here. -->
     </style>
+    <style name="tpo_style" parent="TextAppearance.AppCompat">
+        <item name="android:textViewStyle">@color/fill_color</item>
+        <item name="background">@color/white</item>
+        <item name="buttonStyle">@color/color_boton</item>
+    </style>
 
     <style name="Theme.MyApplication.NoActionBar">
         <item name="windowActionBar">false</item>

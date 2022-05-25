@@ -5,40 +5,18 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/white"
-    android:fillColor="@color/fill_color"
     tools:context=".CodeRecoveryActivity">
-
-    <Button
-        android:id="@+id/coderecovery"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="100dp"
-        android:layout_marginEnd="100dp"
-        android:layout_marginBottom="276dp"
-        android:backgroundTint="@color/color_boton"
-        android:fontFamily="sans-serif-medium"
-        android:includeFontPadding="true"
-        android:text="@string/btn_ingresar_codigo"
-        android:textColor="@color/white"
-        android:textSize="15sp"
-        app:cornerRadius="@dimen/corner_button"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.481"
-        app:layout_constraintStart_toStartOf="parent"
-        tools:ignore="TextContrastCheck" />
 
     <ImageView
         android:id="@+id/imageView2"
         android:layout_width="125dp"
         android:layout_height="147dp"
         android:layout_marginTop="7dp"
+        android:contentDescription="@string/welcome"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/logocook"
-        android:contentDescription="@string/welcome"
-        />
+        app:srcCompat="@drawable/logocook" />
 
     <TextView
         android:id="@+id/txtTituloCodigoRecu"
@@ -70,10 +48,12 @@
 
     <com.google.android.material.textfield.TextInputEditText
         android:id="@+id/editTextNumber3"
+        style="@style/Widget.AppCompat.Button"
         android:layout_width="54dp"
         android:layout_height="44dp"
         android:layout_marginStart="24dp"
         android:layout_marginTop="40dp"
+        android:background="@android:drawable/gallery_thumb"
         android:ems="10"
         android:hint="@string/numero_codigo"
         android:inputType="number"
@@ -84,14 +64,16 @@
         android:textStyle="bold"
         app:layout_constraintStart_toEndOf="@+id/editTextNumber2"
         app:layout_constraintTop_toBottomOf="@+id/txtSubtituloCodigoRecu"
-        tools:ignore="TouchTargetSizeCheck" />
+        tools:ignore="TouchTargetSizeCheck,DuplicateSpeakableTextCheck" />
 
     <com.google.android.material.textfield.TextInputEditText
         android:id="@+id/editTextNumber"
+        style="@style/Widget.AppCompat.Button"
         android:layout_width="54dp"
         android:layout_height="44dp"
         android:layout_marginStart="48dp"
         android:layout_marginTop="40dp"
+        android:background="@android:drawable/gallery_thumb"
         android:ems="10"
         android:hint="@string/numero_codigo"
         android:inputType="number"
@@ -106,10 +88,12 @@
 
     <com.google.android.material.textfield.TextInputEditText
         android:id="@+id/editTextNumber2"
+        style="@style/Widget.AppCompat.Button"
         android:layout_width="54dp"
         android:layout_height="44dp"
         android:layout_marginStart="24dp"
         android:layout_marginTop="40dp"
+        android:background="@android:drawable/gallery_thumb"
         android:ems="10"
         android:hint="@string/numero_codigo"
         android:inputType="number"
@@ -124,10 +108,12 @@
 
     <com.google.android.material.textfield.TextInputEditText
         android:id="@+id/editTextNumber4"
+        style="@style/Widget.AppCompat.Button"
         android:layout_width="54dp"
         android:layout_height="44dp"
         android:layout_marginStart="24dp"
         android:layout_marginTop="40dp"
+        android:background="@android:drawable/gallery_thumb"
         android:ems="10"
         android:hint="@string/numero_codigo"
         android:inputType="number"
@@ -145,21 +131,39 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="80dp"
+        android:layout_marginBottom="257dp"
         android:text="@string/text_no_llego_codigo"
         android:textColor="#78909C"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/coderecovery" />
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
 
     <TextView
         android:id="@+id/txtVReenvioCod"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="58dp"
+        android:layout_height="58dp"
+        android:layout_marginTop="2dp"
         android:layout_marginEnd="88dp"
         android:clickable="true"
+        android:focusable="true"
         android:text="@string/reenviar_codigo"
         android:textColor="@color/color_boton"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/coderecovery"
-        tools:ignore="TouchTargetSizeCheck" />
+        app:layout_constraintTop_toBottomOf="@+id/btnCodeRecovery"
+        />
+
+    <Button
+        android:id="@+id/btnCodeRecovery"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="100dp"
+        android:layout_marginEnd="100dp"
+        android:layout_marginBottom="2dp"
+        android:backgroundTint="@color/color1"
+        android:enabled="false"
+        android:text="@string/btn_ingresar_codigo"
+        android:textColor="@color/white"
+        app:layout_constraintBottom_toTopOf="@+id/txtViewFraseNorecibisteCod"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
