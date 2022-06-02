@@ -54,13 +54,13 @@ public class RecuperoPWDActivity extends AppCompatActivity {
         intent.putExtra(EXTRA_MESSAGE, email);
         startActivity(intent);
     }
-
+/*
     @Override
     public void onBackPressed() {
         super.onBackPressed();
         Intent intent = new Intent(this,MainActivity.class);
         startActivity(intent);
         finish();
-    }
+    }*/
 }
 

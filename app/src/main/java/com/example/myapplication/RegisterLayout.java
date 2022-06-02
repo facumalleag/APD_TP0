@@ -8,6 +8,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.util.Patterns;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -108,6 +109,14 @@ public class RegisterLayout extends AppCompatActivity {
         String dato_email = email.getText().toString();
         String dato_alias = alias.getText().toString();
 
+        if (dato_email.isEmpty()||!Patterns.EMAIL_ADDRESS.matcher(dato_email).matches()){
+            email.setError("Correo invalido");
+            return;
+        }
+        if (dato_alias.isEmpty()){
+            email.setError("Alias invalido");
+            return;
+        }
 
         if (coleccionUsuarios.validarDaatosRegistro(dato_alias, dato_email)) {
             //enviarmail al usuario acerca de su registracion exitosa

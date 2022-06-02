@@ -70,7 +70,6 @@ public class AltaUsuarioActivity extends AppCompatActivity {
                 continuarVentanaDeFinRegistro(v);
             }
         });
-
     }
 
     public void continuarVentanaDeFinRegistro(View view){
