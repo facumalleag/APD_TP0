@@ -31,11 +31,10 @@
             android:id="@+id/fondoblank"
             android:layout_width="336dp"
             android:layout_height="322dp"
-            android:layout_marginBottom="392dp"
+            android:layout_marginBottom="376dp"
             android:src="@drawable/fondoblanc"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.493"
             app:layout_constraintStart_toStartOf="parent">
 
         </ImageView>
