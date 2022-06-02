@@ -13,7 +13,7 @@
         android:id="@+id/btnLogin"
         android:layout_width="206dp"
         android:layout_height="50dp"
-        android:layout_marginTop="372dp"
+        android:layout_marginTop="348dp"
         android:backgroundTint="@color/color_boton"
         android:fontFamily="sans-serif-medium"
         android:includeFontPadding="true"

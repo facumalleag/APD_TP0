@@ -67,7 +67,7 @@
         android:id="@+id/btnRestablecerPWD"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="160dp"
+        android:layout_marginBottom="96dp"
         android:backgroundTint="@color/color_boton"
         android:fontFamily="sans-serif-medium"
         android:text="@string/btn_restablecer"
@@ -75,7 +75,7 @@
         app:cornerRadius="@dimen/corner_button"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.445"
+        app:layout_constraintHorizontal_bias="0.457"
         app:layout_constraintStart_toStartOf="parent" />
 
     <TextView
