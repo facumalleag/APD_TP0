@@ -13,18 +13,20 @@ import android.widget.EditText;
 import android.widget.TextView;
 
 import com.example.myapplication.controller.UserController;
+import com.google.android.material.snackbar.Snackbar;
 
 public class CodeRecoveryActivity extends AppCompatActivity {
     private UserController coleccionUsuarios=UserController.getInstancia();
     Button boton;
     TextView reenvio;
+    String email;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_code_recovery);
         Intent intent = getIntent();
-        String email = intent.getStringExtra(MainActivity.EXTRA_MESSAGE);
+        email = intent.getStringExtra(MainActivity.EXTRA_MESSAGE);
 
         reenvio=findViewById(R.id.txtVReenvioCod);
         reenvio.setOnClickListener(new View.OnClickListener() {
@@ -35,6 +37,7 @@ public class CodeRecoveryActivity extends AppCompatActivity {
                 reenvio.setBackgroundColor(4124);
             }
         });
+
 
 
         /*
@@ -53,6 +56,21 @@ public class CodeRecoveryActivity extends AppCompatActivity {
 
 
         boton=findViewById(R.id.btnCodeRecovery);
+        boton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                EditText num1 = findViewById(R.id.editTextNumber);
+                EditText num2 = findViewById(R.id.editTextNumber2);
+                EditText num3 = findViewById(R.id.editTextNumber3);
+                EditText num4 = findViewById(R.id.editTextNumber4);
+                String codigo=num1.getText().toString()+num2.getText().toString()+num3.getText().toString()+num4.getText().toString();
+                boolean resultado=compararCodigIngresado(codigo,email);
+                showSnackBar(resultado);
+                restablecerPWD();
+            }
+        });
+
+
 
         EditText num1 = findViewById(R.id.editTextNumber);
         EditText num2 = findViewById(R.id.editTextNumber2);
@@ -155,6 +173,43 @@ public class CodeRecoveryActivity extends AppCompatActivity {
 
     }
 
+    public void restablecerPWD() {
+        Intent intent = new Intent(this,RestablecerPwdActivity.class);
+        startActivity(intent);
+
+    }
+
+    private void showSnackBar(boolean codigo_correcto) {
+        String message = null;
+        int color = 0;
+
+        if (!codigo_correcto) {
+            message = "Codigo Incorrecto";
+            color = Color.RED;
+        }
+
+        // initialize snack bar
+        Snackbar snackbar = Snackbar.make(findViewById(R.id.btnCodeRecovery), message, Snackbar.LENGTH_LONG);
+
+        // initialize view
+        View view = snackbar.getView();
+
+        // Assign variable
+        TextView textView = view.findViewById(R.id.snackbar_text);
+
+        // set text color
+        textView.setTextColor(color);
+
+        // show snack bar
+        snackbar.show();
+    }
+
+    public boolean compararCodigIngresado(String input_cod,String mail){
+        int cod= coleccionUsuarios.getCodRecupero(mail);
+
+        return true;
+
+    }
 
     public void reenviarCodigo(String email){
         coleccionUsuarios.enviarMailCodeRecovery(email);
