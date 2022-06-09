@@ -9,18 +9,51 @@
     tools:context=".HomeApplicationActivity"
     >
 
-    <androidx.fragment.app.FragmentContainerView
-        android:id="@+id/fragmentContainerView"
-        android:name="androidx.navigation.fragment.NavHostFragment"
-        android:layout_width="409dp"
-        android:layout_height="729dp"
-        android:layout_marginStart="168dp"
-        android:layout_marginTop="263dp"
-        android:layout_marginEnd="238dp"
-        app:defaultNavHost="true"
+    <androidx.appcompat.widget.SearchView
+        android:id="@+id/search_fiel"
+        android:layout_width="341dp"
+        android:layout_height="54dp"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginStart="18dp"
+        android:layout_marginTop="96dp"
+        android:layout_marginEnd="18dp"
+        android:background="@drawable/search_fiel"
+        android:clipToOutline="true"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/title"
+        android:layout_width="273dp"
+        android:layout_height="51dp"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:layout_constraintTop_toBottomOf="@+id/search_fiel"
+        android:layout_marginTop="35dp"
+        android:gravity="top"
+        android:lineSpacingExtra="-7sp"
+        android:text="Hola Agus, Qué quieres cocinar?"
+        android:textSize="24sp"
+        app:layout_constraintStart_toStartOf="@+id/search_fiel"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <View
+        android:id="@+id/bg"
+        android:layout_width="0dp"
+        android:layout_height="106dp"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginEnd="1dp"
+        android:background="@drawable/nav_bar"
+        android:elevation="8dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:navGraph="@navigation/nav_graph" />
+        app:layout_constraintVertical_bias="1.0" />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>
