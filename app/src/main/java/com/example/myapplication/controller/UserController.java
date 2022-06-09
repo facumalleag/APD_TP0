@@ -66,7 +66,7 @@ public class UserController {
             // Comparo que la sugerencia no exista en la base
             String aux="blank";
             String sugerencia=dato_alias + "_" + dato_mail;
-            if (aux!=sugerencia){
+            if (!aux.equals(sugerencia)){
                 sugerencias.add(sugerencia);
             }
         }
@@ -147,7 +147,6 @@ public class UserController {
     }
 
     public int getCodRecupero(String mail){
-
 
         return codigo;
     }
