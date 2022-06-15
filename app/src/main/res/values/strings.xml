@@ -1,5 +1,4 @@
 <resources>
-    <string name="app_name">InstaMorfi</string>
     <!-- Strings used for activity Welocme -->
     <string name="welcome">Cocina con nosotros</string>
     <string name="frase_bienvenida">"Encontrá las mejores recetas"</string>
@@ -18,8 +17,6 @@
 
 
     <!-- Strings used for activty Register -->
-    <string name="edit_message">Enter a message</string>
-    <string name="button_send">Send</string>
     <string name="boton_registro">Comenzar registro</string>
     <string name="alias">Alias</string>
     <string name="recupero_contraseña">El mail ingresado ya se encuentra registrado. Si no recuerda su contraseña puede recuperar la misma: <u>recuperar contraseña</u></string>
@@ -30,7 +27,6 @@
     <string name="Subtitulo_Recupero">Introduce tu correo electronico y te enviaremos un codigo para restablcer tu contraseña.</string>
     <string name="Nueva_pwd">Nueva contraseña</string>
     <string name="Confirmar_pwd">Confirmar contraseña</string>
-
 
 
     <!-- Strings used for activty Ingreso Codigo Recupero -->
@@ -57,30 +53,28 @@
     <string name="titulo_dialogo_red">Conexión a internet no encontrada</string>
     <string name="body_dialogo_red">No se encuentra conectado a una red sin cargo. ¿Desea utilizar una red con cargo a su cuenta o desea aguardar a que se disponga de una conexion gratuita?</string>
 
+    <!-- Strings used for Home Application -->
+    <string name="texto_saludo">Hola </string>
+    <string name="texto_home">¿Que quieres cocinar?</string>
+
+    <!-- Strings used for Search Activity -->
+    <string name="Receta_filtro">Nombre de receta</string>
+    <string name="Categoria_filtro">Categorías</string>
+    <string name="Con_Ingredientes_filtro">Con ingredientes</string>
+    <string name="Sin_Ingredientes_filtro">Sin Ingredientes</string>
+    <string name="Usuario_filtro">Nombre de Usuario</string>
+
 
     <string name="imagen_login">nnsns</string>
     <string name="login">Iniciar Sesión</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 
 
-    <string name="prompt_alias">Alias</string>
-    <string name="action_sign_in_short">Sign in</string>
-
-    <string name="invalid_username">Not a valid username</string>
-    <string name="invalid_password">Password must be >5 characters</string>
-    <string name="login_failed">"Login failed"</string>
     <!-- Strings used for fragments for navigation -->
-
-    <string name="previous">Previous</string>
-
-    <string name="Add">Add</string>
-    <string name="title_activity_register">Title Activity</string>
 
     <!-- Strings used for activity RecoverPassword -->
 
 
-    <string name="UserName">Nombre</string>
-
-
-    <string name="Cancel">Cancel</string>
-    <string name="RecoveryCode">Codigo Recupero</string>
+    <!-- TODO: Remove or change this placeholder text -->
 </resources>

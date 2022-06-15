@@ -32,12 +32,18 @@
         <entry key="..\:/Users/TPO/app/src/main/res/layout/login_layout_display.xml" value="0.25" />
         <entry key="..\:/Users/TPO/app/src/main/res/layout/register_layout_display.xml" value="0.25" />
         <entry key="..\:/Users/TPO/app/src/main/res/layout/registro_exitoso_layout.xml" value="0.25" />
+        <entry key="..\:/Users/facum/TPO/app/src/main/res/drawable/search_fiel.xml" value="0.2985" />
         <entry key="..\:/Users/facum/TPO/app/src/main/res/layout/activity_code_recovery.xml" value="0.2" />
+        <entry key="..\:/Users/facum/TPO/app/src/main/res/layout/activity_home_application.xml" value="0.25" />
         <entry key="..\:/Users/facum/TPO/app/src/main/res/layout/activity_main.xml" value="0.25" />
         <entry key="..\:/Users/facum/TPO/app/src/main/res/layout/activity_recupero_pwd.xml" value="0.22" />
         <entry key="..\:/Users/facum/TPO/app/src/main/res/layout/activity_restablecer_pwd.xml" value="0.2" />
+        <entry key="..\:/Users/facum/TPO/app/src/main/res/layout/activity_search.xml" value="0.18" />
         <entry key="..\:/Users/facum/TPO/app/src/main/res/layout/activity_welcome.xml" value="0.2" />
         <entry key="..\:/Users/facum/TPO/app/src/main/res/layout/alta_user_activity.xml" value="0.18" />
+        <entry key="..\:/Users/facum/TPO/app/src/main/res/layout/fragment_filtros/fragment_.xml" value="0.275" />
+        <entry key="..\:/Users/facum/TPO/app/src/main/res/layout/fragment_receta_filtro.xml" value="0.22" />
+        <entry key="..\:/Users/facum/TPO/app/src/main/res/layout/fragment_search.xml" value="0.2" />
         <entry key="..\:/Users/facum/TPO/app/src/main/res/layout/login_layout_display.xml" value="0.27049180327868855" />
         <entry key="..\:/Users/facum/TPO/app/src/main/res/layout/register_layout_display.xml" value="0.27049180327868855" />
       </map>
