@@ -39,5 +39,10 @@ public class HomeApplicationActivity extends AppCompatActivity{
         startActivity(intent);
     }
 
+    public void actionCreate(View view){
+        Intent intent = new Intent(this, CreateFirstRecipeActivity.class);
+        startActivity(intent);
+        finish();
+    }
 
 }

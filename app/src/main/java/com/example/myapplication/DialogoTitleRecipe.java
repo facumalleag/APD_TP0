@@ -8,9 +8,10 @@ import android.graphics.Color;
 import android.os.Bundle;
 import android.widget.Button;
 
+import androidx.core.content.ContextCompat;
 import androidx.fragment.app.DialogFragment;
 
-public class DialogoRedDisponible extends DialogFragment {
+public class DialogoTitleRecipe extends DialogFragment {
 
     public interface NoticeDialogListener {
         public void onDialogPositiveClick(DialogFragment dialog);
@@ -40,22 +41,20 @@ public class DialogoRedDisponible extends DialogFragment {
     public Dialog onCreateDialog(Bundle savedInstanceState) {
         // Use the Builder class for convenient dialog construction
         AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
-        builder.setMessage(R.string.body_dialogo_red);
-        builder.setTitle(R.string.titulo_dialogo_red)
-                .setPositiveButton("ACEPTAR", new DialogInterface.OnClickListener() {
+        builder.setMessage(R.string.body_dialogo_recipe);
+        builder.setTitle(R.string.titulo_dialogo_recipe)
+                .setPositiveButton(R.string.reemplazar, new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int id) {
-                        // COMPLETAR LA OPERACION GUARDANDO EN LA BASE DE DATOS
-                        listener.onDialogPositiveClick(DialogoRedDisponible.this);
+                        // Reemplazar receta
+                        listener.onDialogPositiveClick(DialogoTitleRecipe.this);
 
                     }
                 })
-                .setNegativeButton("AGUARDAR", new DialogInterface.OnClickListener() {
+                .setNegativeButton(R.string.editar, new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int id) {
-                        listener.onDialogNegativeClick(DialogoRedDisponible.this);
-                        // NO SUBIR A LA BASE DE DATOS Y VOLVER A INTENTARLO PARA SUBIRLO CUANDO HAYA WIFI
+                        listener.onDialogNegativeClick(DialogoTitleRecipe.this);
                     }
                 });
-        // Create the AlertDialog object and return it
         // Create the AlertDialog object and return it
         AlertDialog alert = builder.create();
         alert.show();

@@ -46,6 +46,9 @@
                 android:value=".MainActivity" />
         </activity>
         <activity
+            android:name=".CreateFirstRecipeActivity"
+            android:exported="false" />
+        <activity
             android:name=".RegisterLayout"
             android:parentActivityName=".MainActivity">
 

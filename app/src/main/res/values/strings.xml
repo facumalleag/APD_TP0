@@ -53,6 +53,12 @@
     <string name="titulo_dialogo_red">Conexión a internet no encontrada</string>
     <string name="body_dialogo_red">No se encuentra conectado a una red sin cargo. ¿Desea utilizar una red con cargo a su cuenta o desea aguardar a que se disponga de una conexion gratuita?</string>
 
+    <!-- Strings used for activty Dialogo de Red Disponible -->
+    <string name="titulo_dialogo_recipe">Receta creada anteriormente.</string>
+    <string name="body_dialogo_recipe">La receta ya fue creada anteriormente, ¿Desea reemplazar la receta existente o editarla?</string>
+    <string name="editar">Editar</string>
+    <string name="reemplazar">Reemplazar</string>
+
     <!-- Strings used for Home Application -->
     <string name="texto_saludo">Hola </string>
     <string name="texto_home">¿Que quieres cocinar?</string>
@@ -64,6 +70,11 @@
     <string name="Sin_Ingredientes_filtro">Sin Ingredientes</string>
     <string name="Usuario_filtro">Nombre de Usuario</string>
 
+    <!-- Strings used for Create Recipe -->
+    <string name="btn_create">Crear receta</string>
+    <string name="title_recipe">Crear receta</string>
+    <string name="subtitle_Recipe">Para comenzar a crear tu receta necesitamos el titulo de la misma para verificar antes que la misma no exista.</string>
+    <string name="enter_title_recipe">Titulo. Ej : Pollo al horno</string>
 
     <string name="imagen_login">nnsns</string>
     <string name="login">Iniciar Sesión</string>
