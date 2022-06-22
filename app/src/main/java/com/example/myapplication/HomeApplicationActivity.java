@@ -32,8 +32,11 @@ public class HomeApplicationActivity extends AppCompatActivity{
 
 
     }
-
-    private void iniciarBusquedaActivity(View view) {
+    public void iniciarHome(View view){
+        Intent intent = new Intent(this, HomeApplicationActivity.class);
+        startActivity(intent);
+    }
+    public void iniciarBusquedaActivity(View view) {
 
         Intent intent = new Intent(this, SearchActivity.class);
         startActivity(intent);
