@@ -4,8 +4,15 @@
     <option name="filePathToZoomLevelMap">
       <map>
         <entry key="..\:/Users/Juamsa/Desktop/APD_TP0_Develop2/app/src/main/res/drawable/ic_baseline_person_24.xml" value="0.1695" />
+        <entry key="..\:/Users/Juamsa/Desktop/APD_TP0_Develop2/app/src/main/res/layout/activity_code_for_register.xml" value="0.33" />
+        <entry key="..\:/Users/Juamsa/Desktop/APD_TP0_Develop2/app/src/main/res/layout/activity_code_recovery.xml" value="0.20416666666666666" />
         <entry key="..\:/Users/Juamsa/Desktop/APD_TP0_Develop2/app/src/main/res/layout/activity_home_application.xml" value="0.25" />
+        <entry key="..\:/Users/Juamsa/Desktop/APD_TP0_Develop2/app/src/main/res/layout/activity_recupero_pwd.xml" value="0.20416666666666666" />
+        <entry key="..\:/Users/Juamsa/Desktop/APD_TP0_Develop2/app/src/main/res/layout/activity_restablecer_pwd.xml" value="0.20416666666666666" />
+        <entry key="..\:/Users/Juamsa/Desktop/APD_TP0_Develop2/app/src/main/res/layout/activity_search.xml" value="0.20416666666666666" />
+        <entry key="..\:/Users/Juamsa/Desktop/APD_TP0_Develop2/app/src/main/res/layout/alta_user_activity.xml" value="0.20416666666666666" />
         <entry key="..\:/Users/Juamsa/Desktop/APD_TP0_Develop2/app/src/main/res/layout/create_recipe_first.xml" value="0.25" />
+        <entry key="..\:/Users/Juamsa/Desktop/APD_TP0_Develop2/app/src/main/res/layout/register_layout_display.xml" value="0.20416666666666666" />
         <entry key="..\:/Users/TPO/app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.161" />
         <entry key="..\:/Users/TPO/app/src/main/res/drawable/fondo_degradado.xml" value="0.161" />
         <entry key="..\:/Users/TPO/app/src/main/res/drawable/ic_launcher_background.xml" value="0.2005" />
