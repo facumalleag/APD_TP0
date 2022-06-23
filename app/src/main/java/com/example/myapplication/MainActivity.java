@@ -9,6 +9,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.DialogFragment;
@@ -16,6 +17,14 @@ import androidx.fragment.app.DialogFragment;
 import com.example.myapplication.controller.NetworkController;
 import com.example.myapplication.controller.UserController;
 import com.google.android.material.snackbar.Snackbar;
+import com.google.gson.JsonElement;
+
+import com.example.myapplication.services.UserService;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+import retrofit2.Retrofit;
+import retrofit2.converter.gson.GsonConverterFactory;
 
 
 public class MainActivity extends AppCompatActivity implements NetworkController.ReceiverListener,DialogoRedDisponible.NoticeDialogListener {
@@ -59,23 +68,57 @@ public class MainActivity extends AppCompatActivity implements NetworkController
      */
 
     public void ActionLogin(View view){
-        EditText mail=findViewById(R.id.editTextEmailRecupero);
-        String email=mail.getText().toString().trim();
-
-        if (email.isEmpty()||!Patterns.EMAIL_ADDRESS.matcher(email).matches()){
-            mail.setError("Correo invalido");
+        EditText emailEditText=findViewById(R.id.editTextEmailRecupero);
+        EditText passwordEditText=findViewById(R.id.editTextTextPassword);
+        String email1=emailEditText.getText().toString().trim();
+        if (email1.isEmpty()||!Patterns.EMAIL_ADDRESS.matcher(email1).matches()){
+            emailEditText.setError("Correo invalido");
             return;
         }
-        // verifico el esatdo de la red antes de consultar a la base de datos
-        String tipoconexion=controlador_red.verificarTipoRed(this);
-        mostrarAlerta(tipoconexion);
+        String mail= emailEditText.getText().toString();
+        String password=passwordEditText.getText().toString();
+        Retrofit retrofit = new Retrofit.Builder()
+                .baseUrl("http://10.0.2.2:8000")
+                .addConverterFactory(GsonConverterFactory.create())
+                .build();
+
+        UserService us = retrofit.create(UserService.class);
+        Call<JsonElement> call = us.login(mail,password);
+
+        call.enqueue(new Callback<JsonElement>() {
+            @Override
+            public void onResponse(Call<JsonElement> call, Response<JsonElement> response) {
+                //lblEstado.setText(response.body() );
+                System.out.println(response.body());
+                if(response.isSuccessful()){
+                    doLogin();
+                }else{
+                    if (response.code() ==400){//Alias e email en uso
+                        Toast toast = Toast.makeText(getApplication().getApplicationContext(), "Correo o contraseña invalida", Toast.LENGTH_SHORT);
+                        toast.show();
+                    }
+                }
+            }
+
+            @Override
+            public void onFailure(Call<JsonElement> call, Throwable t) {
+                System.out.println(t.getMessage());
+            }
+        });
+
+
     }
 
     /**
      * metodo para mostrar mensaje de alerta cuando el usuario este usando datos del celular
      *
      */
+    public void doLogin (){
+        Intent intent = new Intent(this, HomeApplicationActivity.class);
+        //intent.putExtra(Intent.EXTRA_EMAIL,emailEditText.getText().toString());
+        startActivity(intent);
 
+    }
     public void mostrarAlerta(String tipoconexion) {
         if (tipoconexion.equals("MOBILE")) {
             DialogFragment newFragment = new DialogoRedDisponible();

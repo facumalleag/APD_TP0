@@ -12,7 +12,8 @@
         android:icon="@mipmap/ic_launcher"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/Theme.MyApplication.NoActionBar">
+        android:theme="@style/Theme.MyApplication.NoActionBar"
+        android:usesCleartextTraffic="true">>
         <activity
             android:name=".SearchActivity"
             android:exported="false"
@@ -28,6 +29,9 @@
             android:exported="false" />
         <activity
             android:name=".CodeRecoveryActivity"
+            android:exported="false" />
+        <activity
+            android:name=".CodeForRegisterActivity"
             android:exported="false" />
         <activity
             android:name=".HomeApplicationActivity"

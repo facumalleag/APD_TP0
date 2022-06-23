@@ -65,8 +65,12 @@ public class CodeForRegisterActivity extends AppCompatActivity {
                 EditText num4 = findViewById(R.id.editTextNumber4);
                 String codigo=num1.getText().toString()+num2.getText().toString()+num3.getText().toString()+num4.getText().toString();
                 boolean resultado=compararCodigIngresado(codigo,email);
-                showSnackBar(resultado);
-                restablecerPWD();
+                if (!resultado){
+                    showSnackBar();
+                    return;
+                }
+
+                IniciarAltaUsuarioActivity();
             }
         });
 
@@ -173,20 +177,20 @@ public class CodeForRegisterActivity extends AppCompatActivity {
 
     }
 
-    public void restablecerPWD() {
-        Intent intent = new Intent(this,RestablecerPwdActivity.class);
+    public void IniciarAltaUsuarioActivity() {
+        Intent intent = new Intent(this,AltaUsuarioActivity.class);
         startActivity(intent);
 
     }
 
-    private void showSnackBar(boolean codigo_correcto) {
+    private void showSnackBar( ) {
         String message = null;
         int color = 0;
 
-        if (!codigo_correcto) {
-            message = "Codigo Incorrecto";
-            color = Color.RED;
-        }
+
+        message = "Codigo Incorrecto";
+        color = Color.RED;
+
 
         // initialize snack bar
         Snackbar snackbar = Snackbar.make(findViewById(R.id.btnCodeRecovery), message, Snackbar.LENGTH_LONG);
@@ -206,8 +210,8 @@ public class CodeForRegisterActivity extends AppCompatActivity {
 
     public boolean compararCodigIngresado(String input_cod,String mail){
         int cod= coleccionUsuarios.getCodRecupero(mail);
-
-        return true;
+        String codigoString = String.valueOf(cod);
+        return input_cod.equals(codigoString) ;
 
     }
 
