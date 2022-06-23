@@ -13,11 +13,13 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.MyApplication.NoActionBar"
-        android:usesCleartextTraffic="true">>
+        android:usesCleartextTraffic="true">
+        <activity
+            android:name=".SoporteUsuarioActivity"
+            android:exported="false" />
         <activity
             android:name=".SearchActivity"
-            android:exported="false"
-           />
+            android:exported="false" />
         <activity
             android:name=".RestablecerPwdActivity"
             android:exported="false" />
@@ -42,13 +44,6 @@
         <activity
             android:name=".AltaUsuarioActivity"
             android:exported="false" />
-        <activity
-            android:name=".LoginLayout"
-            android:parentActivityName=".MainActivity">
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value=".MainActivity" />
-        </activity>
         <activity
             android:name=".CreateFirstRecipeActivity"
             android:exported="false" />
