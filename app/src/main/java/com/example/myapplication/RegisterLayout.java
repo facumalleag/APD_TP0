@@ -59,6 +59,9 @@ public class RegisterLayout extends AppCompatActivity {
             }
         });
 
+        TextView registro_incompleto = findViewById(R.id.txtRegistroIncompleto);
+        registro_incompleto.setVisibility(View.INVISIBLE);
+
         EditText alias = findViewById(R.id.editTextTextAlias);
         /*
         alias.addTextChangedListener(new TextWatcher(){
@@ -164,8 +167,8 @@ public class RegisterLayout extends AppCompatActivity {
 
                         }
                         if (response.code() ==432){//email en uso
-                            TextView recupero = findViewById(R.id.txtVRecuperoPWD);
-                            recupero.setVisibility(View.VISIBLE);
+                            TextView registro_incompleto = findViewById(R.id.txtRegistroIncompleto);
+                            registro_incompleto.setVisibility(View.VISIBLE);
 
                         }
                     } catch (IOException e) {
@@ -194,9 +197,16 @@ public class RegisterLayout extends AppCompatActivity {
 
     }
 
+    public void derivarSoporteDeSitio(View view){
+        Intent intent = new Intent(this, SoporteUsuarioActivity.class);
+        startActivity(intent);
+
+    }
+
     public ArrayList<String> sugerirAlias(String dato_alias, String dato_mail) {
         ArrayList<String> sugerencias= new ArrayList<String>();
-        // Comparo que la sugerencia no exista en la base
+
+        // falta comparar que la sugerencia no exista en la base
         String aux=dato_mail.substring(0,dato_mail.indexOf("@")); //obtengo solo usermail
         String sugerencia1=dato_alias + "_" + aux;
         String sugerencia2=aux+ "_"+ aux.substring(0,3);

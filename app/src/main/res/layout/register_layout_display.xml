@@ -124,4 +124,23 @@
         app:layout_constraintStart_toStartOf="parent"
         android:focusable="true" />
 
+    <TextView
+        android:id="@+id/txtRegistroIncompleto"
+        android:layout_width="375dp"
+        android:layout_height="63dp"
+        android:layout_marginStart="23dp"
+        android:layout_marginTop="12dp"
+        android:layout_marginEnd="13dp"
+        android:autoLink="all"
+        android:focusable="true"
+        android:clickable="true"
+        android:onClick="derivarSoporteDeSitio"
+        android:text="@string/registro_Incompleto"
+        android:textColor="@android:color/holo_red_light"
+        android:textSize="14sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/editTextTextAlias" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -4,6 +4,66 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/white"
     tools:context=".SoporteUsuarioActivity">
 
+    <ImageView
+        android:id="@+id/imageView7"
+        app:srcCompat="@drawable/logocook"
+        android:layout_width="125dp"
+        android:layout_height="147dp"
+        android:layout_marginStart="148dp"
+        android:layout_marginTop="7dp"
+        android:layout_marginEnd="148dp"
+        android:contentDescription="@string/imagen_login"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        />
+
+    <TextView
+        android:id="@+id/textView8"
+        android:layout_width="373dp"
+        android:layout_height="93dp"
+        android:layout_marginStart="19dp"
+        android:layout_marginTop="85dp"
+        android:layout_marginEnd="19dp"
+        android:text="@string/Msj_Soporte"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView10" />
+
+    <Button
+        android:id="@+id/btnContinuar"
+        android:layout_width="201dp"
+        android:layout_height="54dp"
+        android:layout_marginStart="105dp"
+        android:layout_marginTop="130dp"
+        android:layout_marginEnd="105dp"
+        android:backgroundTint="@color/color_boton"
+        android:fontFamily="sans-serif-medium"
+        android:includeFontPadding="true"
+        android:onClick="continuarHomeActivity"
+        android:text="@string/Continuar"
+        android:textColor="@color/white"
+        app:cornerRadius="@dimen/corner_button"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView8" />
+
+    <TextView
+        android:id="@+id/textView10"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="54dp"
+        android:layout_marginTop="41dp"
+        android:layout_marginEnd="55dp"
+        android:text="@string/Soporte_Titulo"
+        android:textAlignment="center"
+        android:textColor="@android:color/darker_gray"
+        android:textSize="29sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageView7" />
 </androidx.constraintlayout.widget.ConstraintLayout>

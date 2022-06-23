@@ -20,6 +20,8 @@
     <string name="boton_registro">Comenzar registro</string>
     <string name="alias">Alias</string>
     <string name="recupero_contraseña">El mail ingresado ya se encuentra registrado. Si no recuerda su contraseña puede recuperar la misma: <u>recuperar contraseña</u></string>
+    <string name="registro_Incompleto">Parece que el proceso de registracion ya se habia iniciado para este mail. Por favor <u>presiona aquí para ir continuar</u></string>
+
 
     <!-- Strings used for activty RecuperoPassword -->
     <string name="btn_restablecer">Restablecer contraseña</string>
@@ -27,6 +29,11 @@
     <string name="Subtitulo_Recupero">Introduce tu correo electronico y te enviaremos un codigo para restablcer tu contraseña.</string>
     <string name="Nueva_pwd">Nueva contraseña</string>
     <string name="Confirmar_pwd">Confirmar contraseña</string>
+
+    <!-- Strings used for activty Soporte de Sitio -->
+    <string name="Msj_Soporte">Parece que tu registración con tal email no se ha completado. Te solicitamos que envíes un mail a soporte del sitio (<u><b>aplicacionmorfi@gmail.com</b></u>) para continuar con tu alta de mail</string>
+    <string name="Continuar">Continuar</string>
+    <string name="Soporte_Titulo">Registración Caducada</string>
 
 
     <!-- Strings used for activty Ingreso Codigo Recupero -->
