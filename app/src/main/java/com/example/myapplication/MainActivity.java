@@ -93,7 +93,7 @@ public class MainActivity extends AppCompatActivity implements NetworkController
                 if(response.isSuccessful()){
                     doLogin();
                 }else{
-                    if (response.code() ==400){//Alias e email en uso
+                    if (response.code() ==400){
                         Toast toast = Toast.makeText(getApplication().getApplicationContext(), "Correo o contraseña invalida", Toast.LENGTH_SHORT);
                         toast.show();
                     }

@@ -40,10 +40,11 @@ public class UserController {
     //private  String passwordmail="AndroidTPO123";password real
     private  String passwordmail="fbbrywazxtwwngmk";//token
     private String subjectRecupero="Mail de Recupero de Contraseña";
-    private String mailCodigoRecupero= "Su codigo de verificacion es: ";
+    private String mailCodigoRecupero= "Su codigo de verificacion es:\n ";
     private String ContinueRegister="Para continuar con su registro ingrese el siguiente codigo:\n";
 
     private int codigo;
+    private String email;
 
     Session session;
 
@@ -100,7 +101,7 @@ public class UserController {
                 message.setFrom(new InternetAddress((correrohost)));
                 message.setSubject(subject);
                 message.setRecipients(Message.RecipientType.TO,InternetAddress.parse(dato_email));
-                message.setContent(ContinueRegister + codigoRandom,"text/html; chrset=utf-8");
+                message.setContent(ContinueRegister +"<h1>"+ codigoRandom+"</h1>","text/html; chrset=utf-8");
                 Transport.send(message);
             }
 
@@ -108,7 +109,7 @@ public class UserController {
         }catch (Exception e){
             e.printStackTrace();
         }
-
+        email = dato_email;
         codigo = codigoRandom;
     }
 
@@ -124,7 +125,7 @@ public class UserController {
         properties.put("mail.smtp.port", "465");
 
         Random r = new Random();
-        int codigo = (r.nextInt(9999-1000 +1) + 1000);
+        int codigoRandom = (r.nextInt(9999-1000 +1) + 1000);
 
         try{
             session = Session.getDefaultInstance(properties, new Authenticator() {
@@ -138,7 +139,7 @@ public class UserController {
                 message.setFrom(new InternetAddress((correrohost)));
                 message.setSubject(subjectRecupero);
                 message.setRecipients(Message.RecipientType.TO,InternetAddress.parse(dato_email));
-                message.setContent(mailCodigoRecupero + codigo,"text/html; chrset=utf-8");
+                message.setContent(mailCodigoRecupero +"<h1>" +codigoRandom+"</h1>","text/html; chrset=utf-8");
                 Transport.send(message);
             }
 
@@ -146,8 +147,8 @@ public class UserController {
         }catch (Exception e){
             e.printStackTrace();
         }
-
-
+        email = dato_email;
+        codigo = codigoRandom;
     }
 
     public int getCodRecupero(String mail){
@@ -164,6 +165,10 @@ public class UserController {
             }
         }
         return resultado;
+    }
+
+    public String getEmail(){
+        return email;
     }
 
     public boolean comprobarCodigoRecupero(int codigo_input){

@@ -64,7 +64,7 @@ public class DialogoRedDisponible extends DialogFragment {
         nbutton.setTextColor(Color.GRAY);
 
         Button pbutton = alert.getButton(DialogInterface.BUTTON_POSITIVE);
-        pbutton.setBackgroundColor(getResources().getColor(R.color.blue));
+        pbutton.setBackgroundColor(getResources().getColor(R.color.color_boton));
         pbutton.setTextColor(getResources().getColor(R.color.white));
         return alert;
     }
