@@ -31,7 +31,7 @@
     <string name="Confirmar_pwd">Confirmar contraseña</string>
 
     <!-- Strings used for activty Soporte de Sitio -->
-    <string name="Msj_Soporte">Parece que tu registración con tal email no se ha completado. Te solicitamos que envíes un mail a soporte del sitio (<u><b>aplicacionmorfi@gmail.com</b></u>) para continuar con tu alta de mail</string>
+    <string name="Msj_Soporte">Parece que tu registración con tal correo electrónico expiró. \n \nTe solicitamos que envíes un mail a soporte del sitio (<u><b>aplicacionmorfi@gmail.com</b></u>) para continuar con tu alta</string>
     <string name="Continuar">Continuar</string>
     <string name="Soporte_Titulo">Registración Caducada</string>
 

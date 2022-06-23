@@ -60,7 +60,7 @@ public class RegisterLayout extends AppCompatActivity {
         });
 
         TextView registro_incompleto = findViewById(R.id.txtRegistroIncompleto);
-        registro_incompleto.setVisibility(View.INVISIBLE);
+        registro_incompleto.setVisibility(View.VISIBLE);
 
         EditText alias = findViewById(R.id.editTextTextAlias);
         /*
