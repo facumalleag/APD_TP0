@@ -80,8 +80,47 @@
     <!-- Strings used for Create Recipe -->
     <string name="btn_create">Crear receta</string>
     <string name="title_recipe">Crear receta</string>
+    <string name="titulo">Titulo</string>
+    <integer name="dos">2</integer>
+    <integer name="treinta">30</integer>
+    <string name="imagen">"Imagen"</string>
+    <string name="descripcion">"Descripción"</string>
+    <string name="porciones">"Porciones"</string>
+    <string name="minutos">"Minutos"</string>
+    <string name="minuto">"Minuto"</string>
+    <string name="agregar">"Agregar"</string>
+    <string name="cancelar">"Cancelar"</string>
+    <string name="cantidad">"Cantidad"</string>
+    <string name="porcion">"Porcion"</string>
+    <string name="ingredientes">"Ingredientes"</string>
+    <string name="ingrediente">"Ingrediente"</string>
+    <string name="pasos">"Pasos"</string>
+    <string name="tiempo">"Tiempo"</string>
+    <string name="categorias">"Categorias"</string>
     <string name="subtitle_Recipe">Para comenzar a crear tu receta necesitamos el titulo de la misma para verificar antes que la misma no exista.</string>
     <string name="enter_title_recipe">Titulo. Ej : Pollo al horno</string>
+    <string name="enter_description">Descripción</string>
+    <string name="btn_agregarIngrediente">Agregar Ingrediente</string>
+    <string name="pasta">"Pasta"</string>
+    <string name="desayuno">"Desayuno"</string>
+    <string name="almuerzo">"Almuerzo"</string>
+    <string name="cena">"Cena"</string>
+    <string name="snack">"Snack"</string>
+    <string name="postre">"Postre"</string>
+    <string name="cafe">"Café"</string>
+    <string name="americana">"Americana"</string>
+    <string name="argentina">"Argentina"</string>
+    <string name="saludable">"Saludable"</string>
+    <string name="mexicana">"Mexicana"</string>
+    <string name="vegetariana">"Vegetariana"</string>
+    <string name="italiana">"Italiana"</string>
+    <string name="pollos">"Pollos"</string>
+    <string name="vegano">"Vegano"</string>
+    <string name="pizzas">"Pizzas"</string>
+    <string name="salsas">"Salsas"</string>
+    <string name="singluten">"Sin Gluten"</string>
+    <string name="fitness">"Fitness"</string>
+
 
     <string name="imagen_login">nnsns</string>
     <string name="login">Iniciar Sesión</string>

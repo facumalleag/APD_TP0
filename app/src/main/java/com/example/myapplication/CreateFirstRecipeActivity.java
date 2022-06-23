@@ -29,7 +29,7 @@ public class CreateFirstRecipeActivity extends AppCompatActivity implements Dial
 
     public void actionCreate(View view){
 
-        String titleRecipe= editTextTitleRecipe.getText().toString().trim();;
+        String titleRecipe= editTextTitleRecipe.getText().toString().trim();
 
         if (titleRecipe.isEmpty()){
             editTextTitleRecipe.setError("El titulo de la receta no puede estar vacio.");
@@ -38,7 +38,6 @@ public class CreateFirstRecipeActivity extends AppCompatActivity implements Dial
 
         if (checkTitleRecipe(titleRecipe)){
             Intent intent = new Intent(this, HomeApplicationActivity.class);
-            intent.putExtra(Intent.EXTRA_TITLE, editTextTitleRecipe.getText().toString());
             startActivity(intent);
         } else {
             mostrarAlerta();
@@ -69,6 +68,10 @@ public class CreateFirstRecipeActivity extends AppCompatActivity implements Dial
 
     @Override
     public void onDialogPositiveClick(DialogFragment dialog) {
+        Intent intent = new Intent(this, CreateSecondRecipeActivity.class);
+        intent.putExtra(Intent.EXTRA_TITLE, editTextTitleRecipe.getText().toString());
+        startActivity(intent);
+        finish();
 
     }
 
