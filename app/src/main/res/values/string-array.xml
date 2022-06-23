@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">dropDownMenuExample</string>
+    <string-array name="medidas">
+        <item>gramos</item>
+        <item>unidades</item>
+        <item>cucharadas</item>
+    </string-array>
+</resources>
