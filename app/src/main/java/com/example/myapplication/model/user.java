@@ -8,7 +8,8 @@ public class user {
     private String password;
     private Integer isActive;
 
-    user(String email, String alias, String dni, String name, String password){
+    public user(String email, String alias, String dni, String name, String password){
+        super();
         this.email = email;
         this.alias = alias;
         this.dni = dni;

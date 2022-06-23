@@ -45,6 +45,7 @@ public class UserController {
 
     private int codigo;
     private String email;
+    private String alias;
 
     Session session;
 
@@ -111,6 +112,7 @@ public class UserController {
         }
         email = dato_email;
         codigo = codigoRandom;
+        alias = dato_alias;
     }
 
     public void enviarMailCodeRecovery(String dato_email) {
@@ -149,6 +151,7 @@ public class UserController {
         }
         email = dato_email;
         codigo = codigoRandom;
+
     }
 
     public int getCodRecupero(String mail){

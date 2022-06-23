@@ -17,6 +17,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 import com.example.myapplication.controller.UserController;
+import com.example.myapplication.model.user;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
@@ -60,7 +61,7 @@ public class RegisterLayout extends AppCompatActivity {
         });
 
         TextView registro_incompleto = findViewById(R.id.txtRegistroIncompleto);
-        registro_incompleto.setVisibility(View.VISIBLE);
+        registro_incompleto.setVisibility(View.INVISIBLE);
 
         EditText alias = findViewById(R.id.editTextTextAlias);
         /*
@@ -146,7 +147,7 @@ public class RegisterLayout extends AppCompatActivity {
             @Override
             public void onResponse(Call<JsonElement> call, Response<JsonElement> response) {
                 if (response.isSuccessful()) {
-                    sendEmail(dato_email,dato_alias);
+                    halfRegister(dato_email,dato_alias);
 
                 }else{
                     try {
@@ -189,6 +190,37 @@ public class RegisterLayout extends AppCompatActivity {
         coleccionUsuarios.enviarMailConfirmacionRegistro(alias, email);
         Intent intent = new Intent(this, CodeForRegisterActivity.class);
         startActivity(intent);
+    }
+
+    public void halfRegister(String email, String alias){
+        Retrofit retrofit = new Retrofit.Builder()
+                .baseUrl("http://10.0.2.2:8000")
+                .addConverterFactory(GsonConverterFactory.create())
+                .build();
+
+        UserService us = retrofit.create(UserService.class);
+        user newUser = new user(email,alias,"","","");
+        Call<JsonElement> call = us.halfRegister(newUser);
+
+        call.enqueue(new Callback<JsonElement>() {
+            @Override
+            public void onResponse(Call<JsonElement> call, Response<JsonElement> response) {
+                if (response.isSuccessful()) {
+                    sendEmail(email, alias);
+
+                } else {
+                    if (response.code() == 400) {
+                        Toast toast = Toast.makeText(getApplication().getApplicationContext(), "Ocurrio un error intente mas tarde", Toast.LENGTH_SHORT);
+                        toast.show();
+
+                    }
+                }
+            }
+            @Override
+            public void onFailure(Call<JsonElement> call, Throwable t) {
+                System.out.println(t.getMessage());
+            }
+        });
     }
 
     public void RecuperarPassword(View view){

@@ -65,7 +65,7 @@ public class RecuperoPWDActivity extends AppCompatActivity {
                         //lblEstado.setText(response.body() )
                         if(response.isSuccessful()){
                             continuarIngresoCodigo(email);
-                            Toast toast = Toast.makeText(getApplication().getApplicationContext(), "pp", Toast.LENGTH_LONG);
+
                         }else{
                             if (response.code() ==400){
                                 Toast toast = Toast.makeText(getApplication().getApplicationContext(), "No se encuentra ningun usuario asociado a este email", Toast.LENGTH_SHORT);
