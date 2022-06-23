@@ -29,24 +29,20 @@ public class AltaUsuarioActivity extends AppCompatActivity {
         btnFinalizar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                EditText mail=findViewById(R.id.editTextTextPersonName5);
-                EditText nombre,apellido,telefono,pwd;
+                EditText password=findViewById(R.id.editTextTextPersonName5);
+                EditText nombre,apellido,telefono,pwd,pwd2;
                 nombre=findViewById(R.id.editTextTextPersonName);
                 apellido=findViewById(R.id.editTextTextPersonName2);
                 telefono=findViewById(R.id.editTextTextPersonName4);
-                pwd=findViewById(R.id.editTextTextPersonName6);
+                pwd2=findViewById(R.id.textViewPassword);
 
                 String stringname=nombre.getText().toString().trim();
                 String stringapellido=apellido.getText().toString().trim();
                 String stringtelefono=telefono.getText().toString().trim();
-                String stringpassword=pwd.getText().toString().trim();
+                String stringpassword=pwd2.getText().toString().trim();
 
-                String email=mail.getText().toString().trim();
 
-                if (email.isEmpty()||!Patterns.EMAIL_ADDRESS.matcher(email).matches()){
-                    mail.setError("Correo invalido");
-                    return;
-                }
+
 
                 if (stringname.isEmpty()){
                     nombre.setError("Completar campo faltante");
@@ -61,7 +57,7 @@ public class AltaUsuarioActivity extends AppCompatActivity {
                     return;
                 }
                 if (stringpassword.isEmpty()){
-                    pwd.setError("Completar campo faltante");
+                    password.setError("Completar campo faltante");
                     return;
                 }
 

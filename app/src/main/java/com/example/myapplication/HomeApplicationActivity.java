@@ -38,7 +38,7 @@ public class HomeApplicationActivity extends AppCompatActivity{
     }
     public void iniciarBusquedaActivity(View view) {
 
-        Intent intent = new Intent(this, SearchActivity.class);
+        Intent intent = new Intent(this, AfterSearchActivity.class);
         startActivity(intent);
     }
 

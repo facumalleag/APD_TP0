@@ -48,8 +48,12 @@
             android:name=".CreateFirstRecipeActivity"
             android:exported="false" />
         <activity
+            android:name=".AfterSearchActivity"
+            android:exported="false" />
+        <activity
             android:name=".RegisterLayout"
             android:parentActivityName=".MainActivity">
+
 
             <!-- The meta-data tag is required if you support API level 15 and lower -->
             <meta-data
