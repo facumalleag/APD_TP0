@@ -28,6 +28,8 @@ public class CodeForRegisterActivity extends AppCompatActivity {
         Intent intent = getIntent();
         email = intent.getStringExtra(MainActivity.EXTRA_MESSAGE);
 
+        TextView txtTituloCodigoRecu = findViewById(R.id.txtTituloCodigoRecu);
+        txtTituloCodigoRecu.setText(R.string.register_code_title);
         reenvio=findViewById(R.id.txtVReenvioCod);
         reenvio.setOnClickListener(new View.OnClickListener() {
             @Override
