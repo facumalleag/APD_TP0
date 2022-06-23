@@ -173,6 +173,9 @@ public class UserController {
     public String getEmail(){
         return email;
     }
+    public String getAlias(){
+        return alias;
+    }
 
     public boolean comprobarCodigoRecupero(int codigo_input){
         return true;
