@@ -12,7 +12,6 @@ import androidx.appcompat.widget.SearchView;
 import androidx.fragment.app.Fragment;
 
 import com.example.myapplication.services.RecipeService;
-import com.example.myapplication.services.UserService;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
@@ -23,7 +22,7 @@ import retrofit2.Response;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
-public class AfterSearchActivity extends AppCompatActivity {
+public class AfterSearchActivity2 extends AppCompatActivity {
 
     Fragment fragmentoFiltros;
     LinearLayout layout;
@@ -31,9 +30,9 @@ public class AfterSearchActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_after_search);
+        setContentView(R.layout.prueba_cards_layout);
 
-        SearchView searchView = findViewById(R.id.search_field);
+        //SearchView searchView = findViewById(R.id.search_field);
 
         layout=findViewById(R.id.container);
         fragmentoFiltros = new RecetaFiltroFragment();
@@ -56,12 +55,11 @@ public class AfterSearchActivity extends AppCompatActivity {
                     JsonObject pp = jsonObject.get("data").getAsJsonObject();
                     System.out.println(pp);
                     JsonArray pp2 = pp.get("recipeFetched").getAsJsonArray();
+                    createCards(pp2);
                     System.out.println(pp2.get(1).getAsJsonObject().get("name"));
                     // System.out.println(pp2);
                     //JsonArray pp2 = pp.get("recipesFetched").getAsJsonArray();
-                    String ss = "";
-                    addCard(pp2);
-                    addCard(pp2);
+
 
                 } else {
                     if (response.code() == 400) {
@@ -98,22 +96,19 @@ public class AfterSearchActivity extends AppCompatActivity {
         startActivity(intent);
         finish();
     }
-
-
-    private void addCard(JsonArray names) {
-        final View view = getLayoutInflater().inflate(R.layout.card_recipes, null);
-        TextView nameView = view.findViewById(R.id.name);
-        /*
-        JsonArray pp = jsonObject.get("listedCategories").getAsJsonArray();
-        String ss = "";
-        for (int i = 0; i < pp.size(); i++) {
-            ss = ss+pp.get(i).getAsJsonObject().get("description");
+    private void createCards(JsonArray listOfRecipes) {
+        for (int i = 0; i < listOfRecipes.size(); i++) {
+            addCard(listOfRecipes.get(i).getAsJsonObject().get("name").getAsString());
         }
 
-         */
-        String ff = "PP";
-        //ff = ff+names.get(0).getAsJsonObject().get("name");
-        nameView.setText(ff);
+
+    }
+
+    private void addCard(String name) {
+        final View view = getLayoutInflater().inflate(R.layout.card_recipes, null);
+        TextView nameView = view.findViewById(R.id.name);
+
+        nameView.setText(name);
         layout.addView(view);
 
     }
