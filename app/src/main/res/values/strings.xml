@@ -79,6 +79,7 @@
 
     <!-- Strings used for Create Recipe -->
     <string name="btn_create">Crear receta</string>
+    <string name="btn_save">Guardar receta</string>
     <string name="title_recipe">Crear receta</string>
     <string name="titulo">Titulo</string>
     <integer name="dos">2</integer>
