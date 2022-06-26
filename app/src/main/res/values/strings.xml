@@ -137,7 +137,10 @@
     <string name="supporting_text">Descripcion de la tarjeta. blah blah blah blah</string>
     <string name="action_1">Boton 1</string>
     <string name="action_2">Boton 2</string>
-
+    <!-- Strings used for activity UserProfile -->
+    <string name="Mi_perfil">Mi Perfil</string>
+    <string name="Editar_perfil">Editar Perfil</string>
+    <string name="Lista_vacia">Parece que todavia no creo ninguna receta</string>
     <!-- Strings used for fragments for navigation -->
 
     <!-- Strings used for activity RecoverPassword -->

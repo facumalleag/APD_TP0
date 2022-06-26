@@ -41,6 +41,11 @@ public class HomeApplicationActivity extends AppCompatActivity{
         Intent intent = new Intent(this, AfterSearchActivity2.class);
         startActivity(intent);
     }
+    public void iniciarProfileActivity(View view) {
+
+        Intent intent = new Intent(this, UserProfileActivity.class);
+        startActivity(intent);
+    }
 
     public void actionCreate(View view){
         Intent intent = new Intent(this, CreateFirstRecipeActivity.class);

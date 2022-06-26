@@ -43,9 +43,11 @@ public class UserController {
     private String mailCodigoRecupero= "Su codigo de verificacion es:\n ";
     private String ContinueRegister="Para continuar con su registro ingrese el siguiente codigo:\n";
 
+    private int userId;
     private int codigo;
     private String email;
     private String alias;
+    private String name;
 
     Session session;
 
@@ -175,6 +177,31 @@ public class UserController {
     }
     public String getAlias(){
         return alias;
+    }
+    public Integer getUserId(){
+        return userId;
+    }
+    public String getName(){
+        return name;
+    }
+
+    public void setEmail(String email){
+        this.email = email;
+    }
+    public void setAlias(String alias){
+        this.alias = alias;
+    }
+    public void setUserId(Integer userId){
+        this.userId = userId;
+    }
+    public void setName(String name){
+        this.name = name;
+    }
+    public void setDatosUsuarios(String email,String alias,Integer userId,String name){
+        this.email = email;
+        this.alias = alias;
+        this.userId = userId;
+        this.name = name;
     }
 
     public boolean comprobarCodigoRecupero(int codigo_input){

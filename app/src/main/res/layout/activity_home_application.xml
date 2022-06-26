@@ -146,6 +146,7 @@
                     android:id="@+id/third_menu_item"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
+                    android:onClick="iniciarProfileActivity"
                     android:src="@drawable/ic_baseline_person_24"
                     app:backgroundTint="@android:color/white"
                     app:layout_constraintBottom_toBottomOf="@+id/first_menu_item"

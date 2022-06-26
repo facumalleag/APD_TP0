@@ -20,6 +20,8 @@ import com.google.android.material.snackbar.Snackbar;
 import com.google.gson.JsonElement;
 
 import com.example.myapplication.services.UserService;
+import com.google.gson.JsonObject;
+
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -31,7 +33,7 @@ public class MainActivity extends AppCompatActivity implements NetworkController
     public static final String EXTRA_MESSAGE = "com.example.myapplication.MESSAGE";
     private NetworkController controlador_red=NetworkController.getInstancia();
     private DialogoRedDisponible dialogo=new DialogoRedDisponible();
-
+    private UserController coleccionUsuarios=UserController.getInstancia();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -91,6 +93,11 @@ public class MainActivity extends AppCompatActivity implements NetworkController
                 //lblEstado.setText(response.body() );
                 System.out.println(response.body());
                 if(response.isSuccessful()){
+                    String name = response.body().getAsJsonObject().get("data").getAsJsonObject().get("user").getAsJsonObject().get("name").getAsString();
+                    String email = response.body().getAsJsonObject().get("data").getAsJsonObject().get("user").getAsJsonObject().get("email").getAsString();
+                    String alias = response.body().getAsJsonObject().get("data").getAsJsonObject().get("user").getAsJsonObject().get("alias").getAsString();
+                    Integer id = response.body().getAsJsonObject().get("data").getAsJsonObject().get("user").getAsJsonObject().get("id").getAsInt();
+                    coleccionUsuarios.setDatosUsuarios(email,alias,id,name);
                     doLogin();
                 }else{
                     if (response.code() ==400){

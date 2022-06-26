@@ -54,6 +54,9 @@
             android:name=".AfterSearchActivity2"
             android:exported="false" />
         <activity
+            android:name=".UserProfileActivity"
+            android:exported="false" />
+        <activity
             android:name=".RegisterLayout"
             android:parentActivityName=".MainActivity">
 
