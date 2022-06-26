@@ -6,10 +6,12 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.LinearLayout;
 import android.widget.Spinner;
 
 import androidx.fragment.app.DialogFragment;
@@ -75,12 +77,19 @@ public class DialogoAgregarIngrediente extends DialogFragment {
         AlertDialog alert = builder.create();
         alert.show();
         Button nbutton = alert.getButton(DialogInterface.BUTTON_NEGATIVE);
-        nbutton.setBackgroundColor(getResources().getColor(R.color.white));
         nbutton.setTextColor(Color.GRAY);
+        nbutton.setTextSize(15);
+        nbutton.setAllCaps(false);
+        nbutton.setBackground(getResources().getDrawable(R.drawable.style_border_button));
 
         Button pbutton = alert.getButton(DialogInterface.BUTTON_POSITIVE);
         pbutton.setBackgroundColor(getResources().getColor(R.color.color_boton));
         pbutton.setTextColor(getResources().getColor(R.color.white));
+        pbutton.setAllCaps(false);
+        LinearLayout parent = (LinearLayout) pbutton.getParent();
+        parent.setGravity(Gravity.CENTER_HORIZONTAL);
+        View leftSpacer = parent.getChildAt(1);
+        leftSpacer.setVisibility(View.GONE);
         return alert;
     }
 

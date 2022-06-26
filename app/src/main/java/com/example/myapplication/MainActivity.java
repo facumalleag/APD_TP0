@@ -77,6 +77,9 @@ public class MainActivity extends AppCompatActivity implements NetworkController
             emailEditText.setError("Correo invalido");
             return;
         }
+        String tipoconexion=controlador_red.verificarTipoRed(this);
+        mostrarAlerta(tipoconexion);
+
         String mail= emailEditText.getText().toString();
         String password=passwordEditText.getText().toString();
         Retrofit retrofit = new Retrofit.Builder()
