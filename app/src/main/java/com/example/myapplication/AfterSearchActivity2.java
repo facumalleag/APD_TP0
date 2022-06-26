@@ -100,15 +100,13 @@ public class AfterSearchActivity2 extends AppCompatActivity {
         for (int i = 0; i < listOfRecipes.size(); i++) {
             addCard(listOfRecipes.get(i).getAsJsonObject().get("name").getAsString());
         }
-
-
     }
-
     private void addCard(String name) {
-        final View view = getLayoutInflater().inflate(R.layout.card_recipes, null);
-        TextView nameView = view.findViewById(R.id.name);
-
+        final View view = getLayoutInflater().inflate(R.layout.material_io_card, null);
+        TextView nameView = view.findViewById(R.id.title_card);
         nameView.setText(name);
+        TextView descriptionView = view.findViewById(R.id.description_card);
+        descriptionView.setText(name);
         layout.addView(view);
 
     }

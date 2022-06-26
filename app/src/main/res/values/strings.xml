@@ -129,6 +129,15 @@
 
     <!-- Strings used for Create Recipe -->
     <string name="register_code_title">Codigo de registro</string>
+    <!-- Strings used for material io card -->
+    <string name="title">Titulo de la Card</string>
+    <string name="secondary_text">subittulo</string>
+    <string name="content_description_media">descripcion media</string>
+
+    <string name="supporting_text">Descripcion de la tarjeta. blah blah blah blah</string>
+    <string name="action_1">Boton 1</string>
+    <string name="action_2">Boton 2</string>
+
     <!-- Strings used for fragments for navigation -->
 
     <!-- Strings used for activity RecoverPassword -->

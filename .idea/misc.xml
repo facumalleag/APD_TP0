@@ -4,7 +4,12 @@
     <option name="filePathToZoomLevelMap">
       <map>
         <entry key="..\:/Users/Juamsa/Desktop/APD_TP0_Develop2/app/src/main/res/drawable/ic_baseline_add_24.xml" value="0.1" />
+        <entry key="..\:/Users/Juamsa/Desktop/APD_TP0_Develop2/app/src/main/res/drawable/ic_baseline_home_24.xml" value="0.1" />
         <entry key="..\:/Users/Juamsa/Desktop/APD_TP0_Develop2/app/src/main/res/drawable/ic_baseline_person_24.xml" value="0.1695" />
+        <entry key="..\:/Users/Juamsa/Desktop/APD_TP0_Develop2/app/src/main/res/drawable/ic_group.xml" value="0.1" />
+        <entry key="..\:/Users/Juamsa/Desktop/APD_TP0_Develop2/app/src/main/res/drawable/materiol_io_card.xml" value="0.1" />
+        <entry key="..\:/Users/Juamsa/Desktop/APD_TP0_Develop2/app/src/main/res/drawable/search_field.xml" value="0.1" />
+        <entry key="..\:/Users/Juamsa/Desktop/APD_TP0_Develop2/app/src/main/res/drawable/style_border_button.xml" value="0.1" />
         <entry key="..\:/Users/Juamsa/Desktop/APD_TP0_Develop2/app/src/main/res/layout-land/activity_main.xml" value="0.1728395061728395" />
         <entry key="..\:/Users/Juamsa/Desktop/APD_TP0_Develop2/app/src/main/res/layout/activity_after_search.xml" value="0.1" />
         <entry key="..\:/Users/Juamsa/Desktop/APD_TP0_Develop2/app/src/main/res/layout/activity_code_for_register.xml" value="0.33" />
@@ -21,6 +26,7 @@
         <entry key="..\:/Users/Juamsa/Desktop/APD_TP0_Develop2/app/src/main/res/layout/fragment_receta_filtro.xml" value="0.13020833333333334" />
         <entry key="..\:/Users/Juamsa/Desktop/APD_TP0_Develop2/app/src/main/res/layout/fragment_search.xml" value="0.13020833333333334" />
         <entry key="..\:/Users/Juamsa/Desktop/APD_TP0_Develop2/app/src/main/res/layout/login_layout_display.xml" value="0.20416666666666666" />
+        <entry key="..\:/Users/Juamsa/Desktop/APD_TP0_Develop2/app/src/main/res/layout/material_io_card.xml" value="0.1" />
         <entry key="..\:/Users/Juamsa/Desktop/APD_TP0_Develop2/app/src/main/res/layout/prueba_cards_layout.xml" value="0.1" />
         <entry key="..\:/Users/Juamsa/Desktop/APD_TP0_Develop2/app/src/main/res/layout/register_layout_display.xml" value="0.33" />
         <entry key="..\:/Users/Juamsa/Desktop/APD_TP0_Develop2/app/src/main/res/layout/registro_exitoso_layout.xml" value="0.13020833333333334" />
