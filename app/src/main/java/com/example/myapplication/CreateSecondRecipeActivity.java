@@ -137,9 +137,20 @@ public class CreateSecondRecipeActivity extends AppCompatActivity implements Dia
         EditText txtCantIngrediente = dialogo.findViewById(R.id.cantidadIngrediente);
         EditText txtNombreIngrediente = dialogo.findViewById(R.id.nombreIngrediente);
         Spinner txtMedida = dialogo.findViewById(R.id.spinner_cant);
-        Integer cantidadIngrediente= Integer.valueOf(txtCantIngrediente.getText().toString().trim());
+        Integer cantidadIngrediente = 0;
         String nombreIngrediente= txtNombreIngrediente.getText().toString().trim();
         String medida= txtMedida.getSelectedItem().toString();
+
+        if (nombreIngrediente == null || nombreIngrediente.isEmpty()){
+            txtNombreIngrediente.setError("El ingrediente no puede estar vacio");
+        }
+
+        if (txtCantIngrediente.getText().toString().trim() == null || txtCantIngrediente.getText().toString().isEmpty()){
+            txtNombreIngrediente.setError("La cantidad debe ser mayor a cero");
+        } else {
+            cantidadIngrediente = Integer.valueOf(txtCantIngrediente.getText().toString().trim());
+        }
+
         Ingrediente ingrediente = new Ingrediente(nombreIngrediente, cantidadIngrediente, medida);
         ingredientes.add(ingrediente);
 
