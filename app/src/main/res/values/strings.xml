@@ -53,8 +53,9 @@
     <string name="finalizar">Finalizar registro</string>
     <string name="terminosYcondiciones">Estoy de acuerdo y acepto los terminos y condiciones</string>
     <string name="RegistroExitoso">Registro exitoso</string>
+    <string name="recetaGuardada">Receta guardada con exito</string>
     <string name="Frase_reg_exitoso">Dentro de un momento te redireccionaremos a la pagina de inicio de la aplicación.</string>
-
+    <string name="fraseRecetaGuardad">La receta se encuentra en evaluación. Le avisaremos cuando este disponible.</string>
 
     <!-- Strings used for activty Dialogo de Red Disponible -->
     <string name="titulo_dialogo_red">Conexión a internet no encontrada</string>
