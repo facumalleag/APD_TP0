@@ -15,6 +15,9 @@
         android:theme="@style/Theme.MyApplication.NoActionBar"
         android:usesCleartextTraffic="true">
         <activity
+            android:name=".RecipesListActivity"
+            android:exported="false" />
+        <activity
             android:name=".SoporteUsuarioActivity"
             android:exported="false" />
         <activity

@@ -71,6 +71,8 @@
     <string name="texto_saludo">Hola </string>
     <string name="texto_home">¿Que quieres cocinar?</string>
 
+    <string name="titulo_recomendaciones">Ver Recomendaciones</string>
+
     <!-- Strings used for Search Activity -->
     <string name="Receta_filtro">Nombre de receta</string>
     <string name="Categoria_filtro">Categorías</string>

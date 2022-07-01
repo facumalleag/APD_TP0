@@ -70,6 +70,8 @@ public class MainActivity extends AppCompatActivity implements NetworkController
      */
 
     public void ActionLogin(View view){
+        doLogin();
+/*
         EditText emailEditText=findViewById(R.id.editTextEmailRecupero);
         EditText passwordEditText=findViewById(R.id.editTextTextPassword);
         String email1=emailEditText.getText().toString().trim();
@@ -93,6 +95,7 @@ public class MainActivity extends AppCompatActivity implements NetworkController
         call.enqueue(new Callback<JsonElement>() {
             @Override
             public void onResponse(Call<JsonElement> call, Response<JsonElement> response) {
+
                 //lblEstado.setText(response.body() );
                 System.out.println(response.body());
                 if(response.isSuccessful()){
@@ -116,7 +119,7 @@ public class MainActivity extends AppCompatActivity implements NetworkController
             }
         });
 
-
+*/
     }
 
     /**
