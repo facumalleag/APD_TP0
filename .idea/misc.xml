@@ -66,6 +66,25 @@
         <entry key="..\:/Users/TPO/app/src/main/res/layout/login_layout_display.xml" value="0.25" />
         <entry key="..\:/Users/TPO/app/src/main/res/layout/register_layout_display.xml" value="0.25" />
         <entry key="..\:/Users/TPO/app/src/main/res/layout/registro_exitoso_layout.xml" value="0.25" />
+        <entry key="..\:/Users/facum/TP/app/src/main/res/drawable/bg_overlay.xml" value="0.3345" />
+        <entry key="..\:/Users/facum/TP/app/src/main/res/drawable/ic_baseline_star_24.xml" value="0.3485" />
+        <entry key="..\:/Users/facum/TP/app/src/main/res/layout-land/guardado_exitoso_layout.xml" value="0.5463541666666667" />
+        <entry key="..\:/Users/facum/TP/app/src/main/res/layout/activity_home_application.xml" value="0.33" />
+        <entry key="..\:/Users/facum/TP/app/src/main/res/layout/activity_main.xml" value="0.14722222222222223" />
+        <entry key="..\:/Users/facum/TP/app/src/main/res/layout/activity_recipes_list.xml" value="0.36666666666666664" />
+        <entry key="..\:/Users/facum/TP/app/src/main/res/layout/activity_search.xml" value="0.36666666666666664" />
+        <entry key="..\:/Users/facum/TP/app/src/main/res/layout/activity_soporte_usuario.xml" value="0.5" />
+        <entry key="..\:/Users/facum/TP/app/src/main/res/layout/activity_welcome.xml" value="0.33" />
+        <entry key="..\:/Users/facum/TP/app/src/main/res/layout/alta_user_activity.xml" value="0.67" />
+        <entry key="..\:/Users/facum/TP/app/src/main/res/layout/card_recipes.xml" value="0.36666666666666664" />
+        <entry key="..\:/Users/facum/TP/app/src/main/res/layout/create_recipe_first.xml" value="0.36666666666666664" />
+        <entry key="..\:/Users/facum/TP/app/src/main/res/layout/fragment_receta_filtro.xml" value="0.33" />
+        <entry key="..\:/Users/facum/TP/app/src/main/res/layout/fragment_search.xml" value="0.32515337423312884" />
+        <entry key="..\:/Users/facum/TP/app/src/main/res/layout/image_slider_layout.xml" value="0.25" />
+        <entry key="..\:/Users/facum/TP/app/src/main/res/layout/images_carrousel.xml" value="0.75" />
+        <entry key="..\:/Users/facum/TP/app/src/main/res/layout/material_io_card.xml" value="0.36666666666666664" />
+        <entry key="..\:/Users/facum/TP/app/src/main/res/layout/register_layout_display.xml" value="0.3231707317073171" />
+        <entry key="..\:/Users/facum/TP/app/src/main/res/layout/user_profile_layout.xml" value="0.36666666666666664" />
         <entry key="..\:/Users/facum/TPO/app/src/main/res/layout/activity_code_recovery.xml" value="0.2" />
         <entry key="..\:/Users/facum/TPO/app/src/main/res/layout/activity_main.xml" value="0.25" />
         <entry key="..\:/Users/facum/TPO/app/src/main/res/layout/activity_recupero_pwd.xml" value="0.22" />
