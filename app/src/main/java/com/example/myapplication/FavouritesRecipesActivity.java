@@ -54,10 +54,12 @@ public class FavouritesRecipesActivity extends AppCompatActivity {
                 //lblEstado.setText(response.body() );
                 if (response.isSuccessful()) {
                     System.out.println(response.body());
+
                     //JsonArray recipesAsJsonArray = response.body().getAsJsonObject().get("data").getAsJsonObject().get("recipeFetched").getAsJsonArray();
-                    //createCards(recipesAsJsonArray);
-                    addCard2();
-                    addCard2();
+                    System.out.println("");
+                    createCards(response.body().getAsJsonObject().get("listedFavorites").getAsJsonArray());
+                    //addCard2();
+                    //addCard2();
 
                 } else {
                     if (response.code() == 400) {
@@ -95,7 +97,7 @@ public class FavouritesRecipesActivity extends AppCompatActivity {
         finish();
     }
     private void createCards(JsonArray listOfRecipes) {
-        String nameRecipe, descriptionRecipe,time,totalRating, stepsrecipe,status;
+        String nameRecipe, rating,time,userName;
         if (listOfRecipes.size() ==0){
             TextView EmptyListTextView = findViewById(R.id.EmptyListTextView);
             EmptyListTextView.setVisibility(View.VISIBLE);
@@ -103,26 +105,22 @@ public class FavouritesRecipesActivity extends AppCompatActivity {
         }
         for (int i = 0; i < listOfRecipes.size(); i++) {
             nameRecipe = listOfRecipes.get(i).getAsJsonObject().get("name").getAsString();
-            descriptionRecipe = listOfRecipes.get(i).getAsJsonObject().get("description").getAsString();
+            rating = listOfRecipes.get(i).getAsJsonObject().get("totalRating").getAsString();
             time = listOfRecipes.get(i).getAsJsonObject().get("time").getAsString();
-            totalRating = listOfRecipes.get(i).getAsJsonObject().get("totalRating").getAsString();
-            stepsrecipe = listOfRecipes.get(i).getAsJsonObject().get("totalSteps").getAsString();
-            status = listOfRecipes.get(i).getAsJsonObject().get("status").getAsJsonObject().get("description").getAsString();
-            //JsonObject status1 = listOfRecipes.get(i).getAsJsonObject();
-            System.out.println("acaaa"+status);
-            addCard(nameRecipe,descriptionRecipe,time,totalRating,stepsrecipe,status);
+            userName = listOfRecipes.get(i).getAsJsonObject().get("userName").getAsString();
+            addCard(nameRecipe,rating,time,userName);
         }
     }
-    private void addCard(String nameRecipe,String descriptionRecipe,String time,String totalRating,String stepsrecipe,String status) {
+    private void addCard(String nameRecipe,String rating,String time,String userName) {
         final View view = getLayoutInflater().inflate(R.layout.material_io_card_favorite_rescipe, null);
         TextView ratingView = view.findViewById(R.id.rating);
-        ratingView.setText("5,0");
-        TextView recipeTitleView = view.findViewById(R.id.description_card);
-        recipeTitleView.setText("Shawarma");
-        TextView UserNameView = view.findViewById(R.id.UserName);
-        UserNameView.setText("Por Pepe");
+        ratingView.setText(rating);
+        TextView recipeTitleView = view.findViewById(R.id.recipeTitle);
+        recipeTitleView.setText(nameRecipe);
+        TextView UserNameView = view.findViewById(R.id.userName);
+        UserNameView.setText("Por "+userName);
         TextView timeView = view.findViewById(R.id.time);
-        timeView.setText("15:20");
+        timeView.setText(time);
         layout.addView(view);
 
     }
@@ -132,7 +130,7 @@ public class FavouritesRecipesActivity extends AppCompatActivity {
         ratingView.setText("5,0");
         TextView recipeTitleView = view.findViewById(R.id.recipeTitle);
         recipeTitleView.setText("Shawarma");
-        TextView UserNameView = view.findViewById(R.id.UserName);
+        TextView UserNameView = view.findViewById(R.id.userName);
         UserNameView.setText("Por Pepe");
         TextView timeView = view.findViewById(R.id.time);
         timeView.setText("15:20");

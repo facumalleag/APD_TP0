@@ -55,12 +55,12 @@
                     android:id="@+id/time"
                     android:layout_width="61dp"
                     android:layout_height="41dp"
-
                     android:layout_alignParentEnd="true"
                     android:layout_alignParentBottom="true"
-
                     android:layout_marginEnd="10dp"
+
                     android:layout_marginBottom="100dp"
+
                     android:textAppearance="?attr/textAppearanceHeadline6" />
 
                 <ImageView
@@ -82,25 +82,26 @@
                     android:id="@+id/rating"
                     android:layout_width="63dp"
                     android:layout_height="wrap_content"
-
                     android:layout_alignParentEnd="true"
                     android:layout_alignParentBottom="true"
-
                     android:layout_marginEnd="300dp"
+
                     android:layout_marginBottom="250dp"
+
                     android:textAppearance="?attr/textAppearanceHeadline6" />
 
                 <TextView
                     android:id="@+id/recipeTitle"
                     android:layout_width="161dp"
                     android:layout_height="35dp"
-
                     android:layout_alignParentEnd="true"
                     android:layout_alignParentBottom="true"
-
                     android:layout_marginEnd="234dp"
+
                     android:layout_marginBottom="55dp"
-                    android:textAppearance="?attr/textAppearanceHeadline6" />
+
+                    android:textAppearance="?attr/textAppearanceHeadline6"
+                    android:textStyle="bold" />
 
                 <ImageView
                     android:id="@+id/ProfilePicture"
@@ -115,15 +116,15 @@
                     android:textAppearance="?attr/textAppearanceHeadline6" />
 
                 <TextView
-                    android:id="@+id/UserName"
+                    android:id="@+id/userName"
                     android:layout_width="161dp"
                     android:layout_height="41dp"
-
                     android:layout_alignParentEnd="true"
                     android:layout_alignParentBottom="true"
-
                     android:layout_marginEnd="170dp"
+
                     android:layout_marginBottom="15dp"
+
                     android:textAppearance="?attr/textAppearanceHeadline6" />
 
 
