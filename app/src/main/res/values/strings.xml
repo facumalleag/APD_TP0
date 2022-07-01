@@ -143,6 +143,10 @@
     <string name="Mi_perfil">Mi Perfil</string>
     <string name="Editar_perfil">Editar Perfil</string>
     <string name="Lista_vacia">Parece que todavia no creo ninguna receta</string>
+
+    <!-- Strings used for activity Favorites -->
+    <string name="favorites_title">Recetas guardadas</string>
+    <string name="empty_favorites">Parece que todavia no guardó ninguna receta</string>
     <!-- Strings used for fragments for navigation -->
 
     <!-- Strings used for activity RecoverPassword -->

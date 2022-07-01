@@ -8,12 +8,12 @@
 
     <EditText
         android:id="@+id/editTextTextPersonName7"
-        android:layout_width="91dp"
+        android:layout_width="185dp"
         android:layout_height="47dp"
         android:layout_marginTop="35dp"
         android:ems="10"
         android:inputType="textPersonName"
-        android:text="@string/Mi_perfil"
+        android:text="@string/favorites_title"
         android:textSize="20sp"
 
         app:layout_constraintEnd_toEndOf="parent"
@@ -22,85 +22,29 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.031" />
 
-    <ImageView
-        android:id="@+id/imageView7"
-        android:layout_width="100dp"
-        android:layout_height="100dp"
-        android:layout_marginBottom="476dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.056"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTextTextPersonName7"
-        tools:srcCompat="@tools:sample/avatars" />
-
-    <Button
-        android:id="@+id/button"
-        android:layout_width="181dp"
-        android:layout_height="64dp"
-        android:layout_marginStart="260dp"
-
-        android:layout_marginBottom="100dp"
-        android:backgroundTint="#FFFFFF"
-        android:fontFamily="sans-serif-medium"
-        android:text="@string/Editar_perfil"
-
-        android:textColor="#2196F3"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toStartOf="@+id/imageView7"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.253" />
-
-    <TextView
-        android:id="@+id/userNameView"
-        android:layout_width="147dp"
-        android:layout_height="39dp"
-        android:layout_marginTop="125dp"
-        android:text="&quot;UserNAme&quot;"
-        app:layout_constraintTop_toBottomOf="@+id/editTextTextPersonName7"
-        android:textSize="20sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.12"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintVertical_bias="0.078" />
-
-    <View
-        android:id="@+id/separator"
-        android:layout_width="match_parent"
-        android:layout_height="1dp"
-
-        android:background="@android:color/darker_gray"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/userNameView"
-        app:layout_constraintVertical_bias="0.077" />
 
     <TextView
         android:id="@+id/EmptyListTextView"
         android:layout_width="221dp"
         android:layout_height="66dp"
-        android:layout_marginTop="100dp"
         android:gravity="center"
-        android:text="@string/Lista_vacia"
+        android:text="@string/empty_favorites"
         android:textSize="20sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/separator"
+        app:layout_constraintTop_toTopOf="@+id/relativeLayout"
+        android:layout_marginTop="100dp"
         app:layout_constraintVertical_bias="0.078" />
+
     <RelativeLayout
         android:id="@+id/relativeLayout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        app:layout_constraintTop_toTopOf="parent"
         tools:context=".AfterSearchActivity2"
-        tools:layout_editor_absoluteX="0dp"
-        tools:layout_editor_absoluteY="0dp">
+        tools:layout_editor_absoluteX="0dp">
 
         <ScrollView
             android:id="@+id/scrollV"
@@ -108,7 +52,8 @@
             android:layout_height="0dp"
             android:layout_above="@+id/BottomAppBarLayout"
             android:layout_alignParentTop="true"
-            android:layout_marginTop="394dp"
+            android:layout_marginTop="100dp"
+
             android:scrollbars="none">
 
             <LinearLayout

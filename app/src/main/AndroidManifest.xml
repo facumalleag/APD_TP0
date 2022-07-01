@@ -60,6 +60,9 @@
             android:name=".UserProfileActivity"
             android:exported="false" />
         <activity
+            android:name=".FavouritesRecipesActivity"
+            android:exported="false" />
+        <activity
             android:name=".RegisterLayout"
             android:parentActivityName=".MainActivity">
 

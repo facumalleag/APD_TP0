@@ -9,7 +9,10 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 import android.widget.Toast;
+
+import com.google.android.material.chip.Chip;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -112,6 +115,11 @@ public class RecetaFiltroFragment extends Fragment {
             mParam1 = getArguments().getString(ARG_PARAM1);
             mParam2 = getArguments().getString(ARG_PARAM2);
         }
+        final View view = getLayoutInflater().inflate(R.layout.material_io_chip, null);
+        LinearLayout layout= parent.findViewById(R.id.ll_parent);
+        Chip nameView = view.findViewById(R.id.chip);
+        nameView.setText("nameRecipe");
+        layout.addView(view);
 
     }
 

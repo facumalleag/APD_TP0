@@ -19,6 +19,7 @@ import com.example.myapplication.MainActivity;
 import com.example.myapplication.R;
 import com.example.myapplication.RecetaFiltroFragment;
 import com.example.myapplication.databinding.FragmentSearchBinding;
+import com.google.android.material.chip.Chip;
 
 import java.util.ArrayList;
 
@@ -31,6 +32,9 @@ public class PlaceholderFragment extends Fragment {
 
     private PageViewModel pageViewModel;
     private FragmentSearchBinding binding;
+    private View root;
+    private LinearLayout linearLayout;
+    private Integer index;
 
     public static PlaceholderFragment newInstance(int index) {
 
@@ -50,16 +54,30 @@ public class PlaceholderFragment extends Fragment {
         if (getArguments() != null) {
             index = getArguments().getInt(ARG_SECTION_NUMBER);
         }
+        this.index = index;
         pageViewModel.setIndex(index);
+
+
     }
 
+/*
     @Override
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+        final View view1 = getLayoutInflater().inflate(R.layout.material_io_chip, null);
+        LinearLayout layout=  (LinearLayout) getView().findViewById(R.id.ll_parent);
+        Chip nameView = view1.findViewById(R.id.chip);
+        nameView.setText("nameRecipe");
+        layout.addView(view1);
+    }
+*/
     public View onCreateView(
             @NonNull LayoutInflater inflater, ViewGroup container,
             Bundle savedInstanceState) {
 
         binding = FragmentSearchBinding.inflate(inflater, container, false);
-        View root = binding.getRoot();
+        root = inflater.inflate(R.layout.material_io_chip, container, false);
+        linearLayout = root.findViewById(R.id.ll_parent);
 
         final TextView textView = binding.sectionLabel;
 
@@ -69,6 +87,7 @@ public class PlaceholderFragment extends Fragment {
                 textView.setText(s);
             }
         });
+
         return root;
     }
 
