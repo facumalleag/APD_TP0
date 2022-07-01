@@ -8,10 +8,14 @@ import android.os.Bundle;
 import android.view.View;
 import androidx.appcompat.widget.SearchView;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentContainerView;
+
+import com.example.myapplication.adapter.SliderAdapter;
+import com.smarteist.autoimageslider.SliderView;
 
 public class HomeApplicationActivity extends AppCompatActivity{
 
-    Fragment fragmentoFiltros;
+    FragmentContainerView fragmentoFiltros;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -20,7 +24,7 @@ public class HomeApplicationActivity extends AppCompatActivity{
 
         SearchView searchView = findViewById(R.id.search_field);
 
-        fragmentoFiltros = new RecetaFiltroFragment();
+        //fragmentoFiltros = findViewById(R.id.fragmentContainerView);
 
         searchView.setOnSearchClickListener(new View.OnClickListener() {
             @Override
@@ -32,6 +36,8 @@ public class HomeApplicationActivity extends AppCompatActivity{
 
 
     }
+
+
     public void iniciarHome(View view){
         Intent intent = new Intent(this, HomeApplicationActivity.class);
         startActivity(intent);
