@@ -20,8 +20,8 @@
             android:orientation="horizontal">
 
             <androidx.cardview.widget.CardView
-                android:layout_width="356dp"
-                android:layout_height="163dp"
+                android:layout_width="wrap_content"
+                android:layout_height="161dp"
                 android:layout_margin="16dp"
                 app:cardCornerRadius="6dp"
                 app:layout_constraintStart_toStartOf="@id/fragmentContainerView"
@@ -29,8 +29,8 @@
 
                 <com.smarteist.autoimageslider.SliderView
                     android:id="@+id/imvcarrusel"
-                    android:layout_width="match_parent"
-                    android:layout_height="163dp"
+                    android:layout_width="343dp"
+                    android:layout_height="150dp"
                     app:sliderAnimationDuration="600"
                     app:sliderAutoCycleDirection="back_and_forth"
                     app:sliderAutoCycleEnabled="true"
@@ -46,8 +46,9 @@
                     app:sliderStartAutoCycle="true" />
 
                 <ImageView
-                    android:layout_width="35dp"
-                    android:layout_height="50dp">
+                    android:layout_width="25dp"
+                    android:layout_height="40dp"
+                    android:src="@drawable/ic_baseline_star_24">
 
 
                 </ImageView>

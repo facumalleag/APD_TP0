@@ -1,11 +1,14 @@
 package com.example.myapplication;
 
+import static android.content.Context.MODE_PRIVATE;
+
 import android.app.AlertDialog;
 import android.app.Dialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Gravity;
 import android.view.View;
 import android.widget.Button;
@@ -13,7 +16,14 @@ import android.widget.LinearLayout;
 
 import androidx.fragment.app.DialogFragment;
 
+import com.example.myapplication.controller.NetworkController;
+import com.example.myapplication.controller.RecipesController;
+
+import java.io.FileOutputStream;
+
 public class DialogoRedDisponible extends DialogFragment {
+
+
 
     public interface NoticeDialogListener {
         public void onDialogPositiveClick(DialogFragment dialog);
@@ -43,6 +53,7 @@ public class DialogoRedDisponible extends DialogFragment {
     public Dialog onCreateDialog(Bundle savedInstanceState) {
         // Use the Builder class for convenient dialog construction
         AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+        Context context= builder.getContext();
         builder.setMessage(R.string.body_dialogo_red);
         builder.setTitle(R.string.titulo_dialogo_red)
                 .setPositiveButton("Aceptar", new DialogInterface.OnClickListener() {
@@ -50,12 +61,15 @@ public class DialogoRedDisponible extends DialogFragment {
                         // COMPLETAR LA OPERACION GUARDANDO EN LA BASE DE DATOS
                         listener.onDialogPositiveClick(DialogoRedDisponible.this);
 
+
                     }
                 })
                 .setNegativeButton("Aguardar", new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int id) {
                         listener.onDialogNegativeClick(DialogoRedDisponible.this);
-                        // NO SUBIR A LA BASE DE DATOS Y VOLVER A INTENTARLO PARA SUBIRLO CUANDO HAYA WIFI
+
+
+                        // NO SUBIR A LA BASE DE DATOS Y VOLVER A INTENTARLO PARA SUBIRLO CUANDO HAYA WIFI. GUARDARLO EN ALMACENAMIENTO INTERNO
                     }
                 });
         // Create the AlertDialog object and return it
@@ -77,6 +91,8 @@ public class DialogoRedDisponible extends DialogFragment {
         leftSpacer.setVisibility(View.GONE);
         return alert;
     }
+
+
 
 
 }
