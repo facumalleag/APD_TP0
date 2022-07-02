@@ -3,9 +3,11 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".FavouritesRecipesActivity">
 
     <RelativeLayout
+        android:id="@+id/relativeLayout4"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -39,17 +41,6 @@
                     android:scaleType="fitCenter"
                     android:src="@drawable/default_recipe___copia" />
 
-                <ImageView
-                    android:id="@+id/heart"
-                    android:layout_width="45dp"
-                    android:layout_height="42dp"
-
-                    android:layout_alignParentEnd="true"
-                    android:layout_alignParentBottom="true"
-                    android:layout_marginEnd="10dp"
-                    android:layout_marginBottom="235dp"
-                    android:src="@drawable/ic_baseline_heart_24"
-                    android:textAppearance="?attr/textAppearanceHeadline6" />
 
                 <TextView
                     android:id="@+id/time"
@@ -130,6 +121,22 @@
 
             </RelativeLayout>
 
+
         </com.google.android.material.card.MaterialCardView>
     </RelativeLayout>
+
+    <ImageView
+        android:id="@+id/heart"
+        android:layout_width="45dp"
+        android:layout_height="42dp"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:background="#FFFFFF"
+        android:layout_marginEnd="20dp"
+
+        android:layout_marginBottom="250dp"
+        android:src="@drawable/baseline_favorite_24"
+        android:textAppearance="?attr/textAppearanceHeadline6"
+        app:layout_constraintBottom_toBottomOf="@+id/relativeLayout4"
+        app:layout_constraintEnd_toEndOf="@+id/relativeLayout4" />
 </androidx.constraintlayout.widget.ConstraintLayout>

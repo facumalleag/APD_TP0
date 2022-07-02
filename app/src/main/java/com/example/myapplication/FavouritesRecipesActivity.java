@@ -1,18 +1,28 @@
 package com.example.myapplication;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.DialogFragment;
 import androidx.fragment.app.Fragment;
 
+import com.example.myapplication.controller.FavoriteRecipeController;
 import com.example.myapplication.controller.UserController;
 import com.example.myapplication.services.FavoriteService;
 import com.example.myapplication.services.RecipeService;
+import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
 
@@ -24,8 +34,10 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 public class FavouritesRecipesActivity extends AppCompatActivity {
 
+    AlertDialog dialog;
     Fragment fragmentoFiltros;
     LinearLayout layout;
+    Integer favoriteId;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,10 +47,19 @@ public class FavouritesRecipesActivity extends AppCompatActivity {
         EmptyListTextView.setVisibility(View.INVISIBLE);
         //SearchView searchView = findViewById(R.id.search_field);
 
+        buildDialog();
 
         layout=findViewById(R.id.container);
-        fragmentoFiltros = new RecetaFiltroFragment();
+        findViewById(R.id.loadingPanel).bringToFront();
+        findViewById(R.id.loadingPanel).setVisibility(View.VISIBLE);
+        getFavoriteRecipe();
+        findViewById(R.id.loadingPanel).setVisibility(View.INVISIBLE);
 
+
+
+    }
+    public void getFavoriteRecipe(){
+        fragmentoFiltros = new RecetaFiltroFragment();
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl("http://10.0.2.2:8000")
                 .addConverterFactory(GsonConverterFactory.create())
@@ -58,12 +79,11 @@ public class FavouritesRecipesActivity extends AppCompatActivity {
                     //JsonArray recipesAsJsonArray = response.body().getAsJsonObject().get("data").getAsJsonObject().get("recipeFetched").getAsJsonArray();
                     System.out.println("");
                     createCards(response.body().getAsJsonObject().get("listedFavorites").getAsJsonArray());
-                    //addCard2();
-                    //addCard2();
+
 
                 } else {
                     if (response.code() == 400) {
-                        Toast toast = Toast.makeText(getApplication().getApplicationContext(), "Correo o contraseña invalida", Toast.LENGTH_SHORT);
+                        Toast toast = Toast.makeText(getApplication().getApplicationContext(), "Ocurrio un error, intente mas tarde", Toast.LENGTH_SHORT);
                         toast.show();
                     }
                 }
@@ -74,8 +94,6 @@ public class FavouritesRecipesActivity extends AppCompatActivity {
                 System.out.println(t.getMessage());
             }
         });
-
-
     }
 
     public void iniciarHome(View view) {
@@ -98,20 +116,23 @@ public class FavouritesRecipesActivity extends AppCompatActivity {
     }
     private void createCards(JsonArray listOfRecipes) {
         String nameRecipe, rating,time,userName;
+        Integer recipeId, favoriteId;
         if (listOfRecipes.size() ==0){
             TextView EmptyListTextView = findViewById(R.id.EmptyListTextView);
             EmptyListTextView.setVisibility(View.VISIBLE);
             return;
         }
         for (int i = 0; i < listOfRecipes.size(); i++) {
+            favoriteId = listOfRecipes.get(i).getAsJsonObject().get("favoriteId").getAsInt() ;
+            recipeId= listOfRecipes.get(i).getAsJsonObject().get("recipeId").getAsInt() ;
             nameRecipe = listOfRecipes.get(i).getAsJsonObject().get("name").getAsString();
             rating = listOfRecipes.get(i).getAsJsonObject().get("totalRating").getAsString();
             time = listOfRecipes.get(i).getAsJsonObject().get("time").getAsString();
             userName = listOfRecipes.get(i).getAsJsonObject().get("userName").getAsString();
-            addCard(nameRecipe,rating,time,userName);
+            addCard(recipeId,favoriteId,nameRecipe,rating,time,userName);
         }
     }
-    private void addCard(String nameRecipe,String rating,String time,String userName) {
+    private void addCard(Integer recipeId,Integer favoriteId, String nameRecipe,String rating,String time,String userName) {
         final View view = getLayoutInflater().inflate(R.layout.material_io_card_favorite_rescipe, null);
         TextView ratingView = view.findViewById(R.id.rating);
         ratingView.setText(rating);
@@ -121,21 +142,74 @@ public class FavouritesRecipesActivity extends AppCompatActivity {
         UserNameView.setText("Por "+userName);
         TextView timeView = view.findViewById(R.id.time);
         timeView.setText(time);
+        ImageView heartImage = view.findViewById(R.id.heart);
+
+        heartImage.setClickable(true);
+        heartImage.bringToFront();
+        heartImage.setOnClickListener(v -> showDialog2(favoriteId));
+        view.setId(favoriteId);
+
         layout.addView(view);
 
     }
-    private void addCard2() {
-        final View view = getLayoutInflater().inflate(R.layout.material_io_card_favorite_rescipe, null);
-        TextView ratingView = view.findViewById(R.id.rating);
-        ratingView.setText("5,0");
-        TextView recipeTitleView = view.findViewById(R.id.recipeTitle);
-        recipeTitleView.setText("Shawarma");
-        TextView UserNameView = view.findViewById(R.id.userName);
-        UserNameView.setText("Por Pepe");
-        TextView timeView = view.findViewById(R.id.time);
-        timeView.setText("15:20");
-        layout.addView(view);
+    private void showDialog2(int id){
+        this.favoriteId = id;
+        dialog.show();
 
+    }
+    private void buildDialog() {
+        AlertDialog.Builder builder = new MaterialAlertDialogBuilder(this);
+        View view = getLayoutInflater().inflate(R.layout.dialog, null);
+
+        builder.setView(view);
+        builder.setMessage("¿Desea eliminar de la lista de favoritos la receta?")
+                .setPositiveButton("Si", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        removeFavorite(favoriteId);
+                        getFavoriteRecipe();
+                    }
+                })
+                .setNegativeButton("No", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+
+                    }
+                });
+
+        dialog = builder.create();
+    }
+
+    private void removeFavorite(Integer favoriteId){
+        fragmentoFiltros = new RecetaFiltroFragment();
+        Retrofit retrofit = new Retrofit.Builder()
+                .baseUrl("http://10.0.2.2:8000")
+                .addConverterFactory(GsonConverterFactory.create())
+                .build();
+
+        FavoriteService fs = retrofit.create(FavoriteService.class);
+        Call<JsonElement> call = fs.deleteFavoriteRecipeById(Integer.toString(favoriteId));
+
+        call.enqueue(new Callback<JsonElement>() {
+            @Override
+            public void onResponse(Call<JsonElement> call, Response<JsonElement> response) {
+                //lblEstado.setText(response.body() );
+                if (response.isSuccessful()) {
+                    Toast toast = Toast.makeText(getApplication().getApplicationContext(), "Recete eliminada de lista de favoritos", Toast.LENGTH_SHORT);
+                    toast.show();
+                } else {
+                    if (response.code() == 400) {
+                        Toast toast = Toast.makeText(getApplication().getApplicationContext(), "Ocurrio un error, intente mas tarde", Toast.LENGTH_SHORT);
+                        toast.show();
+                    }
+                }
+            }
+
+            @Override
+            public void onFailure(Call<JsonElement> call, Throwable t) {
+                System.out.println(t.getMessage());
+            }
+        });
     }
 
 }
