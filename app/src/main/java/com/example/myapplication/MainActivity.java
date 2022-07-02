@@ -1,26 +1,41 @@
 package com.example.myapplication;
 
+import android.Manifest;
 import android.app.Dialog;
+import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.graphics.Color;
+import android.os.Build;
 import android.os.Bundle;
+import android.util.Log;
 import android.util.Patterns;
+import android.view.KeyEvent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
 import androidx.fragment.app.DialogFragment;
 
 import com.example.myapplication.controller.NetworkController;
+import com.example.myapplication.controller.RecipesController;
 import com.example.myapplication.controller.UserController;
 import com.google.android.material.snackbar.Snackbar;
 import com.google.gson.JsonElement;
 
 import com.example.myapplication.services.UserService;
 import com.google.gson.JsonObject;
+
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -34,6 +49,8 @@ public class MainActivity extends AppCompatActivity implements NetworkController
     private NetworkController controlador_red=NetworkController.getInstancia();
     private DialogoRedDisponible dialogo=new DialogoRedDisponible();
     private UserController coleccionUsuarios=UserController.getInstancia();
+    private RecipesController recetas=RecipesController.getInstancia();
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -41,6 +58,7 @@ public class MainActivity extends AppCompatActivity implements NetworkController
 
         Button start=findViewById(R.id.btnComenzar);
         start.setOnClickListener(v -> setContentView(R.layout.activity_main));
+
 
     }
 
@@ -53,6 +71,7 @@ public class MainActivity extends AppCompatActivity implements NetworkController
         intent.putExtra(EXTRA_MESSAGE, message);
         startActivity(intent);
     }
+
 
     /**
      * Called when the user taps Recupero Password
@@ -122,14 +141,46 @@ public class MainActivity extends AppCompatActivity implements NetworkController
 */
     }
 
+
+    private void checkExternalStoragePermission() {
+        int permissionCheck = ContextCompat.checkSelfPermission(
+                this, Manifest.permission.WRITE_EXTERNAL_STORAGE);
+        if (permissionCheck != PackageManager.PERMISSION_GRANTED) {
+            Log.i("Mensaje", "No se tiene permiso para leer.");
+            ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE}, 225);
+        } else {
+            Log.i("Mensaje", "Se tiene permiso para leer!");
+        }
+    }
+
     /**
      * metodo para mostrar mensaje de alerta cuando el usuario este usando datos del celular
      *
      */
+
     public void doLogin (){
-        Intent intent = new Intent(this, HomeApplicationActivity.class);
+        String tipoconexion=controlador_red.verificarTipoRed(this);
+        mostrarAlerta(tipoconexion);
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M){
+            //Verifica permisos para Android 6.0+
+            checkExternalStoragePermission();
+        }
+        File file = new File(getFilesDir(),"ejemplo.txt");
+
+        if(file.exists()){
+            //Existe archivo
+        }else{
+            try {
+                //Crea archivo
+                file.createNewFile();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+        //Intent intent = new Intent(this, HomeApplicationActivity.class);
         //intent.putExtra(Intent.EXTRA_EMAIL,emailEditText.getText().toString());
-        startActivity(intent);
+        //startActivity(intent);
 
     }
     public void mostrarAlerta(String tipoconexion) {
@@ -153,7 +204,7 @@ public class MainActivity extends AppCompatActivity implements NetworkController
          */
 
     public boolean ComprobarLogin (String mail, String pwd){
-        boolean resultado=true;
+        boolean resultado=false;
 
         return resultado;
 
@@ -212,10 +263,13 @@ public class MainActivity extends AppCompatActivity implements NetworkController
     @Override
     public void onNetworkChange(boolean isConnected) {
         //showSnackBar(isConnected);
+        mostrarAlerta("WIFI");
+
     }
 
     @Override
     public void onDialogPositiveClick(DialogFragment dialog) {
+        readfile(this);
         EditText emailEditText = findViewById(R.id.editTextEmailRecupero);
         EditText passwordEditText = findViewById(R.id.editTextTextPassword);
 
@@ -232,7 +286,7 @@ public class MainActivity extends AppCompatActivity implements NetworkController
 
     @Override
     public void onDialogNegativeClick(DialogFragment dialog) {
-
+        saveFile(this);
     }
 
     @Override
@@ -242,4 +296,14 @@ public class MainActivity extends AppCompatActivity implements NetworkController
         startActivity(intent);
         finish();
     }
+
+
+    private void saveFile(Context context) {
+        recetas.guardarRecetaEnAlmInterno(context);
+    }
+
+    private void readfile(Context context) {
+        recetas.leerArchivoReceta(context);
+    }
+
 }
