@@ -10,9 +10,9 @@
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
         android:background="@color/white"
-        tools:context=".CreateFirstRecipeActivity"
-        >
-
+        app:layout_constraintBottom_toTopOf="@+id/txtViewPorciones"
+        app:layout_constraintTop_toTopOf="@+id/txtViewPorciones"
+        tools:context=".CreateFirstRecipeActivity">
 
         <ImageButton
             android:id="@+id/btnAgregarTiempo"
@@ -21,7 +21,7 @@
             android:layout_alignParentTop="true"
             android:layout_alignParentRight="true"
             android:layout_marginStart="8dp"
-            android:layout_marginTop="20dp"
+            android:layout_marginTop="16dp"
             android:width="16dp"
             android:height="14dp"
             android:background="#FFFFFF"
@@ -36,7 +36,7 @@
             android:layout_width="61dp"
             android:layout_height="22dp"
             android:layout_marginStart="4dp"
-            android:layout_marginTop="16dp"
+            android:layout_marginTop="12dp"
             android:text="@string/minutos"
             android:textColor="@android:color/black"
             android:textSize="16sp"
@@ -48,9 +48,9 @@
             android:id="@+id/txtViewCantidadTiempo"
             android:layout_width="41dp"
             android:layout_height="22dp"
-            android:layout_marginTop="16dp"
-            android:layout_marginEnd="279dp"
             android:layout_marginStart="8dp"
+            android:layout_marginTop="12dp"
+            android:layout_marginEnd="279dp"
             android:text="@integer/treinta"
             android:textColor="@android:color/black"
             android:textSize="16sp"
@@ -66,7 +66,7 @@
             android:layout_alignParentTop="true"
             android:layout_alignParentRight="true"
             android:layout_marginStart="56dp"
-            android:layout_marginTop="20dp"
+            android:layout_marginTop="16dp"
             android:width="16dp"
             android:height="14dp"
             android:background="#FFFFFF"
@@ -82,21 +82,21 @@
             android:id="@+id/txtViewPorcion"
             android:layout_width="70dp"
             android:layout_height="21dp"
-            android:layout_marginTop="488dp"
             android:text="@string/porciones"
             android:textColor="@android:color/black"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
             android:textSize="15sp"
             android:textStyle="normal"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.018"
             app:layout_constraintStart_toEndOf="@+id/txtViewCantidadPorcion"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toBottomOf="@+id/txtViewPorciones"
+            tools:layout_editor_absoluteY="544dp" />
 
         <TextView
             android:id="@+id/txtViewTituloCreate4"
             android:layout_width="274dp"
             android:layout_height="0dp"
-            android:layout_marginTop="152dp"
+            android:layout_marginTop="19dp"
             android:text="@string/titulo"
             android:textColor="@android:color/black"
             android:textSize="20sp"
@@ -104,7 +104,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.248"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toBottomOf="@+id/txtViewTitulo" />
 
 
         <TextView
@@ -112,64 +112,62 @@
             android:layout_width="36dp"
             android:layout_height="0dp"
             android:layout_marginStart="8dp"
-            android:layout_marginTop="488dp"
+            android:layout_marginTop="8dp"
             android:text="@integer/dos"
             android:textColor="@android:color/black"
             android:textSize="15sp"
             android:textStyle="normal"
             app:layout_constraintStart_toEndOf="@+id/btnEliminarPorcion"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toBottomOf="@+id/txtViewPorciones" />
 
         <TextView
             android:id="@+id/txtViewPorciones2"
             android:layout_width="274dp"
             android:layout_height="0dp"
-            android:layout_marginTop="528dp"
+            android:layout_marginTop="12dp"
             android:text="@string/ingredientes"
             android:textColor="@android:color/black"
             android:textSize="20sp"
             android:textStyle="normal"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.233"
+            app:layout_constraintHorizontal_bias="0.217"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toBottomOf="@+id/txtViewPorcion" />
 
         <TextView
             android:id="@+id/txtViewPorciones"
             android:layout_width="274dp"
-            android:layout_height="0dp"
-            android:layout_marginBottom="8dp"
+            android:layout_height="30dp"
+            android:layout_marginTop="12dp"
             android:text="@string/porciones"
             android:textColor="@android:color/black"
             android:textSize="20sp"
             android:textStyle="normal"
-            app:layout_constraintBottom_toTopOf="@+id/txtViewPorcion"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.233"
-            app:layout_constraintStart_toStartOf="parent" />
+            app:layout_constraintHorizontal_bias="0.246"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/editTextDescripcion" />
 
         <EditText
-            android:id="@+id/editTextTitle3"
-            android:layout_width="276dp"
-            android:layout_height="39dp"
-            android:layout_marginStart="32dp"
-            android:layout_marginTop="8dp"
-            android:layout_marginBottom="14dp"
+            android:id="@+id/editTextDescripcion"
+            android:layout_width="278dp"
+            android:layout_height="65dp"
+            android:layout_marginVertical="20dp"
+            android:layout_marginStart="36dp"
+            android:layout_marginTop="12dp"
             android:background="@drawable/style_border_button"
             android:ems="10"
             android:hint="@string/enter_description"
             android:textColor="#78909C"
-            app:layout_constraintBottom_toTopOf="@+id/txtViewPorciones"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/txtViewDescripcion"
-            app:layout_constraintVertical_bias="0.0"
             tools:ignore="SpeakableTextPresentCheck" />
 
         <TextView
             android:id="@+id/txtViewDescripcion"
             android:layout_width="274dp"
             android:layout_height="0dp"
-            android:layout_marginTop="8dp"
+            android:layout_marginTop="12dp"
             android:text="@string/descripcion"
             android:textColor="@android:color/black"
             android:textSize="20sp"
@@ -177,13 +175,13 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.233"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/IVPreviewImage" />
+            app:layout_constraintTop_toBottomOf="@+id/btnChooseImage" />
 
         <TextView
             android:id="@+id/txtViewImagen"
             android:layout_width="274dp"
             android:layout_height="0dp"
-            android:layout_marginTop="14dp"
+            android:layout_marginTop="12dp"
             android:text="@string/imagen"
             android:textColor="@android:color/black"
             android:textSize="20sp"
@@ -196,8 +194,9 @@
         <Button
             android:id="@+id/btnCreateRecipe"
             android:layout_width="208dp"
-            android:layout_height="69dp"
-            android:layout_marginBottom="16dp"
+            android:layout_height="0dp"
+            android:layout_marginStart="84dp"
+            android:layout_marginTop="48dp"
             android:backgroundTint="@color/color_boton"
             android:fontFamily="sans-serif-medium"
             android:includeFontPadding="true"
@@ -205,10 +204,8 @@
             android:text="@string/btn_save"
             android:textColor="@color/white"
             app:cornerRadius="@dimen/corner_button"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.481"
             app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/container_categories"
             tools:ignore="TextContrastCheck" />
 
         <EditText
@@ -216,7 +213,7 @@
             android:layout_width="263dp"
             android:layout_height="39dp"
             android:layout_marginStart="40dp"
-            android:layout_marginTop="11dp"
+            android:layout_marginTop="12dp"
             android:background="@drawable/style_border_button"
             android:ems="10"
             android:hint="@string/enter_title_recipe"
@@ -258,26 +255,26 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
+        <LinearLayout
+            android:id="@+id/idRVImage"
+            android:layout_width="280dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="28dp"
+            android:layout_marginTop="12dp"
+            android:orientation="vertical"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/txtViewImagen" />
 
         <ImageButton
             android:id="@+id/btnChooseImage"
             android:layout_width="0dp"
-            android:layout_height="wrap_content"
+            android:layout_height="97dp"
+            android:layout_marginTop="12dp"
             android:layout_weight="1"
-            android:src="@drawable/add_image"
-            tools:layout_editor_absoluteX="122dp"
             android:onClick="actionChooseImage"
-            tools:layout_editor_absoluteY="8dp"
-            app:layout_constraintStart_toStartOf="@+id/txtViewImagen"
-            app:layout_constraintTop_toBottomOf="@+id/txtViewImagen"/>
-
-        <ImageView
-            android:id="@+id/IVPreviewImage"
-            android:layout_width="100dp"
-            android:layout_height="94dp"
-            android:layout_marginTop="8dp"
-            app:layout_constraintStart_toStartOf="@+id/txtViewImagen"
-            app:layout_constraintTop_toBottomOf="@+id/txtViewImagen" />
+            android:src="@drawable/add_image"
+            app:layout_constraintStart_toStartOf="@+id/idRVImage"
+            app:layout_constraintTop_toBottomOf="@+id/idRVImage" />
 
         <ImageButton
             android:id="@+id/btnAgregarPorcion"
@@ -285,8 +282,8 @@
             android:layout_height="14dp"
             android:layout_alignParentTop="true"
             android:layout_alignParentRight="true"
-            android:layout_marginStart="4dp"
-            android:layout_marginTop="492dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="12dp"
             android:width="16dp"
             android:height="14dp"
             android:background="#FFFFFF"
@@ -294,7 +291,7 @@
             android:scaleType="fitCenter"
             android:src="@drawable/plus_border"
             app:layout_constraintStart_toEndOf="@+id/txtViewPorcion"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toBottomOf="@+id/txtViewPorciones" />
 
         <ImageButton
             android:id="@+id/btnEliminarPorcion"
@@ -303,7 +300,7 @@
             android:layout_alignParentTop="true"
             android:layout_alignParentRight="true"
             android:layout_marginStart="60dp"
-            android:layout_marginTop="492dp"
+            android:layout_marginTop="12dp"
             android:width="16dp"
             android:height="14dp"
             android:background="#FFFFFF"
@@ -311,14 +308,13 @@
             android:scaleType="fitCenter"
             android:src="@drawable/minus_border"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toBottomOf="@+id/txtViewPorciones" />
 
         <Button
             android:id="@+id/btnAgregarIngrediente"
             android:layout_width="195dp"
             android:layout_height="36dp"
-            android:layout_marginTop="20dp"
-            android:layout_marginBottom="1020dp"
+            android:layout_marginTop="12dp"
             android:backgroundTint="@color/color_boton"
             android:fontFamily="sans-serif-medium"
             android:includeFontPadding="true"
@@ -327,25 +323,23 @@
             android:textColor="@color/white"
             android:textSize="10dp"
             app:cornerRadius="@dimen/corner_button"
-            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.259"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/container_ingredientes"
-            app:layout_constraintVertical_bias="0.0"
             tools:ignore="TextContrastCheck" />
 
         <TextView
             android:id="@+id/txtViewTiempos"
             android:layout_width="274dp"
             android:layout_height="0dp"
-            android:layout_marginTop="7dp"
+            android:layout_marginTop="12dp"
             android:text="@string/tiempo"
             android:textColor="@android:color/black"
             android:textSize="20sp"
             android:textStyle="normal"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.267"
+            app:layout_constraintHorizontal_bias="0.217"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/btnAgregarIngrediente" />
 
@@ -353,15 +347,15 @@
             android:id="@+id/txtViewCategorias"
             android:layout_width="274dp"
             android:layout_height="0dp"
-            android:layout_marginTop="61dp"
+            android:layout_marginTop="12dp"
             android:text="@string/categorias"
             android:textColor="@android:color/black"
             android:textSize="20sp"
             android:textStyle="normal"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.211"
+            app:layout_constraintHorizontal_bias="0.21"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/txtViewTiempos" />
+            app:layout_constraintTop_toBottomOf="@+id/txtViewTiempo" />
 
         <androidx.constraintlayout.widget.Barrier
             android:id="@+id/barrier2"
@@ -386,7 +380,7 @@
             android:layout_marginTop="12dp"
             android:orientation="vertical"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/txtViewPorciones2"/>
+            app:layout_constraintTop_toBottomOf="@+id/txtViewPorciones2" />
 
         <LinearLayout
             android:id="@+id/container_categories"
@@ -400,5 +394,6 @@
 
 
         </LinearLayout>
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 </ScrollView>

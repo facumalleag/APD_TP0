@@ -13,17 +13,28 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.DialogFragment;
 
 import com.example.myapplication.model.Ingrediente;
+import com.example.myapplication.services.CategoryService;
 import com.google.android.material.chip.Chip;
 import com.google.android.material.chip.ChipGroup;
+import com.google.gson.JsonArray;
+import com.google.gson.JsonElement;
 
+import java.io.File;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+import retrofit2.Retrofit;
+import retrofit2.converter.gson.GsonConverterFactory;
 
 public class CreateSecondRecipeActivity extends AppCompatActivity implements DialogoAgregarIngrediente.NoticeDialogListener{
 
@@ -34,7 +45,7 @@ public class CreateSecondRecipeActivity extends AppCompatActivity implements Dia
     private TextView txtViewPorcion, txtViewTiempo;
     private List<Ingrediente> ingredientes = new ArrayList<>();
     public static final int GET_FROM_GALLERY = 3;
-    ImageView IVPreviewImage;
+    ImageView previewImage;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -57,48 +68,61 @@ public class CreateSecondRecipeActivity extends AppCompatActivity implements Dia
         txtViewCantidadTiempo = findViewById(R.id.txtViewCantidadTiempo);
         txtViewTiempo = findViewById(R.id.txtViewTiempo);
         btnChooseImage = findViewById(R.id.btnChooseImage);
-        IVPreviewImage = findViewById(R.id.IVPreviewImage);
-        agregarCategorias();
+        getCategories();
         // Get the Intent that started this activity and extract the string
         Intent intent = getIntent();
 
 
     }
 
-    private void agregarCategorias() {
+    public void getCategories(){
+        Retrofit retrofit = new Retrofit.Builder()
+                .baseUrl(Constants.BASE_URL)
+                .addConverterFactory(GsonConverterFactory.create())
+                .build();
+
+        CategoryService fs = retrofit.create(CategoryService.class);
+        Call<JsonElement> call = fs.listCategories();
+        call.enqueue(new Callback<JsonElement>() {
+            @Override
+            public void onResponse(Call<JsonElement> call, Response<JsonElement> response) {
+
+                if (response.isSuccessful()) {
+                    System.out.println(response.body());
+                    System.out.println("");
+                    agregarCategorias(response.body().getAsJsonObject().get("listedCategories").getAsJsonArray());
+
+
+                } else {
+                    if (response.code() == 400) {
+                        Toast toast = Toast.makeText(getApplication().getApplicationContext(), "Ocurrio un error, intente mas tarde", Toast.LENGTH_SHORT);
+                        toast.show();
+                    }
+                }
+            }
+
+            @Override
+            public void onFailure(Call<JsonElement> call, Throwable t) {
+                System.out.println(t.getMessage());
+            }
+        });
+    }
+
+
+    private void agregarCategorias(JsonArray listOfCategories) {
         LinearLayout btnsContainer = findViewById(R.id.container_categories);
         ChipGroup chipGroup = new ChipGroup(this);
         chipGroup.setSingleSelection(false);
 
-        List<String> categorias =  Arrays.asList(
-                "Pasta",
-                "Desayuno",
-                "Almuerzo",
-                "Cena",
-                "Postre",
-                "Snack",
-                "Café",
-                "Americana",
-                "Argentina",
-                "Saludable",
-                "Mexicana",
-                "Vegano",
-                "Vegetariana",
-                "Italiana",
-                "Pollos",
-                "Pizzas",
-                "Salsas",
-                "Sin gluten",
-                "Fitness"
-                );
-
-        for(String categoria : categorias){
+        for(JsonElement category : listOfCategories){
+            int id = category.getAsJsonObject().get("id").getAsInt();
+            String name = category.getAsJsonObject().get("description").getAsString();
             Chip chip = (Chip) getLayoutInflater().inflate(R.layout.single_chip_layout, chipGroup, false);
-            chip.setText(categoria);
+            chip.setText(name);
+            chip.setId(id);
             chipGroup.addView(chip);
         }
         btnsContainer.addView(chipGroup);
-
     }
 
     public void agregarPorcion(View view){
@@ -121,6 +145,10 @@ public class CreateSecondRecipeActivity extends AppCompatActivity implements Dia
     }
 
     public void actionCreate(View view){
+
+    }
+
+    public void eliminarIngrediente(View view){
 
     }
 
@@ -216,8 +244,14 @@ public class CreateSecondRecipeActivity extends AppCompatActivity implements Dia
                     if (resultCode == Activity.RESULT_OK) {
                         Uri selectedImageUri = data.getData();
                         if (null != selectedImageUri) {
+                            LinearLayout imageContainer = findViewById(R.id.idRVImage);
+                            View cardView = getLayoutInflater().inflate(R.layout.card_upload_images, null);
+                            TextView textView = cardView.findViewById(R.id.idTextImageView);
+                            File f = new File(selectedImageUri.getPath());
+                            String imageName = f.getName();
                             // update the preview image in the layout
-                            IVPreviewImage.setImageURI(selectedImageUri);
+                            textView.setText(imageName);
+                            imageContainer.addView(cardView);
                         }
                         break;
                     } else if (resultCode == Activity.RESULT_CANCELED) {
