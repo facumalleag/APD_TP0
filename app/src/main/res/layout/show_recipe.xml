@@ -1,0 +1,415 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fillViewport="true">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:background="@color/white"
+        tools:context=".ShowRecipeActivity"
+        >
+
+        <TextView
+            android:id="@+id/txtViewDescripcion"
+            android:layout_width="274dp"
+            android:layout_height="0dp"
+            android:layout_marginTop="156dp"
+            android:text="@string/descripcion"
+            android:textColor="@android:color/black"
+            android:textSize="20sp"
+            android:textStyle="normal"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.248"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/IVPreviewImage" />
+
+
+        <TextView
+            android:id="@+id/txtViewCantidadIngredientes"
+            android:layout_width="100dp"
+            android:layout_height="30dp"
+            android:layout_marginStart="65dp"
+
+            android:layout_marginTop="20dp"
+            android:textAlignment="textEnd"
+
+            android:textColor="@android:color/black"
+            android:textSize="20sp"
+            android:textStyle="normal"
+            app:layout_constraintStart_toEndOf="@+id/txtViewIngrediente"
+            app:layout_constraintTop_toBottomOf="@+id/description" />
+
+        <TextView
+            android:id="@+id/description"
+            android:layout_width="380dp"
+            android:layout_height="65dp"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="8dp"
+            android:background="@drawable/style_border_button"
+            android:ems="10"
+            android:hint="@string/enter_description"
+            android:textColor="#78909C"
+
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/txtViewDescripcion"
+            tools:ignore="SpeakableTextPresentCheck" />
+
+        <TextView
+            android:id="@+id/txtViewSteps"
+            android:layout_width="100dp"
+            android:layout_height="25dp"
+            android:layout_marginTop="40dp"
+            android:text="@string/pasos"
+            android:textColor="@android:color/black"
+            android:textSize="20sp"
+            android:textStyle="normal"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.109"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/listViewIngredients" />
+
+        <TextView
+            android:id="@+id/txtViewIngrediente"
+            android:layout_width="217dp"
+            android:layout_height="30dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="20dp"
+            android:text="@string/ingredientes"
+            android:textColor="@android:color/black"
+            android:textSize="20sp"
+
+            android:textStyle="normal"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/description" />
+
+        <TextView
+            android:id="@+id/txtViewPorcion"
+            android:layout_width="100dp"
+            android:layout_height="30dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="28dp"
+            android:text="@string/porciones"
+
+            android:textColor="@android:color/black"
+            android:textSize="20sp"
+            android:textStyle="normal"
+            app:layout_constraintStart_toEndOf="@+id/txtViewCantidadPorcion"
+            app:layout_constraintTop_toBottomOf="@+id/txtViewIngrediente" />
+
+        <TextView
+            android:id="@+id/txtViewCantidadPorcion"
+            android:layout_width="20dp"
+            android:layout_height="30dp"
+            android:layout_marginStart="48dp"
+            android:layout_marginTop="30dp"
+            android:text="@integer/dos"
+            android:textColor="@android:color/black"
+            android:textSize="20sp"
+            android:textStyle="normal"
+            app:layout_constraintStart_toEndOf="@+id/btnEliminarPorcion"
+            app:layout_constraintTop_toBottomOf="@+id/txtViewIngrediente" />
+
+        <ImageButton
+            android:id="@+id/btnEliminarPorcion"
+            android:layout_width="20dp"
+            android:layout_height="30dp"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentRight="true"
+            android:layout_marginStart="72dp"
+            android:layout_marginTop="30dp"
+            android:width="16dp"
+
+            android:height="14dp"
+            android:background="#FFFFFF"
+            android:scaleType="fitCenter"
+            android:src="@drawable/minus_border"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/txtViewIngrediente" />
+
+        <ImageButton
+            android:id="@+id/btnAgregarPorcion"
+            android:layout_width="20dp"
+            android:layout_height="30dp"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentRight="true"
+            android:layout_marginStart="60dp"
+            android:layout_marginTop="28dp"
+
+            android:width="16dp"
+            android:height="14dp"
+
+            android:background="#FFFFFF"
+            android:scaleType="fitCenter"
+            android:src="@drawable/plus_border"
+            app:layout_constraintStart_toEndOf="@+id/txtViewPorcion"
+            app:layout_constraintTop_toBottomOf="@+id/txtViewIngrediente" />
+
+        <ScrollView
+            android:id="@+id/listViewIngredients"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+
+            android:layout_marginTop="75dp"
+            android:gravity="center"
+            android:scaleType="fitCenter"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/txtViewIngrediente">
+            <LinearLayout
+                android:id="@+id/containerIngredients"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"></LinearLayout>
+        </ScrollView>
+
+        <ScrollView
+            android:id="@+id/listViewSteps"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+
+            android:layout_marginTop="30dp"
+            android:layout_marginEnd="4dp"
+            android:gravity="center"
+            android:scaleType="fitCenter"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/txtViewSteps">
+            <LinearLayout
+                android:id="@+id/containerSteps"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"></LinearLayout>
+        </ScrollView>
+
+        <Button
+            android:id="@+id/btnCreateRecipe"
+            android:layout_width="208dp"
+            android:layout_height="69dp"
+            android:layout_marginTop="70dp"
+            android:layout_marginBottom="4dp"
+            android:backgroundTint="@color/color_boton"
+            android:fontFamily="sans-serif-medium"
+            android:includeFontPadding="true"
+            android:onClick="actionCreate"
+            android:text="@string/btn_save"
+            android:textColor="@color/white"
+            android:visibility="gone"
+            app:cornerRadius="@dimen/corner_button"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.428"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/listViewSteps"
+            tools:ignore="TextContrastCheck" />
+
+        <TextView
+            android:id="@+id/txtViewTituloDeReceta"
+            android:layout_width="274dp"
+            android:layout_height="0dp"
+            android:layout_marginTop="101dp"
+
+            android:textColor="@android:color/black"
+            android:textSize="24sp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.248"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageButton
+            android:id="@+id/btnVolver"
+            android:layout_width="28dp"
+            android:layout_height="68dp"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentRight="true"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginBottom="197dp"
+            android:width="16dp"
+            android:height="14dp"
+            android:background="#FFFFFF"
+            android:onClick="actionVolver"
+            android:scaleType="fitCenter"
+            android:src="@drawable/union"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+        <RelativeLayout
+            android:id="@+id/IVPreviewImage"
+            android:layout_width="match_parent"
+            android:layout_height="100dp"
+            android:layout_marginTop="150dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <ImageView
+                android:id="@+id/IVPreviewImage2"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentTop="true"
+                android:layout_marginStart="0dp"
+                android:layout_marginTop="0dp"
+                android:gravity="center"
+                android:scaleType="fitCenter"
+                android:src="@drawable/default_recipe___copia"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+        </RelativeLayout>
+
+
+        <ImageView
+            android:id="@+id/star_rating"
+            android:layout_width="37dp"
+            android:layout_height="25dp"
+            android:layout_alignParentBottom="true"
+            android:layout_marginTop="125dp"
+            android:layout_marginRight="5dp"
+            android:layout_toStartOf="@+id/rating"
+            android:src="@drawable/ic_baseline_star_yellow_24"
+            app:backgroundTint="@android:color/white"
+            app:layout_constraintHorizontal_chainStyle="packed"
+            app:layout_constraintRight_toLeftOf="@id/rating"
+            app:layout_constraintTop_toBottomOf="@+id/txtViewTituloDeReceta" />
+
+        <TextView
+            android:id="@+id/rating"
+            android:layout_width="63dp"
+            android:layout_height="25dp"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentBottom="true"
+            android:layout_marginStart="50dp"
+            android:layout_marginTop="125dp"
+            android:textAppearance="?attr/textAppearanceHeadline6"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/txtViewTituloDeReceta"
+            tools:ignore="MissingConstraints" />
+
+
+        <ImageView
+            android:id="@+id/editRecipe"
+            android:layout_width="37dp"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_marginStart="200dp"
+            android:layout_marginTop="125dp"
+            android:layout_toStartOf="@+id/rating"
+
+            android:src="@drawable/baseline_border_color_blue_24"
+            app:backgroundTint="@android:color/white"
+            app:layout_constraintHorizontal_chainStyle="packed"
+            app:layout_constraintStart_toEndOf="@+id/rating"
+            app:layout_constraintTop_toBottomOf="@+id/txtViewTituloDeReceta" />
+
+        <ImageView
+            android:id="@+id/favoriteRecipe"
+            android:layout_width="37dp"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_marginStart="5dp"
+
+            android:layout_marginTop="125dp"
+            android:layout_toStartOf="@+id/rating"
+            android:src="@drawable/ic_baseline_heart_blue_24"
+            app:backgroundTint="@android:color/white"
+            app:layout_constraintHorizontal_chainStyle="packed"
+            app:layout_constraintStart_toEndOf="@+id/editRecipe"
+            app:layout_constraintTop_toBottomOf="@+id/txtViewTituloDeReceta" />
+
+        <ImageView
+            android:id="@+id/ProfilePicture"
+            android:layout_width="45dp"
+            android:layout_height="42dp"
+
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentBottom="true"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="292dp"
+            android:src="@drawable/ic_baseline_person_24"
+            android:textAppearance="?attr/textAppearanceHeadline6"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/userName"
+            android:layout_width="161dp"
+            android:layout_height="42dp"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentBottom="true"
+
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="292dp"
+            android:textAppearance="?attr/textAppearanceHeadline6"
+            app:layout_constraintStart_toEndOf="@+id/ProfilePicture"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/timeTitle"
+            android:layout_width="92dp"
+            android:layout_height="18dp"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentBottom="true"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="350dp"
+            android:text="@string/time_title"
+            android:textAppearance="?attr/textAppearanceHeadline6"
+            android:textSize="14sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:ignore="MissingConstraints" />
+
+        <TextView
+            android:id="@+id/time"
+            android:layout_width="25dp"
+            android:layout_height="20dp"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentBottom="true"
+            android:layout_marginStart="220dp"
+
+            android:layout_marginTop="350dp"
+            android:textAppearance="?attr/textAppearanceHeadline6"
+            android:textSize="14sp"
+            app:layout_constraintStart_toEndOf="@+id/timeTitle"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:ignore="MissingConstraints" />
+
+        <ImageView
+            android:id="@+id/timeicon"
+            android:layout_width="37dp"
+            android:layout_height="20dp"
+            android:layout_alignParentBottom="true"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="350dp"
+            android:layout_toStartOf="@+id/rating"
+
+            android:src="@drawable/baseline_watch_later_blue_24"
+            app:backgroundTint="@android:color/white"
+
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintHorizontal_chainStyle="packed"
+            app:layout_constraintStart_toEndOf="@+id/time"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <androidx.constraintlayout.widget.Barrier
+            android:id="@+id/barrier2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:barrierDirection="left"
+            tools:layout_editor_absoluteX="161dp"
+            tools:layout_editor_absoluteY="125dp" />
+
+        <androidx.constraintlayout.widget.Barrier
+            android:id="@+id/barrier3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:barrierDirection="left"
+            tools:layout_editor_absoluteX="66dp" />
+
+
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</ScrollView>

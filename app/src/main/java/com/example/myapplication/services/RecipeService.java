@@ -24,4 +24,6 @@ public interface RecipeService {
     @GET("/recipe/listRecipeBy/userId/{id}/order/{order}")
     Call<JsonElement> listRecipeByUserId( @Path("id") String id,
                                           @Path("order") String order);
+    @GET("/recipe/getBy/{id}")
+    Call<JsonElement> getRecipeById( @Path("id") String id);
 }

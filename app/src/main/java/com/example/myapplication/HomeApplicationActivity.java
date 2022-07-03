@@ -14,7 +14,7 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentContainerView;
 
 import com.example.myapplication.adapter.SliderAdapter;
-import com.smarteist.autoimageslider.SliderView;
+//import com.smarteist.autoimageslider.SliderView;
 
 public class HomeApplicationActivity extends AppCompatActivity{
 
@@ -57,7 +57,8 @@ public class HomeApplicationActivity extends AppCompatActivity{
     }
     public void iniciarFavouriteActivity(View view) {
 
-        Intent intent = new Intent(this, FavouritesRecipesActivity.class);
+        //Intent intent = new Intent(this, FavouritesRecipesActivity.class);
+        Intent intent = new Intent(this, ShowRecipeActivity.class);
         startActivity(intent);
     }
 

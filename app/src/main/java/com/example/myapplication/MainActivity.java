@@ -159,6 +159,7 @@ public class MainActivity extends AppCompatActivity implements NetworkController
      */
 
     public void doLogin (){
+        /*
         String tipoconexion=controlador_red.verificarTipoRed(this);
         mostrarAlerta(tipoconexion);
 
@@ -178,9 +179,11 @@ public class MainActivity extends AppCompatActivity implements NetworkController
                 e.printStackTrace();
             }
         }
-        //Intent intent = new Intent(this, HomeApplicationActivity.class);
+        */
+
+        Intent intent = new Intent(this, HomeApplicationActivity.class);
         //intent.putExtra(Intent.EXTRA_EMAIL,emailEditText.getText().toString());
-        //startActivity(intent);
+        startActivity(intent);
 
     }
     public void mostrarAlerta(String tipoconexion) {

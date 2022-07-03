@@ -149,6 +149,10 @@
     <!-- Strings used for activity Favorites -->
     <string name="favorites_title">Recetas guardadas</string>
     <string name="empty_favorites">Parece que todavia no guardó ninguna receta</string>
+
+    <!-- Strings used for activity show_recipe -->
+    <string name="time_title">Tiempo</string>
+
     <!-- Strings used for fragments for navigation -->
 
     <!-- Strings used for activity RecoverPassword -->
