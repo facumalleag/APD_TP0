@@ -5,9 +5,20 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.DialogFragment;
+
+import com.example.myapplication.services.CategoryService;
+import com.example.myapplication.services.RecipeService;
+import com.google.gson.JsonElement;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+import retrofit2.Retrofit;
+import retrofit2.converter.gson.GsonConverterFactory;
 
 public class CreateFirstRecipeActivity extends AppCompatActivity implements DialogoTitleRecipe.NoticeDialogListener {
 
@@ -36,13 +47,7 @@ public class CreateFirstRecipeActivity extends AppCompatActivity implements Dial
             return;
         }
 
-        if (checkTitleRecipe(titleRecipe)){
-            Intent intent = new Intent(this, HomeApplicationActivity.class);
-            startActivity(intent);
-        } else {
-            mostrarAlerta();
-        }
-
+        checkTitleRecipe(titleRecipe);
     }
 
     public void actionVolver(View view){ 
@@ -50,15 +55,6 @@ public class CreateFirstRecipeActivity extends AppCompatActivity implements Dial
         startActivity(intent);
         finish();
     }
-
-    public boolean checkTitleRecipe (String title){
-        boolean resultado=false;
-
-        return resultado;
-
-    }
-
-
 
     public void mostrarAlerta() {
         DialogFragment newFragment = new DialogoTitleRecipe();
@@ -78,5 +74,43 @@ public class CreateFirstRecipeActivity extends AppCompatActivity implements Dial
     @Override
     public void onDialogNegativeClick(DialogFragment dialog) {
 
+    }
+
+    public void checkTitleRecipe(String title){
+        Retrofit retrofit = new Retrofit.Builder()
+                .baseUrl(Constants.BASE_URL)
+                .addConverterFactory(GsonConverterFactory.create())
+                .build();
+
+        RecipeService fs = retrofit.create(RecipeService.class);
+        Call<JsonElement> call = fs.checkRecipeByName(title);
+        call.enqueue(new Callback<JsonElement>() {
+            @Override
+            public void onResponse(Call<JsonElement> call, Response<JsonElement> response) {
+
+                if (response.isSuccessful()) {
+                    checkRecipeSuccesful();
+                } else {
+                    if (response.code() == 400) {
+                        Toast toast = Toast.makeText(getApplication().getApplicationContext(), "Ocurrio un error, intente mas tarde", Toast.LENGTH_SHORT);
+                        toast.show();
+                    } else if (response.code() == 430){
+                        mostrarAlerta();
+                    }
+                }
+            }
+
+            @Override
+            public void onFailure(Call<JsonElement> call, Throwable t) {
+                System.out.println(t.getMessage());
+            }
+        });
+    }
+
+    private void checkRecipeSuccesful() {
+        Intent intent = new Intent(this, CreateSecondRecipeActivity.class);
+        intent.putExtra(Intent.EXTRA_TITLE, editTextTitleRecipe.getText().toString());
+        startActivity(intent);
+        finish();
     }
 }

@@ -26,4 +26,7 @@ public interface RecipeService {
                                           @Path("order") String order);
     @GET("/recipe/getBy/{id}")
     Call<JsonElement> getRecipeById( @Path("id") String id);
+
+    @GET("/recipe/check/name/{name}")
+    Call<JsonElement> checkRecipeByName( @Path("name") String name);
 }
