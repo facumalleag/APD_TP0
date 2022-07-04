@@ -2,11 +2,13 @@ package com.example.myapplication.model;
 
 public class Ingrediente {
 
+    private int id;
     private String nombre;
     private Integer cantidad;
     private String medida;
 
-    public Ingrediente(String nombre, Integer cantidad, String medida) {
+    public Ingrediente(int id, String nombre, Integer cantidad, String medida) {
+        this.id = id;
         this.nombre = nombre;
         this.cantidad = cantidad;
         this.medida = medida;
@@ -33,5 +35,13 @@ public class Ingrediente {
 
     public void setMedida(String medida) {
         this.medida = medida;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 }

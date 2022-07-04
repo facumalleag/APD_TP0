@@ -105,6 +105,7 @@
     <string name="enter_title_recipe">Titulo. Ej : Pollo al horno</string>
     <string name="enter_description">Descripción</string>
     <string name="btn_agregarIngrediente">Agregar Ingrediente</string>
+    <string name="btn_agregarPaso">Agregar Paso</string>
     <string name="pasta">"Pasta"</string>
     <string name="desayuno">"Desayuno"</string>
     <string name="almuerzo">"Almuerzo"</string>

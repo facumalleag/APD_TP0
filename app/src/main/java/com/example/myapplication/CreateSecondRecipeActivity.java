@@ -36,9 +36,9 @@ import retrofit2.Response;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
-public class CreateSecondRecipeActivity extends AppCompatActivity implements DialogoAgregarIngrediente.NoticeDialogListener{
+public class CreateSecondRecipeActivity extends AppCompatActivity implements DialogoAgregarIngrediente.NoticeDialogListener {
 
-    private EditText editTextTitleRecipe;
+    private EditText editTextTitleRecipe, editTextDescripcion;
     private TextView txtViewCantidadPorcion, txtViewCantidadTiempo;
     private ImageButton btnAgregarPorcion, btnAgregarTiempo, btnChooseImage;
     private ImageButton btnEliminarPorcion, btnEliminarTiempo;
@@ -46,6 +46,7 @@ public class CreateSecondRecipeActivity extends AppCompatActivity implements Dia
     private List<Ingrediente> ingredientes = new ArrayList<>();
     public static final int GET_FROM_GALLERY = 3;
     ImageView previewImage;
+    private int idIngrediente = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -145,11 +146,18 @@ public class CreateSecondRecipeActivity extends AppCompatActivity implements Dia
     }
 
     public void actionCreate(View view){
-
-    }
-
-    public void eliminarIngrediente(View view){
-
+        LinearLayout btnsContainer = findViewById(R.id.container_categories);
+        String categorieName;
+        ChipGroup chipGroup = (ChipGroup) btnsContainer.getChildAt(0);
+        List<Integer> ids = chipGroup.getCheckedChipIds();
+        for (Integer id:ids){
+            Chip chip = chipGroup.findViewById(id);
+            categorieName = chip.getText().toString();
+        }
+        Integer porciones = Integer.valueOf(txtViewCantidadPorcion.getText().toString());
+        Integer tiempo = Integer.valueOf(txtViewCantidadTiempo.getText().toString());
+        String descripcion = editTextDescripcion.getText().toString();
+        editTextTitleRecipe = findViewById(R.id.editTextTitle);
     }
 
     public void actionVolver(View view){ 
@@ -179,18 +187,31 @@ public class CreateSecondRecipeActivity extends AppCompatActivity implements Dia
             cantidadIngrediente = Integer.valueOf(txtCantIngrediente.getText().toString().trim());
         }
 
-        Ingrediente ingrediente = new Ingrediente(nombreIngrediente, cantidadIngrediente, medida);
+        Ingrediente ingrediente = new Ingrediente(idIngrediente, nombreIngrediente, cantidadIngrediente, medida);
         ingredientes.add(ingrediente);
 
-        LinearLayout btnsContainer = findViewById(R.id.container_ingredientes);
-        View buttonContainer =  LayoutInflater.from(getApplicationContext()).inflate(R.layout.item_ingrediente, null);
-        ImageButton btnEliminarIngrediente = (ImageButton) buttonContainer.findViewById(R.id.btnEliminarIngrediente);
-        TextView txtViewIngrediente = (TextView) buttonContainer.findViewById(R.id.txtViewIngrediente);
-        txtViewIngrediente.setText(ingrediente.getNombre());
-        TextView txtViewCantidad = (TextView) buttonContainer.findViewById(R.id.txtViewCantidad);
-        txtViewCantidad.setText(ingrediente.getCantidad() + " " +  ingrediente.getMedida());
+        LinearLayout ingredienteContainer = findViewById(R.id.container_ingredientes);
+        View itemIngredienteContainer =  LayoutInflater.from(getApplicationContext()).inflate(R.layout.item_ingrediente, null);
+        ImageButton btnEliminarIngrediente = (ImageButton) itemIngredienteContainer.findViewById(R.id.btnEliminarIngrediente);
+        btnEliminarIngrediente.setOnClickListener(new View.OnClickListener(){
 
-        btnsContainer.addView(buttonContainer);
+            @Override
+            public void onClick(View v) {
+                LinearLayout linearLayout =(LinearLayout) v.getParent();
+                TextView txtViewId = (TextView) linearLayout.findViewById(R.id.txtViewId);
+                int id = Integer.valueOf(txtViewId.getText().toString());
+                ingredientes.remove(id);
+                ingredienteContainer.removeView((LinearLayout)(v.getParent()));
+
+            }});
+        TextView txtViewIngrediente = (TextView) itemIngredienteContainer.findViewById(R.id.txtViewIngrediente);
+        txtViewIngrediente.setText(ingrediente.getNombre());
+        TextView txtViewCantidad = (TextView) itemIngredienteContainer.findViewById(R.id.txtViewCantidad);
+        txtViewCantidad.setText(ingrediente.getCantidad() + " " +  ingrediente.getMedida());
+        TextView textViewIdIngrediente = (TextView) itemIngredienteContainer.findViewById(R.id.txtViewId);
+        textViewIdIngrediente.setText(String.valueOf(idIngrediente));
+        ingredienteContainer.addView(itemIngredienteContainer);
+        idIngrediente ++;
 
     }
 
@@ -202,6 +223,20 @@ public class CreateSecondRecipeActivity extends AppCompatActivity implements Dia
     public void actionAgregarIngrediente(View view){
         DialogFragment newFragment = new DialogoAgregarIngrediente();
         newFragment.show(getSupportFragmentManager(), "Atención");
+    }
+
+    public void actionAgregarPaso(View view){
+        LinearLayout pasosContainer = findViewById(R.id.container_pasos);
+        View itemPasoContainer =  LayoutInflater.from(getApplicationContext()).inflate(R.layout.item_paso, null);
+        ImageButton btnEliminarPaso = (ImageButton) itemPasoContainer.findViewById(R.id.btnEliminarPaso);
+        btnEliminarPaso.setOnClickListener(new View.OnClickListener(){
+
+            @Override
+            public void onClick(View v) {
+                pasosContainer.removeView((LinearLayout)(v.getParent()));
+            }});
+        pasosContainer.addView(itemPasoContainer);
+
     }
 
     public void agregarTiempo(View view){
@@ -251,6 +286,14 @@ public class CreateSecondRecipeActivity extends AppCompatActivity implements Dia
                             String imageName = f.getName();
                             // update the preview image in the layout
                             textView.setText(imageName);
+
+                            ImageButton btnEliminarImagen = (ImageButton) cardView.findViewById(R.id.btnEliminarImagen);
+                            btnEliminarImagen.setOnClickListener(new View.OnClickListener(){
+
+                                @Override
+                                public void onClick(View v) {
+                                    imageContainer.removeView((LinearLayout)(v.getParent().getParent().getParent()));
+                                }});
                             imageContainer.addView(cardView);
                         }
                         break;

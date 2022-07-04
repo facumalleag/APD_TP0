@@ -65,7 +65,6 @@ public class DialogoAgregarIngrediente extends DialogFragment {
                 .setPositiveButton(R.string.agregar, new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int id) {
-                        // COMPLETAR LA OPERACION GUARDANDO EN LA BASE DE DATOS
                         listener.onDialogPositiveClick(DialogoAgregarIngrediente.this);
                     }
                 })
