@@ -115,8 +115,8 @@ public class FavouritesRecipesActivity extends AppCompatActivity {
         finish();
     }
     private void createCards(JsonArray listOfRecipes) {
-        String nameRecipe, rating,time,userName;
-        Integer recipeId, favoriteId;
+        String nameRecipe, rating,time,userName,recipeId;
+        Integer  favoriteId;
         if (listOfRecipes.size() ==0){
             TextView EmptyListTextView = findViewById(R.id.EmptyListTextView);
             EmptyListTextView.setVisibility(View.VISIBLE);
@@ -124,7 +124,7 @@ public class FavouritesRecipesActivity extends AppCompatActivity {
         }
         for (int i = 0; i < listOfRecipes.size(); i++) {
             favoriteId = listOfRecipes.get(i).getAsJsonObject().get("favoriteId").getAsInt() ;
-            recipeId= listOfRecipes.get(i).getAsJsonObject().get("recipeId").getAsInt() ;
+            recipeId= listOfRecipes.get(i).getAsJsonObject().get("recipeId").getAsString() ;
             nameRecipe = listOfRecipes.get(i).getAsJsonObject().get("name").getAsString();
             rating = listOfRecipes.get(i).getAsJsonObject().get("totalRating").getAsString();
             time = listOfRecipes.get(i).getAsJsonObject().get("time").getAsString();
@@ -132,7 +132,7 @@ public class FavouritesRecipesActivity extends AppCompatActivity {
             addCard(recipeId,favoriteId,nameRecipe,rating,time,userName);
         }
     }
-    private void addCard(Integer recipeId,Integer favoriteId, String nameRecipe,String rating,String time,String userName) {
+    private void addCard(String recipeId,Integer favoriteId, String nameRecipe,String rating,String time,String userName) {
         final View view = getLayoutInflater().inflate(R.layout.material_io_card_favorite_rescipe, null);
         TextView ratingView = view.findViewById(R.id.rating);
         ratingView.setText(rating);
@@ -143,12 +143,19 @@ public class FavouritesRecipesActivity extends AppCompatActivity {
         TextView timeView = view.findViewById(R.id.time);
         timeView.setText(time);
         ImageView heartImage = view.findViewById(R.id.heart);
-
         heartImage.setClickable(true);
         heartImage.bringToFront();
         heartImage.setOnClickListener(v -> showDialog2(favoriteId));
         view.setId(favoriteId);
-
+        view.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(v.getContext(), ShowRecipeActivity.class);
+                intent.putExtra("key",recipeId);
+                System.out.println(recipeId);
+                startActivity(intent);
+            }
+        });
         layout.addView(view);
 
     }
@@ -181,7 +188,7 @@ public class FavouritesRecipesActivity extends AppCompatActivity {
     }
 
     private void removeFavorite(Integer favoriteId){
-        fragmentoFiltros = new RecetaFiltroFragment();
+
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl("http://10.0.2.2:8000")
                 .addConverterFactory(GsonConverterFactory.create())

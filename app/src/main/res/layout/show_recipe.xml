@@ -309,7 +309,7 @@
             android:layout_height="wrap_content"
             android:layout_alignParentBottom="true"
             android:layout_marginStart="5dp"
-
+            android:onClick="addOrRemoveFromFavorite"
             android:layout_marginTop="125dp"
             android:layout_toStartOf="@+id/rating"
             android:src="@drawable/ic_baseline_heart_blue_24"

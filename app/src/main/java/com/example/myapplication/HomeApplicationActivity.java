@@ -58,7 +58,7 @@ public class HomeApplicationActivity extends AppCompatActivity{
     public void iniciarFavouriteActivity(View view) {
 
         //Intent intent = new Intent(this, FavouritesRecipesActivity.class);
-        Intent intent = new Intent(this, ShowRecipeActivity.class);
+        Intent intent = new Intent(this, FavouritesRecipesActivity.class);
         startActivity(intent);
     }
 

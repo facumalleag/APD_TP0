@@ -13,6 +13,7 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 
+import com.example.myapplication.model.favorite;
 import com.example.myapplication.services.FavoriteService;
 import com.example.myapplication.services.RecipeService;
 import com.google.android.material.dialog.MaterialAlertDialogBuilder;
@@ -32,15 +33,24 @@ public class ShowRecipeActivity extends AppCompatActivity {
     Fragment fragmentoFiltros;
     LinearLayout layoutIngredients;
     LinearLayout layoutSteps;
-    Integer favoriteId;
+    String favoriteId;
+    String recipeId;
+    boolean isFavorite;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.show_recipe);
-
+        Bundle extras = getIntent().getExtras();
+        buildDialog();
+        if (extras != null) {
+            recipeId = extras.getString("key");
+            //The key argument here must match that used in the other activity
+        }
+        System.out.println("aca: "+recipeId);
         //SearchView searchView = findViewById(R.id.search_field);
-
+        this.isFavorite = false;
         layoutIngredients=findViewById(R.id.containerIngredients);
         layoutSteps=findViewById(R.id.containerSteps);
 
@@ -61,7 +71,7 @@ public class ShowRecipeActivity extends AppCompatActivity {
 
         RecipeService rs = retrofit.create(RecipeService.class);
 
-        Call<JsonElement> call = rs.getRecipeById( Integer.toString(1));
+        Call<JsonElement> call = rs.getRecipeById(recipeId);
         //OJO el id de la receta esta hardcodeado
         call.enqueue(new Callback<JsonElement>() {
             @Override
@@ -106,15 +116,17 @@ public class ShowRecipeActivity extends AppCompatActivity {
         ratingView.setText(recipeFetched.get("totalRating").getAsString());
         TextView timeView = findViewById(R.id.time);
         timeView.setText(recipeFetched.get("time").getAsString());
+
         TextView userNameView = findViewById(R.id.userName);
         userNameView.setText(recipeFetched.get("user").getAsJsonObject().get("name").getAsString());
-        TextView descriptionView = findViewById(R.id.txtViewCantidadPorcion);
+        TextView descriptionView = findViewById(R.id.description);
         descriptionView.setText(recipeFetched.get("description").getAsString());
         TextView cantidadIngredientesView = findViewById(R.id.txtViewCantidadIngredientes);
         TextView txtViewCantidadPorcionView = findViewById(R.id.txtViewCantidadPorcion);
         txtViewCantidadPorcionView.setText(recipeFetched.get("serving").getAsString());
         processIngredients(data.get("ingredientsList").getAsJsonArray(),cantidadIngredientesView);
         processSteps(data.get("stepsList").getAsJsonArray());
+        getFavoritesByUserId();
 
 
     }
@@ -157,14 +169,156 @@ public class ShowRecipeActivity extends AppCompatActivity {
         stepDescriptionView.setText(description);
         layoutSteps.addView(view);
     }
-    private void showDialog2(int id){
-        this.favoriteId = id;
+    private void showDialog2(){
         dialog.show();
-
     }
 
+    private void getFavoritesByUserId(){
 
+        Retrofit retrofit = new Retrofit.Builder()
+                .baseUrl("http://10.0.2.2:8000")
+                .addConverterFactory(GsonConverterFactory.create())
+                .build();
 
+        FavoriteService fs = retrofit.create(FavoriteService.class);
+        //Call<JsonElement> call = fs.listFavoriteRecipesByUserId( Integer.toString(UserController.getInstancia().getUserId()));
+        Call<JsonElement> call = fs.listFavoriteRecipesByUserId( Integer.toString(1));
+        //OJO el id del usuario esta hardcodeado
+        call.enqueue(new Callback<JsonElement>() {
+            @Override
+            public void onResponse(Call<JsonElement> call, Response<JsonElement> response) {
+                //lblEstado.setText(response.body() );
+                if (response.isSuccessful()) {
+                    System.out.println(response.body());
+                    hasRecipeInFavorites(response.body().getAsJsonObject().get("listedFavorites").getAsJsonArray());
 
+                } else {
+                    if (response.code() == 400) {
+                        Toast toast = Toast.makeText(getApplication().getApplicationContext(), "Ocurrio un error, intente mas tarde", Toast.LENGTH_SHORT);
+                        toast.show();
+                    }
+                }
+            }
+
+            @Override
+            public void onFailure(Call<JsonElement> call, Throwable t) {
+                System.out.println(t.getMessage());
+            }
+        });
+    }
+    private void hasRecipeInFavorites(JsonArray favoritesList){
+        for (int i = 0; i < favoritesList.size(); i++) {
+            if(favoritesList.get(i).getAsJsonObject().get("recipeId").getAsString().equals(recipeId) ) {
+                isFavorite = true;
+                favoriteId = favoritesList.get(i).getAsJsonObject().get("favoriteId").getAsString();
+            }
+        }
+        changeFavoriteIcon(isFavorite);
+    }
+    private void changeFavoriteIcon(boolean isFavorite){
+        if (isFavorite){
+            ImageView favoriteRecipe = findViewById(R.id.favoriteRecipe);
+            favoriteRecipe.setImageResource(R.drawable.baseline_favorite_24);
+        }else{
+            ImageView favoriteRecipe = findViewById(R.id.favoriteRecipe);
+            favoriteRecipe.setImageResource(R.drawable.ic_baseline_heart_blue_24);
+            favoriteId = "";
+        }
+    }
+
+    private void addOrRemoveFromFavorite(){
+        if (isFavorite){
+            showDialog2();
+        }else{
+
+            Retrofit retrofit = new Retrofit.Builder()
+                    .baseUrl("http://10.0.2.2:8000")
+                    .addConverterFactory(GsonConverterFactory.create())
+                    .build();
+
+            FavoriteService fs = retrofit.create(FavoriteService.class);
+            //favorite newFavorite = new favorite(recipeId,  Integer.toString(UserController.getInstancia().getUserId()),"...");
+            //OJO EL DATO DEL USUARIO ESTA HARDCODEADO
+            favorite newFavorite = new favorite(recipeId, Integer.toString(1),"...");
+            Call<JsonElement> call = fs.createFavorite( newFavorite);
+
+            call.enqueue(new Callback<JsonElement>() {
+                @Override
+                public void onResponse(Call<JsonElement> call, Response<JsonElement> response) {
+
+                    if (response.isSuccessful()) {
+                        System.out.println(response.body());
+                        Toast toast = Toast.makeText(getApplication().getApplicationContext(), "Se añadio esta receta a su listado de favoritos", Toast.LENGTH_SHORT);
+                        toast.show();
+                        changeFavoriteIcon(true);
+
+                    } else {
+                        if (response.code() == 400) {
+                            Toast toast = Toast.makeText(getApplication().getApplicationContext(), "Ocurrio un error, intente mas tarde", Toast.LENGTH_SHORT);
+                            toast.show();
+                        }
+                    }
+                }
+
+                @Override
+                public void onFailure(Call<JsonElement> call, Throwable t) {
+                    System.out.println(t.getMessage());
+                }
+            });
+        }
+    }
+    private void buildDialog() {
+        AlertDialog.Builder builder = new MaterialAlertDialogBuilder(this);
+        View view = getLayoutInflater().inflate(R.layout.dialog, null);
+
+        builder.setView(view);
+        builder.setMessage("¿Desea eliminar de la lista de favoritos la receta?")
+                .setPositiveButton("Si", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        removeFavorite(favoriteId);
+                    }
+                })
+                .setNegativeButton("No", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+
+                    }
+                });
+
+        dialog = builder.create();
+    }
+
+    private void removeFavorite(String favoriteId){
+
+        Retrofit retrofit = new Retrofit.Builder()
+                .baseUrl("http://10.0.2.2:8000")
+                .addConverterFactory(GsonConverterFactory.create())
+                .build();
+
+        FavoriteService fs = retrofit.create(FavoriteService.class);
+        Call<JsonElement> call = fs.deleteFavoriteRecipeById(favoriteId);
+
+        call.enqueue(new Callback<JsonElement>() {
+            @Override
+            public void onResponse(Call<JsonElement> call, Response<JsonElement> response) {
+                //lblEstado.setText(response.body() );
+                if (response.isSuccessful()) {
+                    Toast toast = Toast.makeText(getApplication().getApplicationContext(), "Recete eliminada de lista de favoritos", Toast.LENGTH_SHORT);
+                    toast.show();
+                } else {
+                    if (response.code() == 400) {
+                        Toast toast = Toast.makeText(getApplication().getApplicationContext(), "Ocurrio un error, intente mas tarde", Toast.LENGTH_SHORT);
+                        toast.show();
+                    }
+                }
+            }
+
+            @Override
+            public void onFailure(Call<JsonElement> call, Throwable t) {
+                System.out.println(t.getMessage());
+            }
+        });
+    }
 }
 

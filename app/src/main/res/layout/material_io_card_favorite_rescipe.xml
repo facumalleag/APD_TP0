@@ -59,10 +59,10 @@
                     android:layout_width="37dp"
                     android:layout_height="wrap_content"
                     android:layout_alignParentBottom="true"
-                    android:layout_marginEnd="-8dp"
+                    android:layout_marginEnd="5dp"
                     android:layout_marginBottom="250dp"
                     android:layout_toStartOf="@+id/rating"
-                    android:src="@drawable/ic_baseline_star_24"
+                    android:src="@drawable/ic_baseline_star_yellow_24"
                     app:backgroundTint="@android:color/white"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintHorizontal_chainStyle="packed"
@@ -71,14 +71,12 @@
 
                 <TextView
                     android:id="@+id/rating"
-                    android:layout_width="63dp"
+                    android:layout_width="40dp"
                     android:layout_height="wrap_content"
                     android:layout_alignParentEnd="true"
                     android:layout_alignParentBottom="true"
-                    android:layout_marginEnd="300dp"
-
+                    android:layout_marginEnd="316dp"
                     android:layout_marginBottom="250dp"
-
                     android:textAppearance="?attr/textAppearanceHeadline6" />
 
                 <TextView
@@ -127,14 +125,14 @@
 
     <ImageView
         android:id="@+id/heart"
-        android:layout_width="45dp"
-        android:layout_height="42dp"
+        android:layout_width="33dp"
+        android:layout_height="31dp"
         android:layout_alignParentEnd="true"
         android:layout_alignParentBottom="true"
-        android:background="#FFFFFF"
         android:layout_marginEnd="20dp"
-
         android:layout_marginBottom="250dp"
+
+        android:background="#FFFFFF"
         android:src="@drawable/baseline_favorite_24"
         android:textAppearance="?attr/textAppearanceHeadline6"
         app:layout_constraintBottom_toBottomOf="@+id/relativeLayout4"
