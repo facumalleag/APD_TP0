@@ -21,6 +21,8 @@
                     android:layout_height="wrap_content"
                     app:tabGravity="fill"
                     app:tabMode="scrollable"
+                    app:tabIndicatorColor="@color/color_boton"
+                    app:tabSelectedTextColor="@color/color_boton"
                     />
             </com.google.android.material.appbar.AppBarLayout>
 
