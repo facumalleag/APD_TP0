@@ -354,7 +354,7 @@ public class CreateSecondRecipeActivity extends AppCompatActivity implements Dia
                 if (response.isSuccessful()) {
                     System.out.println(response.body());
                     System.out.println("");
-
+                    continuarVentanaDeFinCreacion();
 
                 } else {
                     if (response.code() == 400) {
@@ -369,5 +369,10 @@ public class CreateSecondRecipeActivity extends AppCompatActivity implements Dia
                 System.out.println(t.getMessage());
             }
         });
+    }
+
+    public void continuarVentanaDeFinCreacion(){
+        Intent intent = new Intent(this, RecetaGuardadaLayout.class);
+        startActivity(intent);
     }
 }

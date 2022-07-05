@@ -83,6 +83,9 @@
                 android:value=".MainActivity" />
         </activity>
         <activity
+            android:name=".RecetaGuardadaLayout"
+            android:exported="false" />
+        <activity
             android:name=".MainActivity"
             android:exported="true">
             <intent-filter>
