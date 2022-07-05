@@ -18,6 +18,7 @@ import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.DialogFragment;
 
+import com.example.myapplication.enums.StatusEnum;
 import com.example.myapplication.model.Ingrediente;
 import com.example.myapplication.model.Paso;
 import com.example.myapplication.model.Receta;
@@ -154,9 +155,11 @@ public class CreateSecondRecipeActivity extends AppCompatActivity implements Dia
         String categorieName;
         ChipGroup chipGroup = (ChipGroup) btnsContainer.getChildAt(0);
         List<Integer> ids = chipGroup.getCheckedChipIds();
+        int idCategorie;
         for (Integer id:ids){
             Chip chip = chipGroup.findViewById(id);
             categorieName = chip.getText().toString();
+            idCategorie = chip.getId();
         }
         Integer porciones = Integer.valueOf(txtViewCantidadPorcion.getText().toString());
         Integer tiempo = Integer.valueOf(txtViewCantidadTiempo.getText().toString());
@@ -167,8 +170,8 @@ public class CreateSecondRecipeActivity extends AppCompatActivity implements Dia
 
         LinearLayout container_pasos = findViewById(R.id.container_pasos);
         List<Paso> pasos = new ArrayList<>();
-
-        for (int index = 0; index < container_pasos.getChildCount(); index++) {
+        int cantidadPasos = container_pasos.getChildCount();
+        for (int index = 0; index < cantidadPasos; index++) {
             View itemPasoContainer = container_pasos.getChildAt(index);
             EditText txtPaso = itemPasoContainer.findViewById(R.id.txtViewPaso);
             String descripcionPaso = txtPaso.getText().toString();
@@ -180,8 +183,8 @@ public class CreateSecondRecipeActivity extends AppCompatActivity implements Dia
             pasos.add(paso);
         }
 
-        Receta receta = new Receta(0,1005, title, descripcion, porciones, 1, tiempo, 1,
-                1,1, "false", 5, "", new Date(), new Date(), ingredientes, pasos);
+        Receta receta = new Receta(0,1005, title, descripcion, porciones, 1, tiempo, StatusEnum.IN_PROGRESS.getId(),
+                1,1, "false", cantidadPasos, "", new Date(), new Date(), ingredientes, pasos);
         guardarReceta(receta);
     }
 
@@ -336,7 +339,7 @@ public class CreateSecondRecipeActivity extends AppCompatActivity implements Dia
         return (int)(dp * getApplicationContext().getResources().getDisplayMetrics().density);
     }
 
-    public void guardarReceta(Receta receta){
+    private void guardarReceta(Receta receta){
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl(Constants.BASE_URL)
                 .addConverterFactory(GsonConverterFactory.create())
