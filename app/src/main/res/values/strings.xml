@@ -58,8 +58,10 @@
     <string name="fraseRecetaGuardad">La receta se encuentra en evaluación. Le avisaremos cuando este disponible.</string>
 
     <!-- Strings used for activty Dialogo de Red Disponible -->
-    <string name="titulo_dialogo_red">Conexión a internet no encontrada</string>
+    <string name="titulo_dialogo_red">Conexión WIFI no encontrada</string>
     <string name="body_dialogo_red">No se encuentra conectado a una red de WIFI. ¿Desea utilizar una red con cargo a su cuenta para cpmpletar la operacion o desea aguardar a que se disponga de una conexion Wireless?</string>
+    <string name="body_alerta_red">Se encuentra navegando a una red con costo. Por lo que esta operacion repercutirá en gastos a su cuenta</string>
+
 
     <!-- Strings used for activty Dialogo de Red Disponible -->
     <string name="titulo_dialogo_recipe">Receta creada anteriormente.</string>

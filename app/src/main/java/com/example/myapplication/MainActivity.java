@@ -58,8 +58,10 @@ public class MainActivity extends AppCompatActivity implements NetworkController
 
         Button start=findViewById(R.id.btnComenzar);
         start.setOnClickListener(v -> setContentView(R.layout.activity_main));
-
-
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M){
+            //Verifica permisos para Android 6.0+
+            checkExternalStoragePermission();
+        }
     }
 
         /**
@@ -89,8 +91,8 @@ public class MainActivity extends AppCompatActivity implements NetworkController
      */
 
     public void ActionLogin(View view){
-        doLogin();
-/*
+        //doLogin();
+
         EditText emailEditText=findViewById(R.id.editTextEmailRecupero);
         EditText passwordEditText=findViewById(R.id.editTextTextPassword);
         String email1=emailEditText.getText().toString().trim();
@@ -101,10 +103,12 @@ public class MainActivity extends AppCompatActivity implements NetworkController
         String tipoconexion=controlador_red.verificarTipoRed(this);
         mostrarAlerta(tipoconexion);
 
+
         String mail= emailEditText.getText().toString();
         String password=passwordEditText.getText().toString();
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl("http://10.0.2.2:8000")
+                //.baseUrl("https://tpoapd.herokuapp.com:8000")
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
 
@@ -138,7 +142,7 @@ public class MainActivity extends AppCompatActivity implements NetworkController
             }
         });
 
-*/
+
     }
 
 
@@ -159,33 +163,28 @@ public class MainActivity extends AppCompatActivity implements NetworkController
      */
 
     public void doLogin (){
-        /*
         String tipoconexion=controlador_red.verificarTipoRed(this);
-        mostrarAlerta(tipoconexion);
+        if (tipoconexion.equals("MOBILE")) {
+            //alertaRed.show(getSupportFragmentManager(), "Atención");
+            Intent alertared = new Intent(this, AlertaRedWifiActivity.class);
+            //intent.putExtra(Intent.EXTRA_EMAIL,emailEditText.getText().toString());
+            startActivity(alertared);
 
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M){
-            //Verifica permisos para Android 6.0+
-            checkExternalStoragePermission();
-        }
-        File file = new File(getFilesDir(),"ejemplo.txt");
-
-        if(file.exists()){
-            //Existe archivo
-        }else{
-            try {
-                //Crea archivo
-                file.createNewFile();
-            } catch (IOException e) {
-                e.printStackTrace();
+            if (controlador_red.getOpcionNavegarSinWifi() == true) {
+                Intent intent = new Intent(this, HomeApplicationActivity.class);
+                startActivity(intent);
             }
+        }else {
+            if(tipoconexion.equals("WIFI")) {
+                Intent intent = new Intent(this, HomeApplicationActivity.class);
+                startActivity(intent);
+            }else
+                showSnackBar(tipoconexion);
         }
-        */
-
-        Intent intent = new Intent(this, HomeApplicationActivity.class);
-        //intent.putExtra(Intent.EXTRA_EMAIL,emailEditText.getText().toString());
-        startActivity(intent);
 
     }
+
+
     public void mostrarAlerta(String tipoconexion) {
         if (tipoconexion.equals("MOBILE")) {
             DialogFragment newFragment = new DialogoRedDisponible();
@@ -218,32 +217,8 @@ public class MainActivity extends AppCompatActivity implements NetworkController
 
         // initialize color and message
         String message;
-        int color;
-
-        // check condition
-        if (isConnected.equals("WIFI")) {
-
-            // when internet is connected
-            // set message
-            message = "Connected to WIFI Internet";
-
-            // set text color
-            color = Color.WHITE;
-
-        } else {
-            if (isConnected.equals("MOBILE")){
-                message="Connected to MOBILE Internet";
-                color = Color.MAGENTA;
-            }else {
-
-                // when internet
-                // is disconnected
-                // set message
-                message = "Not Connected to Internet";
-                // set text color
-                color = Color.RED;
-            }
-        }
+        int color=Color.RED;;
+        message = "Not Connected to Internet";
 
         // initialize snack bar
         Snackbar snackbar = Snackbar.make(findViewById(R.id.btnLogin), message, Snackbar.LENGTH_LONG);
@@ -266,7 +241,7 @@ public class MainActivity extends AppCompatActivity implements NetworkController
     @Override
     public void onNetworkChange(boolean isConnected) {
         //showSnackBar(isConnected);
-        mostrarAlerta("WIFI");
+        //mostrarAlerta("WIFI");
 
     }
 
@@ -308,5 +283,6 @@ public class MainActivity extends AppCompatActivity implements NetworkController
     private void readfile(Context context) {
         recetas.leerArchivoReceta(context);
     }
+
 
 }

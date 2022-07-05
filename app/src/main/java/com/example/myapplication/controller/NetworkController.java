@@ -15,6 +15,7 @@ import com.example.myapplication.DialogoRedDisponible;
 
 public class NetworkController extends BroadcastReceiver {
     private static NetworkController instancia;
+    private boolean opcion_red;
 
     // initialize listener
     public static ReceiverListener Listener;
@@ -77,6 +78,14 @@ public class NetworkController extends BroadcastReceiver {
             // call listener method
             Listener.onNetworkChange(isConnected);
         }
+    }
+
+    public void setNavegarSinWifi(boolean eleccion_user) {
+        opcion_red=eleccion_user;
+    }
+
+    public boolean getOpcionNavegarSinWifi (){
+        return opcion_red;
     }
 
 
