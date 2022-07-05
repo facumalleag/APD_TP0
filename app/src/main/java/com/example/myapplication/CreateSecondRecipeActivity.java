@@ -19,7 +19,10 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.DialogFragment;
 
 import com.example.myapplication.model.Ingrediente;
+import com.example.myapplication.model.Paso;
+import com.example.myapplication.model.Receta;
 import com.example.myapplication.services.CategoryService;
+import com.example.myapplication.services.RecipeService;
 import com.google.android.material.chip.Chip;
 import com.google.android.material.chip.ChipGroup;
 import com.google.gson.JsonArray;
@@ -27,7 +30,7 @@ import com.google.gson.JsonElement;
 
 import java.io.File;
 import java.util.ArrayList;
-import java.util.Arrays;
+import java.util.Date;
 import java.util.List;
 
 import retrofit2.Call;
@@ -68,6 +71,7 @@ public class CreateSecondRecipeActivity extends AppCompatActivity implements Dia
         txtViewPorcion = findViewById(R.id.txtViewPorcion);
         txtViewCantidadTiempo = findViewById(R.id.txtViewCantidadTiempo);
         txtViewTiempo = findViewById(R.id.txtViewTiempo);
+        editTextDescripcion = findViewById(R.id.editTextDescripcion);
         btnChooseImage = findViewById(R.id.btnChooseImage);
         getCategories();
         // Get the Intent that started this activity and extract the string
@@ -157,7 +161,28 @@ public class CreateSecondRecipeActivity extends AppCompatActivity implements Dia
         Integer porciones = Integer.valueOf(txtViewCantidadPorcion.getText().toString());
         Integer tiempo = Integer.valueOf(txtViewCantidadTiempo.getText().toString());
         String descripcion = editTextDescripcion.getText().toString();
-        editTextTitleRecipe = findViewById(R.id.editTextTitle);
+
+
+        String title = editTextTitleRecipe.getText().toString();
+
+        LinearLayout container_pasos = findViewById(R.id.container_pasos);
+        List<Paso> pasos = new ArrayList<>();
+
+        for (int index = 0; index < container_pasos.getChildCount(); index++) {
+            View itemPasoContainer = container_pasos.getChildAt(index);
+            EditText txtPaso = itemPasoContainer.findViewById(R.id.txtViewPaso);
+            String descripcionPaso = txtPaso.getText().toString();
+            if(descripcionPaso.isEmpty()){
+                txtPaso.setError("La descripción del paso no puede estar vacia");
+                return;
+            }
+            Paso paso = new Paso(index+1, descripcionPaso);
+            pasos.add(paso);
+        }
+
+        Receta receta = new Receta(0,1005, title, descripcion, porciones, 1, tiempo, 1,
+                1,1, "false", 5, "", new Date(), new Date(), ingredientes, pasos);
+        guardarReceta(receta);
     }
 
     public void actionVolver(View view){ 
@@ -179,6 +204,7 @@ public class CreateSecondRecipeActivity extends AppCompatActivity implements Dia
 
         if (nombreIngrediente == null || nombreIngrediente.isEmpty()){
             txtNombreIngrediente.setError("El ingrediente no puede estar vacio");
+            return;
         }
 
         if (txtCantIngrediente.getText().toString().trim() == null || txtCantIngrediente.getText().toString().isEmpty()){
@@ -308,5 +334,37 @@ public class CreateSecondRecipeActivity extends AppCompatActivity implements Dia
     //Function to convert dp to pixels.
     private int dpTopx(int dp){
         return (int)(dp * getApplicationContext().getResources().getDisplayMetrics().density);
+    }
+
+    public void guardarReceta(Receta receta){
+        Retrofit retrofit = new Retrofit.Builder()
+                .baseUrl(Constants.BASE_URL)
+                .addConverterFactory(GsonConverterFactory.create())
+                .build();
+
+        RecipeService fs = retrofit.create(RecipeService.class);
+        Call<JsonElement> call = fs.createRecipe(receta);
+        call.enqueue(new Callback<JsonElement>() {
+            @Override
+            public void onResponse(Call<JsonElement> call, Response<JsonElement> response) {
+
+                if (response.isSuccessful()) {
+                    System.out.println(response.body());
+                    System.out.println("");
+
+
+                } else {
+                    if (response.code() == 400) {
+                        Toast toast = Toast.makeText(getApplication().getApplicationContext(), "Ocurrio un error, intente mas tarde", Toast.LENGTH_SHORT);
+                        toast.show();
+                    }
+                }
+            }
+
+            @Override
+            public void onFailure(Call<JsonElement> call, Throwable t) {
+                System.out.println(t.getMessage());
+            }
+        });
     }
 }

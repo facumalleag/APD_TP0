@@ -1,6 +1,6 @@
 package com.example.myapplication.services;
 
-import com.example.myapplication.model.user;
+import com.example.myapplication.model.User;
 import com.google.gson.JsonElement;
 
 import retrofit2.Call;
@@ -21,10 +21,10 @@ public interface UserService {
             @Field("password") String password);
 
     @POST("/halfRegister")
-    Call<JsonElement> halfRegister(@Body user body);
+    Call<JsonElement> halfRegister(@Body User body);
 
     @POST("/fullRegister")
-    Call<JsonElement> fullRegister(@Body user body);
+    Call<JsonElement> fullRegister(@Body User body);
 
     @GET("/verify/Email/{email}/Alias/{alias}")
     Call<JsonElement> verifyEmailAndAlias(

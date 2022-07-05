@@ -1,5 +1,7 @@
 package com.example.myapplication;
 
+import static com.example.myapplication.Constants.BASE_URL;
+
 import android.Manifest;
 import android.app.Dialog;
 import android.content.Context;
@@ -107,7 +109,7 @@ public class MainActivity extends AppCompatActivity implements NetworkController
         String mail= emailEditText.getText().toString();
         String password=passwordEditText.getText().toString();
         Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl("http://10.0.2.2:8000")
+                .baseUrl(BASE_URL)
                 //.baseUrl("https://tpoapd.herokuapp.com:8000")
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
@@ -132,6 +134,7 @@ public class MainActivity extends AppCompatActivity implements NetworkController
                     if (response.code() ==400){
                         Toast toast = Toast.makeText(getApplication().getApplicationContext(), "Correo o contraseña invalida", Toast.LENGTH_SHORT);
                         toast.show();
+                        doLogin();
                     }
                 }
             }

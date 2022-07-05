@@ -1,6 +1,6 @@
 package com.example.myapplication.model;
 
-public class user {
+public class User {
     private String email;
     private String alias;
     private String dni;
@@ -8,7 +8,7 @@ public class user {
     private String password;
     private Integer isActive;
 
-    public user(String email, String alias, String dni, String name, String password){
+    public User(String email, String alias, String dni, String name, String password){
         super();
         this.email = email;
         this.alias = alias;

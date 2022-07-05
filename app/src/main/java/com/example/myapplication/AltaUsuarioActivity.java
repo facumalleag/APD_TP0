@@ -5,7 +5,6 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
-import android.util.Patterns;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
@@ -14,12 +13,9 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.myapplication.controller.UserController;
-import com.example.myapplication.model.user;
+import com.example.myapplication.model.User;
 import com.example.myapplication.services.UserService;
 import com.google.gson.JsonElement;
-
-import java.util.Timer;
-import java.util.TimerTask;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -91,7 +87,7 @@ public class AltaUsuarioActivity extends AppCompatActivity {
                 String mail = UserController.getInstancia().getEmail();
                 String alias = UserController.getInstancia().getAlias();
                 UserService us = retrofit.create(UserService.class);
-                user newUser = new user(mail,alias,"",stringname+" "+stringapellido,stringpassword);
+                User newUser = new User(mail,alias,"",stringname+" "+stringapellido,stringpassword);
                 Call<JsonElement> call = us.fullRegister(newUser);
 
                 call.enqueue(new Callback<JsonElement>() {

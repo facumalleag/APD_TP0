@@ -3,21 +3,17 @@ package com.example.myapplication;
 import static com.example.myapplication.R.id.editTextTextAlias;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.recyclerview.widget.LinearLayoutManager;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.text.Editable;
-import android.text.TextWatcher;
 import android.util.Patterns;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 import com.example.myapplication.controller.UserController;
-import com.example.myapplication.model.user;
+import com.example.myapplication.model.User;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
@@ -199,7 +195,7 @@ public class RegisterLayout extends AppCompatActivity {
                 .build();
 
         UserService us = retrofit.create(UserService.class);
-        user newUser = new user(email,alias,"","","");
+        User newUser = new User(email,alias,"","","");
         Call<JsonElement> call = us.halfRegister(newUser);
 
         call.enqueue(new Callback<JsonElement>() {
