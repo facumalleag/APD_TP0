@@ -52,7 +52,8 @@ public class DialogoAgregarIngrediente extends DialogFragment {
         // Pass null as the parent view because its going in the dialog layout
         View view = inflater.inflate(R.layout.dialog_agregaringrediente, null);
         Spinner spinner = view.findViewById(R.id.spinner_cant);
-// Create an ArrayAdapter using the string array and a default spinner layout
+        // Create an ArrayAdapter using the string array and a default spinner layout
+
         ArrayAdapter<CharSequence> adapter=ArrayAdapter.createFromResource(getContext(), R.array.medidas, android.R.layout.simple_spinner_item);
 
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_item);

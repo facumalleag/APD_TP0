@@ -5,7 +5,9 @@ import com.google.gson.JsonElement;
 
 import retrofit2.Call;
 import retrofit2.http.Body;
+import retrofit2.http.DELETE;
 import retrofit2.http.GET;
+import retrofit2.http.HTTP;
 import retrofit2.http.POST;
 import retrofit2.http.Path;
 
@@ -22,11 +24,14 @@ public interface RecipeService {
     @GET("/recipe/getBy/{id}")
     Call<JsonElement> getRecipeById( @Path("id") String id);
 
-    @GET("/recipe/check/name/{name}")
+    @HTTP(method = "GET", path = "/recipe/check/name/{name}")
     Call<JsonElement> checkRecipeByName( @Path("name") String name);
 
 
     @POST("/recipe/create")
     Call<JsonElement> createRecipe(@Body Receta body);
+
+    @DELETE("/recipe/deleteRecipeBy/recipeId/{id}")
+    Call<JsonElement> deleteRecipe(@Path("id") String id);
 
 }

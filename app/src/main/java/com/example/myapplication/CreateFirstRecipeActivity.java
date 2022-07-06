@@ -1,5 +1,7 @@
 package com.example.myapplication;
 
+import static com.example.myapplication.Constants.ID_RECIPE;
+
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -24,6 +26,7 @@ public class CreateFirstRecipeActivity extends AppCompatActivity implements Dial
 
     private EditText editTextTitleRecipe;
     private Button btnCreateTitleRecipe;
+    private String idRecipe;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -73,6 +76,10 @@ public class CreateFirstRecipeActivity extends AppCompatActivity implements Dial
 
     @Override
     public void onDialogNegativeClick(DialogFragment dialog) {
+        Intent intent = new Intent(this, EditRecipeActivity.class);
+        intent.putExtra(ID_RECIPE, idRecipe);
+        startActivity(intent);
+        finish();
 
     }
 
@@ -87,14 +94,14 @@ public class CreateFirstRecipeActivity extends AppCompatActivity implements Dial
         call.enqueue(new Callback<JsonElement>() {
             @Override
             public void onResponse(Call<JsonElement> call, Response<JsonElement> response) {
-
-                if (response.isSuccessful()) {
+                if (response.code() == 201) {
                     checkRecipeSuccesful();
                 } else {
                     if (response.code() == 400) {
                         Toast toast = Toast.makeText(getApplication().getApplicationContext(), "Ocurrio un error, intente mas tarde", Toast.LENGTH_SHORT);
                         toast.show();
-                    } else if (response.code() == 430){
+                    } else if (response.code() == 200){
+                        idRecipe = response.body().getAsJsonObject().get("data").getAsJsonObject().get("id").getAsString();
                         mostrarAlerta();
                     }
                 }
