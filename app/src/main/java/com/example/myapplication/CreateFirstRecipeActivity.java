@@ -69,6 +69,7 @@ public class CreateFirstRecipeActivity extends AppCompatActivity implements Dial
     public void onDialogPositiveClick(DialogFragment dialog) {
         Intent intent = new Intent(this, CreateSecondRecipeActivity.class);
         intent.putExtra(Intent.EXTRA_TITLE, editTextTitleRecipe.getText().toString());
+        intent.putExtra(ID_RECIPE, idRecipe);
         startActivity(intent);
         finish();
 
@@ -94,15 +95,17 @@ public class CreateFirstRecipeActivity extends AppCompatActivity implements Dial
         call.enqueue(new Callback<JsonElement>() {
             @Override
             public void onResponse(Call<JsonElement> call, Response<JsonElement> response) {
-                if (response.code() == 201) {
-                    checkRecipeSuccesful();
+                if (response.isSuccessful()) {
+                    if (response.code() == 200){
+                        idRecipe = response.body().getAsJsonObject().get("data").getAsJsonObject().get("id").getAsString();
+                        mostrarAlerta();
+                    } else {
+                        checkRecipeSuccesful();
+                    }
                 } else {
                     if (response.code() == 400) {
                         Toast toast = Toast.makeText(getApplication().getApplicationContext(), "Ocurrio un error, intente mas tarde", Toast.LENGTH_SHORT);
                         toast.show();
-                    } else if (response.code() == 200){
-                        idRecipe = response.body().getAsJsonObject().get("data").getAsJsonObject().get("id").getAsString();
-                        mostrarAlerta();
                     }
                 }
             }
@@ -117,6 +120,7 @@ public class CreateFirstRecipeActivity extends AppCompatActivity implements Dial
     private void checkRecipeSuccesful() {
         Intent intent = new Intent(this, CreateSecondRecipeActivity.class);
         intent.putExtra(Intent.EXTRA_TITLE, editTextTitleRecipe.getText().toString());
+        intent.putExtra(ID_RECIPE, idRecipe);
         startActivity(intent);
         finish();
     }

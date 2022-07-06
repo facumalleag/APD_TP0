@@ -3,6 +3,7 @@ package com.example.myapplication;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -27,6 +28,7 @@ public class UserProfileActivity extends AppCompatActivity {
 
     Fragment fragmentoFiltros;
     LinearLayout layout;
+    ImageView imageViewUserProfile;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,6 +39,8 @@ public class UserProfileActivity extends AppCompatActivity {
         //SearchView searchView = findViewById(R.id.search_field);
         TextView subtitleView = findViewById(R.id.userNameView);
         subtitleView.setText(UserController.getInstancia().getName());
+        imageViewUserProfile = (ImageView) findViewById(R.id.imageViewUserProfile);
+        imageViewUserProfile.setImageResource(R.drawable.avatar);
         layout=findViewById(R.id.container);
         fragmentoFiltros = new RecetaFiltroFragment();
 
