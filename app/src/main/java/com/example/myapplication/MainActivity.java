@@ -134,7 +134,6 @@ public class MainActivity extends AppCompatActivity implements NetworkController
                     if (response.code() ==400){
                         Toast toast = Toast.makeText(getApplication().getApplicationContext(), "Correo o contraseña invalida", Toast.LENGTH_SHORT);
                         toast.show();
-                        doLogin();
                     }
                 }
             }
