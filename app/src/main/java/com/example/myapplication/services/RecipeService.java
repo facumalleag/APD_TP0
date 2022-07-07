@@ -1,6 +1,7 @@
 package com.example.myapplication.services;
 
 import com.example.myapplication.model.Receta;
+import com.example.myapplication.model.Search;
 import com.google.gson.JsonElement;
 
 import retrofit2.Call;
@@ -33,5 +34,8 @@ public interface RecipeService {
 
     @DELETE("/recipe/deleteRecipeBy/recipeId/{id}")
     Call<JsonElement> deleteRecipe(@Path("id") String id);
+
+    @POST("/recipe/search")
+    Call<JsonElement> searchRecipe(@Body Search body);
 
 }

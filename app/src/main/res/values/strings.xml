@@ -155,7 +155,12 @@
 
     <!-- Strings used for activity show_recipe -->
     <string name="time_title">Tiempo</string>
-
+    <!-- Strings used for activity fragment_receta_filtro -->
+    <string name="btn_searchRecipe">Buscar receta</string>
+    <string name="empty_search">No se encontró receta que coincida con la busqueda. Por favor, intente denuevo</string>
+    <string name="txt_ayuda_search">Si desea buscar todas las recetas de un usuario se solicita dejar vacio el buscador de receta</string>
+    <string name="prompt_search_user">Ingrese nombre de usuario</string>
+    <string name="prompt_search_recipe">Ingrese nombre de receta a buscar</string>
     <!-- Strings used for fragments for navigation -->
 
     <!-- Strings used for activity RecoverPassword -->

@@ -16,9 +16,9 @@ import android.widget.Toast;
 
 import com.example.myapplication.adapter.SliderAdapter;
 import com.example.myapplication.entity.SliderItem;
-import com.smarteist.autoimageslider.IndicatorView.animation.type.IndicatorAnimationType;
-import com.smarteist.autoimageslider.SliderAnimations;
-import com.smarteist.autoimageslider.SliderView;
+//mport com.smarteist.autoimageslider.IndicatorView.animation.type.IndicatorAnimationType;
+//import com.smarteist.autoimageslider.SliderAnimations;
+//import com.smarteist.autoimageslider.SliderView;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -26,7 +26,7 @@ import java.util.List;
 
 public class RecetaFiltroFragment extends Fragment {
 
-    private SliderView svCarrusel;
+ //   private SliderView svCarrusel;
     private SliderAdapter sliderAdapter;
 
 
@@ -41,7 +41,7 @@ public class RecetaFiltroFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        init(view);
+       // init(view);
         initAdapter();
         loadData();
     }
@@ -56,13 +56,13 @@ public class RecetaFiltroFragment extends Fragment {
         sliderAdapter.updateItem(lista);
     }
 
-    private void init(View v) {
-        svCarrusel=v.findViewById(R.id.imvcarrusel);
-    }
+    //private void init(View v) {
+    //    svCarrusel=v.findViewById(R.id.imvcarrusel);
+    //}
 
     private void initAdapter() {
         sliderAdapter  = new SliderAdapter(getContext());
-
+/*
         svCarrusel.setSliderAdapter(sliderAdapter);
 
         svCarrusel.setIndicatorAnimation(IndicatorAnimationType.WORM); //set indicator animation by using IndicatorAnimationType. :WORM or THIN_WORM or COLOR or DROP or FILL or NONE or SCALE or SCALE_DOWN or SLIDE and SWAP!!
@@ -72,5 +72,7 @@ public class RecetaFiltroFragment extends Fragment {
         svCarrusel.setIndicatorUnselectedColor(Color.GRAY);
         svCarrusel.setScrollTimeInSec(4); //set scroll delay in seconds :
         svCarrusel.startAutoCycle();
+*/
     }
+
 }

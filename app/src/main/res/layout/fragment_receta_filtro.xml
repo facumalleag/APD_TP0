@@ -1,17 +1,103 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".RecetaFiltroFragment">
-    <LinearLayout
-        android:id="@+id/ll_parent"
-        android:orientation="horizontal"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent" />
-    <TextView
-        android:id="@+id/textView9"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="TextView" />
-</FrameLayout>
+    android:fillViewport="true"
+    tools:context=".SearchActivity">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/pwpwpw"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:background="@color/white"
+        tools:context=".ShowRecipeActivity"
+        >
+
+
+        <SearchView
+            android:id="@+id/SearchViewUserForRecipes"
+            android:layout_width="fill_parent"
+            android:layout_height="75dp"
+            android:layout_marginTop="50dp"
+            app:queryHint="@string/prompt_search_user"
+            android:queryHint="@string/prompt_search_user"
+            app:defaultQueryHint="@string/prompt_search_user"
+            android:iconifiedByDefault="false"
+            android:background="#E8E7E7"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+        </SearchView>
+        <TextView
+            android:id="@+id/txtViewAyuda"
+            android:layout_width="fill_parent"
+            android:layout_height="150dp"
+            android:layout_marginTop="150dp"
+            android:gravity="center"
+
+            android:textSize="20sp"
+            android:textStyle="bold"
+            android:text="@string/txt_ayuda_search"
+
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+        </TextView>
+
+        <RelativeLayout
+            android:id="@+id/ppppp"
+            android:layout_width="fill_parent"
+            android:layout_height="515dp"
+            android:layout_marginTop="0dp"
+
+
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <FrameLayout
+                android:layout_width="fill_parent"
+                android:layout_height="match_parent"
+
+
+                tools:layout_editor_absoluteX="11dp"
+                tools:layout_editor_absoluteY="95dp"
+
+                >
+
+                <LinearLayout
+                    android:id="@+id/ll_parent_category"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginTop="50dp"
+                    android:orientation="horizontal"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <LinearLayout
+                    android:id="@+id/ll_parent_ingredient"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginTop="50dp"
+                    android:orientation="horizontal"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <LinearLayout
+                    android:id="@+id/ll_parent_lack_of_ingredient"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginTop="50dp"
+                    android:orientation="horizontal"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+
+            </FrameLayout>
+        </RelativeLayout>
+
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</ScrollView>

@@ -31,8 +31,5 @@ public class PageViewModel extends ViewModel {
         return mText;
     }
 
-    public void createChips(){
-//        root = inflater.inflate(R.layout.material_io_chip, container, false);
- //       linearLayout = root.findViewById(R.id.ll_parent);
-    }
+
 }
