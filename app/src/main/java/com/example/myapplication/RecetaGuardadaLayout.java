@@ -14,7 +14,7 @@ public class RecetaGuardadaLayout extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
 
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.registro_exitoso_layout);
+        setContentView(R.layout.guardado_exitoso_layout);
         layout=findViewById(R.id.pantalla_guardado_exitoso);
         Handler handler = new Handler();
         handler.postDelayed(new Runnable() {
