@@ -61,6 +61,7 @@ public class CreateSecondRecipeActivity extends AppCompatActivity implements Dia
     private String idRecipe;
     private int idIngrediente = 0;
     private RecipesController recetas=RecipesController.getInstancia();
+    //private DialogoRedDisponible dialogo=new DialogoRedDisponible();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -94,7 +95,8 @@ public class CreateSecondRecipeActivity extends AppCompatActivity implements Dia
 
     public void getCategories(){
         Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl(Constants.BASE_URL)
+                //.baseUrl(Constants.BASE_URL)
+                .baseUrl("https://tpoapd2022.herokuapp.com")
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
 
@@ -164,6 +166,7 @@ public class CreateSecondRecipeActivity extends AppCompatActivity implements Dia
     public void actionCreate(View view){
         LinearLayout btnsContainer = findViewById(R.id.container_categories);
         String categorieName;
+
         ChipGroup chipGroup = (ChipGroup) btnsContainer.getChildAt(0);
         List<Integer> ids = chipGroup.getCheckedChipIds();
         int idCategorie;
@@ -207,8 +210,7 @@ public class CreateSecondRecipeActivity extends AppCompatActivity implements Dia
             }
             else{
                 recetas.agregarreceta(receta);
-                DialogFragment newFragment = new DialogoRedDisponible();
-                newFragment.show(getSupportFragmentManager(), "Atención");
+                abrirDialogo();
             }
         }
 
@@ -216,6 +218,11 @@ public class CreateSecondRecipeActivity extends AppCompatActivity implements Dia
             eliminarReceta(idRecipe);
         }
         continuarVentanaDeFinCreacion();
+    }
+
+    public void abrirDialogo() {
+        DialogFragment newFragment = new DialogoRedDisponible();
+        newFragment.show(getSupportFragmentManager(), "Atención");
     }
 
 
@@ -416,7 +423,8 @@ public class CreateSecondRecipeActivity extends AppCompatActivity implements Dia
 
     private void guardarReceta(Receta receta){
         Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl(Constants.BASE_URL)
+                //.baseUrl(Constants.BASE_URL)
+                .baseUrl("https://tpoapd2022.herokuapp.com")
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
 
@@ -452,7 +460,8 @@ public class CreateSecondRecipeActivity extends AppCompatActivity implements Dia
 
     private void eliminarReceta(String idRecipe) {
         Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl(Constants.BASE_URL)
+                //.baseUrl(Constants.BASE_URL)
+                .baseUrl("https://tpoapd2022.herokuapp.com")
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
 
@@ -482,5 +491,12 @@ public class CreateSecondRecipeActivity extends AppCompatActivity implements Dia
     }
 
 
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        Intent intent = new Intent(this,HomeApplicationActivity.class);
+        startActivity(intent);
+        finish();
+    }
 
 }

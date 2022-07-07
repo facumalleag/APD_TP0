@@ -49,7 +49,7 @@ public class RecetaFiltroFragment extends Fragment {
     private void loadData() {
 
         List<SliderItem> lista = new ArrayList<>();
-        lista.add(new SliderItem(R.drawable.logocook, "Platos Recomendados"));
+        lista.add(new SliderItem(R.drawable.plato, "Platos Recomendados"));
         lista.add(new SliderItem(R.drawable.check_icon, "Platos Ricos"));
         lista.add(new SliderItem(R.drawable.create_recipe, "Platos feos"));
         lista.add(new SliderItem(R.drawable.add_image, "Platos Hola"));
