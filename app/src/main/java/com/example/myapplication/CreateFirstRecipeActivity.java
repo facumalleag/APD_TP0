@@ -85,8 +85,10 @@ public class CreateFirstRecipeActivity extends AppCompatActivity implements Dial
     }
 
     public void checkTitleRecipe(String title){
+
         Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl(Constants.BASE_URL)
+                //.baseUrl(Constants.BASE_URL)
+                .baseUrl("https://tpoapd2022.herokuapp.com")
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
 

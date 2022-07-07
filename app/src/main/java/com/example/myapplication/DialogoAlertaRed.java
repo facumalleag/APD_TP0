@@ -34,6 +34,7 @@ public class DialogoAlertaRed extends DialogFragment {
         try {
             // Instantiate the NoticeDialogListener so we can send events to the host
             listener = (AvisarAlertaDialogListener) context;
+
         } catch (ClassCastException e) {
             // The activity doesn't implement the interface, throw exception
             throw new ClassCastException(//MainActivity.toString()
@@ -49,16 +50,11 @@ public class DialogoAlertaRed extends DialogFragment {
         //Context context = builder.getContext();
         builder.setMessage(R.string.body_alerta_red);
         builder.setTitle(R.string.titulo_dialogo_red)
-                .setPositiveButton("Aceptar", new DialogInterface.OnClickListener() {
+                .setPositiveButton("OK", new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int id) {
                         listener.onClickPositivo(DialogoAlertaRed.this);
 
 
-                    }
-                })
-                .setNegativeButton("Cancelar", new DialogInterface.OnClickListener() {
-                    public void onClick(DialogInterface dialog, int id) {
-                        listener.onClickNegativo(DialogoAlertaRed.this);
                     }
                 });
 
@@ -66,10 +62,6 @@ public class DialogoAlertaRed extends DialogFragment {
         // Create the AlertDialog object and return it
         AlertDialog alert = builder.create();
         alert.show();
-        Button nbutton = alert.getButton(DialogInterface.BUTTON_NEGATIVE);
-        nbutton.setBackgroundColor(getResources().getColor(R.color.white));
-        nbutton.setTextColor(Color.GRAY);
-        nbutton.setAllCaps(false);
 
         Button pbutton = alert.getButton(DialogInterface.BUTTON_POSITIVE);
         pbutton.setBackgroundColor(getResources().getColor(R.color.color_boton));

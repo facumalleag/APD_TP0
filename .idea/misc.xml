@@ -5,10 +5,8 @@
       <map>
         <entry key="..\:/Users/Juamsa/Desktop/APD_TP0_Develop2/app/src/main/res/drawable-v24/baseline_favorite_24.xml" value="0.1" />
         <entry key="..\:/Users/Juamsa/Desktop/APD_TP0_Develop2/app/src/main/res/drawable-v24/cicle_blue_background.xml" value="0.2115" />
-        <entry key="..\:/Users/Juamsa/Desktop/APD_TP0_Develop2/app/src/main/res/drawable-v24/cicle_blue_background2.xml" value="0.1225" />
         <entry key="..\:/Users/Juamsa/Desktop/APD_TP0_Develop2/app/src/main/res/drawable/baseline_border_color_24.xml" value="0.122" />
         <entry key="..\:/Users/Juamsa/Desktop/APD_TP0_Develop2/app/src/main/res/drawable/baseline_border_color_Blue_24.xml" value="0.122" />
-        <entry key="..\:/Users/Juamsa/Desktop/APD_TP0_Develop2/app/src/main/res/drawable/baseline_border_color_blue_24.xml" value="0.1" />
         <entry key="..\:/Users/Juamsa/Desktop/APD_TP0_Develop2/app/src/main/res/drawable/baseline_favorite_24.xml" value="0.1" />
         <entry key="..\:/Users/Juamsa/Desktop/APD_TP0_Develop2/app/src/main/res/drawable/baseline_lunch_dining_24.xml" value="0.2115" />
         <entry key="..\:/Users/Juamsa/Desktop/APD_TP0_Develop2/app/src/main/res/drawable/baseline_watch_later_blue_24.xml" value="0.1575" />
@@ -28,46 +26,35 @@
         <entry key="..\:/Users/Juamsa/Desktop/APD_TP0_Develop2/app/src/main/res/drawable/search_field.xml" value="0.1" />
         <entry key="..\:/Users/Juamsa/Desktop/APD_TP0_Develop2/app/src/main/res/drawable/style_border_button.xml" value="0.1" />
         <entry key="..\:/Users/Juamsa/Desktop/APD_TP0_Develop2/app/src/main/res/layout-land/activity_main.xml" value="0.1728395061728395" />
-        <entry key="..\:/Users/Juamsa/Desktop/APD_TP0_Develop2/app/src/main/res/layout/activity_after_search.xml" value="0.1497326203208556" />
+        <entry key="..\:/Users/Juamsa/Desktop/APD_TP0_Develop2/app/src/main/res/layout/activity_after_search.xml" value="0.1" />
         <entry key="..\:/Users/Juamsa/Desktop/APD_TP0_Develop2/app/src/main/res/layout/activity_code_for_register.xml" value="0.33" />
         <entry key="..\:/Users/Juamsa/Desktop/APD_TP0_Develop2/app/src/main/res/layout/activity_code_recovery.xml" value="0.20416666666666666" />
         <entry key="..\:/Users/Juamsa/Desktop/APD_TP0_Develop2/app/src/main/res/layout/activity_home_application.xml" value="0.18" />
         <entry key="..\:/Users/Juamsa/Desktop/APD_TP0_Develop2/app/src/main/res/layout/activity_main.xml" value="0.20416666666666666" />
         <entry key="..\:/Users/Juamsa/Desktop/APD_TP0_Develop2/app/src/main/res/layout/activity_recupero_pwd.xml" value="0.20416666666666666" />
         <entry key="..\:/Users/Juamsa/Desktop/APD_TP0_Develop2/app/src/main/res/layout/activity_restablecer_pwd.xml" value="0.33" />
-        <entry key="..\:/Users/Juamsa/Desktop/APD_TP0_Develop2/app/src/main/res/layout/activity_search.xml" value="0.1" />
+        <entry key="..\:/Users/Juamsa/Desktop/APD_TP0_Develop2/app/src/main/res/layout/activity_search.xml" value="0.20416666666666666" />
         <entry key="..\:/Users/Juamsa/Desktop/APD_TP0_Develop2/app/src/main/res/layout/activity_soporte_usuario.xml" value="0.25" />
         <entry key="..\:/Users/Juamsa/Desktop/APD_TP0_Develop2/app/src/main/res/layout/alta_user_activity.xml" value="0.1" />
         <entry key="..\:/Users/Juamsa/Desktop/APD_TP0_Develop2/app/src/main/res/layout/card_recipes.xml" value="0.14791666666666667" />
         <entry key="..\:/Users/Juamsa/Desktop/APD_TP0_Develop2/app/src/main/res/layout/create_recipe_first.xml" value="0.25" />
-        <entry key="..\:/Users/Juamsa/Desktop/APD_TP0_Develop2/app/src/main/res/layout/create_recipe_second.xml" value="0.3103721298495645" />
+        <entry key="..\:/Users/Juamsa/Desktop/APD_TP0_Develop2/app/src/main/res/layout/create_recipe_second.xml" value="0.25" />
         <entry key="..\:/Users/Juamsa/Desktop/APD_TP0_Develop2/app/src/main/res/layout/dialog.xml" value="0.18" />
-        <entry key="..\:/Users/Juamsa/Desktop/APD_TP0_Develop2/app/src/main/res/layout/favourite_profile_layout.xml" value="0.15172413793103448" />
-        <entry key="..\:/Users/Juamsa/Desktop/APD_TP0_Develop2/app/src/main/res/layout/fragment_receta_filtro.xml" value="0.22" />
-        <entry key="..\:/Users/Juamsa/Desktop/APD_TP0_Develop2/app/src/main/res/layout/fragment_search.xml" value="0.25" />
+        <entry key="..\:/Users/Juamsa/Desktop/APD_TP0_Develop2/app/src/main/res/layout/favourite_profile_layout.xml" value="0.33" />
+        <entry key="..\:/Users/Juamsa/Desktop/APD_TP0_Develop2/app/src/main/res/layout/fragment_receta_filtro.xml" value="0.1" />
+        <entry key="..\:/Users/Juamsa/Desktop/APD_TP0_Develop2/app/src/main/res/layout/fragment_search.xml" value="0.13020833333333334" />
         <entry key="..\:/Users/Juamsa/Desktop/APD_TP0_Develop2/app/src/main/res/layout/login_layout_display.xml" value="0.20416666666666666" />
-        <entry key="..\:/Users/Juamsa/Desktop/APD_TP0_Develop2/app/src/main/res/layout/material_io_card.xml" value="0.25" />
+        <entry key="..\:/Users/Juamsa/Desktop/APD_TP0_Develop2/app/src/main/res/layout/material_io_card.xml" value="0.33" />
         <entry key="..\:/Users/Juamsa/Desktop/APD_TP0_Develop2/app/src/main/res/layout/material_io_card2.xml" value="0.15" />
         <entry key="..\:/Users/Juamsa/Desktop/APD_TP0_Develop2/app/src/main/res/layout/material_io_card_favorite_recipe.xml" value="0.67" />
-        <entry key="..\:/Users/Juamsa/Desktop/APD_TP0_Develop2/app/src/main/res/layout/material_io_card_favorite_rescipe.xml" value="0.325" />
+        <entry key="..\:/Users/Juamsa/Desktop/APD_TP0_Develop2/app/src/main/res/layout/material_io_card_favorite_rescipe.xml" value="0.1" />
         <entry key="..\:/Users/Juamsa/Desktop/APD_TP0_Develop2/app/src/main/res/layout/material_io_card_ingredient.xml" value="0.1" />
-        <entry key="..\:/Users/Juamsa/Desktop/APD_TP0_Develop2/app/src/main/res/layout/material_io_card_porfile_rescipe.xml" value="0.1" />
-        <entry key="..\:/Users/Juamsa/Desktop/APD_TP0_Develop2/app/src/main/res/layout/material_io_card_search_list_recipe.xml" value="0.17028985507246377" />
-        <entry key="..\:/Users/Juamsa/Desktop/APD_TP0_Develop2/app/src/main/res/layout/material_io_card_steps.xml" value="0.22" />
+        <entry key="..\:/Users/Juamsa/Desktop/APD_TP0_Develop2/app/src/main/res/layout/material_io_card_steps.xml" value="0.1" />
         <entry key="..\:/Users/Juamsa/Desktop/APD_TP0_Develop2/app/src/main/res/layout/material_io_chip.xml" value="0.40925925925925927" />
-        <entry key="..\:/Users/Juamsa/Desktop/APD_TP0_Develop2/app/src/main/res/layout/material_io_chip2.xml" value="0.18478260869565216" />
-        <entry key="..\:/Users/Juamsa/Desktop/APD_TP0_Develop2/app/src/main/res/layout/material_io_chipGroup.xml" value="0.1" />
-        <entry key="..\:/Users/Juamsa/Desktop/APD_TP0_Develop2/app/src/main/res/layout/material_io_chip_group.xml" value="0.14402173913043478" />
-        <entry key="..\:/Users/Juamsa/Desktop/APD_TP0_Develop2/app/src/main/res/layout/material_io_chip_group2.xml" value="0.1015625" />
-        <entry key="..\:/Users/Juamsa/Desktop/APD_TP0_Develop2/app/src/main/res/layout/material_io_chip_group_category.xml" value="0.20416666666666666" />
-        <entry key="..\:/Users/Juamsa/Desktop/APD_TP0_Develop2/app/src/main/res/layout/material_io_chip_group_ingredient.xml" value="0.20416666666666666" />
-        <entry key="..\:/Users/Juamsa/Desktop/APD_TP0_Develop2/app/src/main/res/layout/material_io_chip_group_lack_of_Ingredient.xml" value="0.20416666666666666" />
-        <entry key="..\:/Users/Juamsa/Desktop/APD_TP0_Develop2/app/src/main/res/layout/material_io_chip_group_lack_of_ingredient.xml" value="0.20416666666666666" />
         <entry key="..\:/Users/Juamsa/Desktop/APD_TP0_Develop2/app/src/main/res/layout/prueba_cards_layout.xml" value="0.1" />
         <entry key="..\:/Users/Juamsa/Desktop/APD_TP0_Develop2/app/src/main/res/layout/register_layout_display.xml" value="0.33" />
         <entry key="..\:/Users/Juamsa/Desktop/APD_TP0_Develop2/app/src/main/res/layout/registro_exitoso_layout.xml" value="0.13020833333333334" />
-        <entry key="..\:/Users/Juamsa/Desktop/APD_TP0_Develop2/app/src/main/res/layout/show_recipe.xml" value="0.18" />
-        <entry key="..\:/Users/Juamsa/Desktop/APD_TP0_Develop2/app/src/main/res/layout/single_chip_layout.xml" value="0.20416666666666666" />
+        <entry key="..\:/Users/Juamsa/Desktop/APD_TP0_Develop2/app/src/main/res/layout/show_recipe.xml" value="0.25" />
         <entry key="..\:/Users/Juamsa/Desktop/APD_TP0_Develop2/app/src/main/res/layout/user_profile_layout.xml" value="0.22" />
         <entry key="..\:/Users/TPO/app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.161" />
         <entry key="..\:/Users/TPO/app/src/main/res/drawable/fondo_degradado.xml" value="0.161" />
@@ -98,6 +85,11 @@
         <entry key="..\:/Users/TPO/app/src/main/res/layout/login_layout_display.xml" value="0.25" />
         <entry key="..\:/Users/TPO/app/src/main/res/layout/register_layout_display.xml" value="0.25" />
         <entry key="..\:/Users/TPO/app/src/main/res/layout/registro_exitoso_layout.xml" value="0.25" />
+        <entry key="..\:/Users/facum/TP/app/src/main/res/layout/activity_home_application.xml" value="0.2037037037037037" />
+        <entry key="..\:/Users/facum/TP/app/src/main/res/layout/activity_main.xml" value="0.36666666666666664" />
+        <entry key="..\:/Users/facum/TP/app/src/main/res/layout/create_recipe_first.xml" value="0.2861111111111111" />
+        <entry key="..\:/Users/facum/TP/app/src/main/res/layout/create_recipe_second.xml" value="0.5" />
+        <entry key="..\:/Users/facum/TP/app/src/main/res/layout/item_paso.xml" value="0.2037037037037037" />
         <entry key="..\:/Users/facum/TPO/app/src/main/res/layout/activity_code_recovery.xml" value="0.2" />
         <entry key="..\:/Users/facum/TPO/app/src/main/res/layout/activity_main.xml" value="0.25" />
         <entry key="..\:/Users/facum/TPO/app/src/main/res/layout/activity_recupero_pwd.xml" value="0.22" />

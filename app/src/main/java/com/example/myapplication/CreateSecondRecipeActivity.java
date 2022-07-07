@@ -4,7 +4,9 @@ import static com.example.myapplication.Constants.ID_RECIPE;
 
 import android.app.Activity;
 import android.app.Dialog;
+import android.content.Context;
 import android.content.Intent;
+import android.graphics.Color;
 import android.net.Uri;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -20,6 +22,8 @@ import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.DialogFragment;
 
+import com.example.myapplication.controller.NetworkController;
+import com.example.myapplication.controller.RecipesController;
 import com.example.myapplication.enums.StatusEnum;
 import com.example.myapplication.model.Ingrediente;
 import com.example.myapplication.model.Paso;
@@ -28,6 +32,7 @@ import com.example.myapplication.services.CategoryService;
 import com.example.myapplication.services.RecipeService;
 import com.google.android.material.chip.Chip;
 import com.google.android.material.chip.ChipGroup;
+import com.google.android.material.snackbar.Snackbar;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
 
@@ -42,7 +47,7 @@ import retrofit2.Response;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
-public class CreateSecondRecipeActivity extends AppCompatActivity implements DialogoAgregarIngrediente.NoticeDialogListener {
+public class CreateSecondRecipeActivity extends AppCompatActivity implements DialogoAgregarIngrediente.NoticeDialogListener,DialogoRedDisponible.NoticeDialogListener {
 
     private EditText editTextTitleRecipe, editTextDescripcion;
     private TextView txtViewCantidadPorcion, txtViewCantidadTiempo;
@@ -50,10 +55,13 @@ public class CreateSecondRecipeActivity extends AppCompatActivity implements Dia
     private ImageButton btnEliminarPorcion, btnEliminarTiempo;
     private TextView txtViewPorcion, txtViewTiempo;
     private List<Ingrediente> ingredientes = new ArrayList<>();
+    private NetworkController controlador_red=NetworkController.getInstancia();
     public static final int GET_FROM_GALLERY = 3;
     ImageView previewImage;
     private String idRecipe;
     private int idIngrediente = 0;
+    private RecipesController recetas=RecipesController.getInstancia();
+    //private DialogoRedDisponible dialogo=new DialogoRedDisponible();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -87,7 +95,8 @@ public class CreateSecondRecipeActivity extends AppCompatActivity implements Dia
 
     public void getCategories(){
         Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl(Constants.BASE_URL)
+                //.baseUrl(Constants.BASE_URL)
+                .baseUrl("https://tpoapd2022.herokuapp.com")
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
 
@@ -157,6 +166,7 @@ public class CreateSecondRecipeActivity extends AppCompatActivity implements Dia
     public void actionCreate(View view){
         LinearLayout btnsContainer = findViewById(R.id.container_categories);
         String categorieName;
+
         ChipGroup chipGroup = (ChipGroup) btnsContainer.getChildAt(0);
         List<Integer> ids = chipGroup.getCheckedChipIds();
         int idCategorie;
@@ -189,12 +199,76 @@ public class CreateSecondRecipeActivity extends AppCompatActivity implements Dia
 
         Receta receta = new Receta(0,1005, title, descripcion, porciones, 1, tiempo, StatusEnum.IN_PROGRESS.getId(),
                 1,1, "false", cantidadPasos, "", new Date(), new Date(), ingredientes, pasos);
-        guardarReceta(receta);
+
+        //agregar el if
+        String tipoconexion=controlador_red.verificarTipoRed(this);
+        if(tipoconexion.equals("WIFI")) {
+            guardarReceta(receta);
+        }else {
+            if(tipoconexion.equals("NO_RED")){
+                showSnackBarNoNetwork(tipoconexion);
+            }
+            else{
+                recetas.agregarreceta(receta);
+                abrirDialogo();
+            }
+        }
+
         if(idRecipe != null){
             eliminarReceta(idRecipe);
         }
         continuarVentanaDeFinCreacion();
     }
+
+    public void abrirDialogo() {
+        DialogFragment newFragment = new DialogoRedDisponible();
+        newFragment.show(getSupportFragmentManager(), "Atención");
+    }
+
+
+    @Override
+    public void enDialogoPositivoClick(DialogFragment dialog) {
+        readfile(this);
+    }
+
+    @Override
+    public void enDialogoNegativoClick(DialogFragment dialog) {
+        saveFile(this);
+    }
+
+
+
+    private void saveFile(Context context) {
+        recetas.guardarRecetaEnAlmInterno(context);
+    }
+
+    private void readfile(Context context) {
+        recetas.leerArchivoReceta(context);
+    }
+
+    private void showSnackBarNoNetwork(String isConnected) {
+
+        // initialize color and message
+        String message;
+        int color= Color.RED;;
+        message = "Not Connected to Internet";
+
+        // initialize snack bar
+        Snackbar snackbar = Snackbar.make(findViewById(R.id.btnLogin), message, Snackbar.LENGTH_LONG);
+
+        // initialize view
+        View view = snackbar.getView();
+
+        // Assign variable
+        TextView textView = view.findViewById(R.id.snackbar_text);
+
+        // set text color
+        textView.setTextColor(color);
+
+        // show snack bar
+        snackbar.show();
+    }
+
 
     public void actionVolver(View view){ 
         Intent intent = new Intent(this, HomeApplicationActivity.class);
@@ -349,7 +423,8 @@ public class CreateSecondRecipeActivity extends AppCompatActivity implements Dia
 
     private void guardarReceta(Receta receta){
         Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl(Constants.BASE_URL)
+                //.baseUrl(Constants.BASE_URL)
+                .baseUrl("https://tpoapd2022.herokuapp.com")
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
 
@@ -385,7 +460,8 @@ public class CreateSecondRecipeActivity extends AppCompatActivity implements Dia
 
     private void eliminarReceta(String idRecipe) {
         Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl(Constants.BASE_URL)
+                //.baseUrl(Constants.BASE_URL)
+                .baseUrl("https://tpoapd2022.herokuapp.com")
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
 
@@ -413,4 +489,14 @@ public class CreateSecondRecipeActivity extends AppCompatActivity implements Dia
             }
         });
     }
+
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        Intent intent = new Intent(this,HomeApplicationActivity.class);
+        startActivity(intent);
+        finish();
+    }
+
 }

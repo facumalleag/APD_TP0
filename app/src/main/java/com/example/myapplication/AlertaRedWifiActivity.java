@@ -29,6 +29,7 @@ public class AlertaRedWifiActivity extends AppCompatActivity implements DialogoA
         Intent intent = new Intent(this, HomeApplicationActivity.class);
         //intent.putExtra(Intent.EXTRA_EMAIL,emailEditText.getText().toString());
         startActivity(intent);
+        finish();
     }
 
     @Override

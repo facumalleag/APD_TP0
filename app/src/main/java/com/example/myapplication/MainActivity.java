@@ -46,7 +46,7 @@ import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
 
-public class MainActivity extends AppCompatActivity implements NetworkController.ReceiverListener,DialogoRedDisponible.NoticeDialogListener {
+public class MainActivity extends AppCompatActivity implements NetworkController.ReceiverListener {
     public static final String EXTRA_MESSAGE = "com.example.myapplication.MESSAGE";
     private NetworkController controlador_red=NetworkController.getInstancia();
     private DialogoRedDisponible dialogo=new DialogoRedDisponible();
@@ -93,8 +93,8 @@ public class MainActivity extends AppCompatActivity implements NetworkController
      */
 
     public void ActionLogin(View view){
-        //doLogin();
-
+        doLogin();
+/*
         EditText emailEditText=findViewById(R.id.editTextEmailRecupero);
         EditText passwordEditText=findViewById(R.id.editTextTextPassword);
         String email1=emailEditText.getText().toString().trim();
@@ -110,7 +110,7 @@ public class MainActivity extends AppCompatActivity implements NetworkController
         String password=passwordEditText.getText().toString();
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl(BASE_URL)
-                //.baseUrl("https://tpoapd.herokuapp.com:8000")
+                //.baseUrl("https://tpoapd.herokuapp.com:15745")
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
 
@@ -143,7 +143,7 @@ public class MainActivity extends AppCompatActivity implements NetworkController
                 System.out.println(t.getMessage());
             }
         });
-
+*/
 
     }
 
@@ -195,24 +195,11 @@ public class MainActivity extends AppCompatActivity implements NetworkController
             if(!tipoconexion.equals("WIFI")){
                 showSnackBar(tipoconexion);
             }else{
-                onDialogPositiveClick(dialogo);
+                //onDialogPositiveClick(dialogo);
             }
         }
     }
 
-
-
-        /**
-         * Called to review the user/password entered
-         * @param mail,pwd
-         */
-
-    public boolean ComprobarLogin (String mail, String pwd){
-        boolean resultado=false;
-
-        return resultado;
-
-    }
 
 
     private void showSnackBar(String isConnected) {
@@ -248,28 +235,6 @@ public class MainActivity extends AppCompatActivity implements NetworkController
     }
 
     @Override
-    public void onDialogPositiveClick(DialogFragment dialog) {
-        readfile(this);
-        EditText emailEditText = findViewById(R.id.editTextEmailRecupero);
-        EditText passwordEditText = findViewById(R.id.editTextTextPassword);
-
-        String mail= emailEditText.getText().toString();
-        String password=passwordEditText.getText().toString();
-
-        if (ComprobarLogin(mail,password)==true){
-            Intent intent = new Intent(this, HomeApplicationActivity.class);
-            //intent.putExtra(Intent.EXTRA_EMAIL,emailEditText.getText().toString());
-            startActivity(intent);
-        }
-
-    }
-
-    @Override
-    public void onDialogNegativeClick(DialogFragment dialog) {
-        saveFile(this);
-    }
-
-    @Override
     public void onBackPressed() {
         super.onBackPressed();
         Intent intent = new Intent(this,MainActivity.class);
@@ -277,14 +242,6 @@ public class MainActivity extends AppCompatActivity implements NetworkController
         finish();
     }
 
-
-    private void saveFile(Context context) {
-        recetas.guardarRecetaEnAlmInterno(context);
-    }
-
-    private void readfile(Context context) {
-        recetas.leerArchivoReceta(context);
-    }
 
 
 }
