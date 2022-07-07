@@ -18,7 +18,7 @@ public class SectionsPagerAdapter extends FragmentPagerAdapter {
 
     @StringRes
     private static final int[] TAB_TITLES = new int[]{
-            R.string.Receta_filtro, R.string.Categoria_filtro,
+            R.string.Categoria_filtro,
             R.string.Con_Ingredientes_filtro, R.string.Sin_Ingredientes_filtro,
             R.string.Usuario_filtro
     };
@@ -45,6 +45,6 @@ public class SectionsPagerAdapter extends FragmentPagerAdapter {
     @Override
     public int getCount() {
         // Show 2 total pages.
-        return 5;
+        return 4;
     }
 }

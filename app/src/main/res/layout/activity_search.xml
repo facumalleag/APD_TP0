@@ -4,9 +4,29 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/white"
-    android:fillColor="@color/fill_color"
+
     tools:context=".SearchActivity">
+    <SearchView
+        android:id="@+id/SearchViewRecipe"
+        android:layout_width="fill_parent"
+        android:layout_height="50dp"
+        android:layout_marginTop="10dp"
+        app:cornerRadius="@dimen/corner_button"
+        app:queryHint="@string/prompt_search_recipe"
+        android:queryHint="@string/prompt_search_recipe"
+        app:defaultQueryHint="@string/prompt_search_recipe"
+        android:iconifiedByDefault="false"
+        android:background="#E8E7E7"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+    </SearchView>
+    <RelativeLayout
+        android:id="@+id/ppppp2"
+        android:layout_width="fill_parent"
+        android:layout_height="400dp"
+        android:layout_marginTop="70dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
 
 
     <com.google.android.material.appbar.AppBarLayout
@@ -27,8 +47,6 @@
             </com.google.android.material.appbar.AppBarLayout>
 
 
-
-
         <androidx.viewpager.widget.ViewPager
             android:id="@+id/view_pager"
             android:layout_width="match_parent"
@@ -40,9 +58,32 @@
                 android:id="@+id/layout_linear"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:orientation="horizontal">
-            </LinearLayout>
+                android:orientation="horizontal"></LinearLayout>
 
         </androidx.viewpager.widget.ViewPager>
+    </RelativeLayout>
+
+
+    <Button
+
+        android:id="@+id/btnSearchRecipe"
+        android:layout_width="200dp"
+        android:layout_height="75dp"
+        android:layout_marginStart="100dp"
+        android:layout_marginTop="575dp"
+        android:backgroundTint="@color/color_boton"
+        android:fontFamily="sans-serif-medium"
+        android:gravity="center"
+        android:includeFontPadding="true"
+        android:onClick="search"
+        android:scaleType="fitCenter"
+        android:text="@string/btn_searchRecipe"
+        android:textColor="@color/white"
+        app:cornerRadius="@dimen/corner_button"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+
+        tools:ignore="TextContrastCheck" />
+
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

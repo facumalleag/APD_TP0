@@ -1,21 +1,36 @@
 package com.example.myapplication;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.ProgressBar;
+import android.widget.ScrollView;
+import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.SearchView;
 import androidx.fragment.app.Fragment;
 
+import com.example.myapplication.controller.RecipesController;
+import com.example.myapplication.model.Search;
+import com.example.myapplication.services.FavoriteService;
 import com.example.myapplication.services.RecipeService;
 import com.example.myapplication.services.UserService;
+import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -23,59 +38,53 @@ import retrofit2.Response;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
-public class AfterSearchActivity extends AppCompatActivity {
+public class AfterSearchActivity extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
 
     Fragment fragmentoFiltros;
     LinearLayout layout;
+    Integer order;
+    private RecipesController RecpCont;
+    private JsonArray listOfFavorites;
+    AlertDialog dialog;
+    Integer favoriteId;
+    String[] options = { "Ordenar Por", "Fecha de creación",
+            "Nombre de usuario", "Nombre de Receta"};
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_after_search);
 
-        SearchView searchView = findViewById(R.id.search_field);
+        RecpCont = RecipesController.getInstancia();
+        ProgressBar searchView = findViewById(R.id.progress_bar_after_search);
+        TextView EmptyListTextView = findViewById(R.id.EmptyListTextViewAfterSearch);
+        EmptyListTextView.setVisibility(View.INVISIBLE);
+        layout=findViewById(R.id.containerAfterSearch);
+        getFavoriteRecipe();
+        order = 0;
+        searchRecipes();
 
-        layout=findViewById(R.id.container);
-        fragmentoFiltros = new RecetaFiltroFragment();
+        searchView.setVisibility(View.INVISIBLE);
+        Spinner spino = findViewById(R.id.orderSpinner);
+        spino.setOnItemSelectedListener(this);
 
-        Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl("http://10.0.2.2:8000")
-                .addConverterFactory(GsonConverterFactory.create())
-                .build();
+        // Create the instance of ArrayAdapter
+        // having the list of courses
+        ArrayAdapter ad
+                = new ArrayAdapter(
+                this,
+                android.R.layout.simple_spinner_item,
+                options);
 
-        RecipeService rs = retrofit.create(RecipeService.class);
-        Call<JsonElement> call = rs.listRecipeForPresentacion();
+        // set simple layout resource file
+        // for each item of spinner
+        ad.setDropDownViewResource(
+                android.R.layout
+                        .simple_spinner_dropdown_item);
 
-        call.enqueue(new Callback<JsonElement>() {
-            @Override
-            public void onResponse(Call<JsonElement> call, Response<JsonElement> response) {
-                //lblEstado.setText(response.body() );
-                if (response.isSuccessful()) {
-                    System.out.println(response.body());
-                    JsonObject jsonObject = response.body().getAsJsonObject();
-                    JsonObject pp = jsonObject.get("data").getAsJsonObject();
-                    System.out.println(pp);
-                    JsonArray pp2 = pp.get("recipeFetched").getAsJsonArray();
-                    System.out.println(pp2.get(1).getAsJsonObject().get("name"));
-                    // System.out.println(pp2);
-                    //JsonArray pp2 = pp.get("recipesFetched").getAsJsonArray();
-                    String ss = "";
-                    addCard(pp2);
-                    addCard(pp2);
-
-                } else {
-                    if (response.code() == 400) {
-                        Toast toast = Toast.makeText(getApplication().getApplicationContext(), "Correo o contraseña invalida", Toast.LENGTH_SHORT);
-                        toast.show();
-                    }
-                }
-            }
-
-            @Override
-            public void onFailure(Call<JsonElement> call, Throwable t) {
-                System.out.println(t.getMessage());
-            }
-        });
+        // Set the ArrayAdapter (ad) data on the
+        // Spinner which binds data to spinner
+        spino.setAdapter(ad);
 
 
     }
@@ -99,23 +108,157 @@ public class AfterSearchActivity extends AppCompatActivity {
         finish();
     }
 
+    private void searchRecipes(){
 
-    private void addCard(JsonArray names) {
-        final View view = getLayoutInflater().inflate(R.layout.card_recipes, null);
-        TextView nameView = view.findViewById(R.id.name);
-        /*
-        JsonArray pp = jsonObject.get("listedCategories").getAsJsonArray();
-        String ss = "";
-        for (int i = 0; i < pp.size(); i++) {
-            ss = ss+pp.get(i).getAsJsonObject().get("description");
+        Retrofit retrofit = new Retrofit.Builder()
+                .baseUrl("http://10.0.2.2:8000")
+                .addConverterFactory(GsonConverterFactory.create())
+                .build();
+
+        RecipeService rs = retrofit.create(RecipeService.class);
+        String recipeSearch = RecpCont.getRecipe_for_search();
+        String usrName = RecpCont.getUser_name_for_search();
+        List cat = RecpCont.getCategory_for_search();
+        List ingrList = RecpCont.getIngredients_for_search();
+        List ingrLackList = RecpCont.getLack_of_ingredients_for_search();
+        Search srch = new Search( recipeSearch,  cat,  usrName,  ingrList,  ingrLackList,  order,"");
+        Call<JsonElement> call = rs.searchRecipe(srch);
+
+        call.enqueue(new Callback<JsonElement>() {
+            @Override
+            public void onResponse(Call<JsonElement> call, Response<JsonElement> response) {
+                //lblEstado.setText(response.body() );
+                if (response.isSuccessful()) {
+                    System.out.println(response.body());
+                    searchRecipesOnAfterFetch(response.body().getAsJsonObject().get("data").getAsJsonObject().get("recipeFetched").getAsJsonArray());
+
+                } else {
+                    if (response.code() == 400) {
+                        Toast toast = Toast.makeText(getApplication().getApplicationContext(), "Correo o contraseña invalida", Toast.LENGTH_SHORT);
+                        toast.show();
+                    }
+                }
+            }
+
+            @Override
+            public void onFailure(Call<JsonElement> call, Throwable t) {
+                System.out.println(t.getMessage());
+            }
+        });
+
+    }
+    private void searchRecipesOnAfterFetch(JsonArray listOfRecipes){
+        String nameRecipe, rating,time,userName,recipeId;
+        Integer  favoriteId;
+        if (listOfRecipes.size() ==0){
+            TextView EmptyListTextView = findViewById(R.id.EmptyListTextViewAfterSearch);
+            EmptyListTextView.setVisibility(View.VISIBLE);
+            return;
         }
+        for (int i = 0; i < listOfRecipes.size(); i++) {
 
-         */
-        String ff = "PP";
-        //ff = ff+names.get(0).getAsJsonObject().get("name");
-        nameView.setText(ff);
+            recipeId= listOfRecipes.get(i).getAsJsonObject().get("id").getAsString() ;
+            nameRecipe = listOfRecipes.get(i).getAsJsonObject().get("name").getAsString();
+            rating = listOfRecipes.get(i).getAsJsonObject().get("totalRating").getAsString();
+            time = listOfRecipes.get(i).getAsJsonObject().get("time").getAsString();
+            userName = listOfRecipes.get(i).getAsJsonObject().get("user").getAsJsonObject().get("name").getAsString();
+            addCard(recipeId,nameRecipe,rating,time,userName);
+        }
+    }
+    private void addCard(String recipeId, String nameRecipe,String rating,String time,String userName) {
+        final View view = getLayoutInflater().inflate(R.layout.material_io_card_favorite_rescipe, null);
+        TextView ratingView = view.findViewById(R.id.rating);
+        ratingView.setText(rating);
+        TextView recipeTitleView = view.findViewById(R.id.recipeTitle);
+        recipeTitleView.setText(nameRecipe);
+        TextView UserNameView = view.findViewById(R.id.userName);
+        UserNameView.setText("Por "+userName);
+        TextView timeView = view.findViewById(R.id.time);
+        timeView.setText(time);
+        ImageView heartImage = view.findViewById(R.id.heart);
+        if (hasRecipeInFavorites(recipeId)){
+
+            heartImage.setImageResource(R.drawable.baseline_favorite_24);
+        }else{
+
+            heartImage.setImageResource(R.drawable.ic_baseline_heart_blue_24);
+
+        }
+        view.setId(Integer.parseInt(recipeId));
+        view.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(v.getContext(), ShowRecipeActivity.class);
+                intent.putExtra("key",recipeId);
+                System.out.println(recipeId);
+                startActivity(intent);
+            }
+        });
         layout.addView(view);
+    }
+
+
+
+
+
+    public void getFavoriteRecipe(){
+        Retrofit retrofit = new Retrofit.Builder()
+                .baseUrl("http://10.0.2.2:8000")
+                .addConverterFactory(GsonConverterFactory.create())
+                .build();
+
+        FavoriteService fs = retrofit.create(FavoriteService.class);
+        //Call<JsonElement> call = fs.listFavoriteRecipesByUserId( Integer.toString(UserController.getInstancia().getUserId()));
+        Call<JsonElement> call = fs.listFavoriteRecipesByUserId( Integer.toString(1));
+        //OJO el id del usuario esta hardcodeado
+        call.enqueue(new Callback<JsonElement>() {
+            @Override
+            public void onResponse(Call<JsonElement> call, Response<JsonElement> response) {
+                //lblEstado.setText(response.body() );
+                if (response.isSuccessful()) {
+                    System.out.println(response.body());
+
+                    //JsonArray recipesAsJsonArray = response.body().getAsJsonObject().get("data").getAsJsonObject().get("recipeFetched").getAsJsonArray();
+                    System.out.println("");
+                    listOfFavorites = response.body().getAsJsonObject().get("listedFavorites").getAsJsonArray();
+
+
+                } else {
+                    if (response.code() == 400) {
+                        Toast toast = Toast.makeText(getApplication().getApplicationContext(), "Ocurrio un error, intente mas tarde", Toast.LENGTH_SHORT);
+                        toast.show();
+                    }
+                }
+            }
+
+            @Override
+            public void onFailure(Call<JsonElement> call, Throwable t) {
+                System.out.println(t.getMessage());
+            }
+        });
+    }
+    private boolean hasRecipeInFavorites(String recipeId){
+
+        boolean isFavorite =false;
+        System.out.println(listOfFavorites);
+        for (int i = 0; i < listOfFavorites.size(); i++) {
+            if(listOfFavorites.get(i).getAsJsonObject().get("recipeId").getAsString().equals(recipeId) ) {
+                isFavorite = true;
+
+            }
+        }
+        return isFavorite;
+    }
+
+    @Override
+    public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+        System.out.println("i "+ i);
+        System.out.println("l "+ l);
 
     }
 
+    @Override
+    public void onNothingSelected(AdapterView<?> adapterView) {
+
+    }
 }

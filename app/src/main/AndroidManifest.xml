@@ -73,6 +73,7 @@
         <activity
             android:name=".ShowRecipeActivity"
             android:exported="false" />
+
         <activity
             android:name=".RegisterLayout"
             android:parentActivityName=".MainActivity">
