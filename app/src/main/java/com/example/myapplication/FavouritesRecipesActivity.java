@@ -49,7 +49,7 @@ public class FavouritesRecipesActivity extends AppCompatActivity {
 
         buildDialog();
 
-        layout=findViewById(R.id.container);
+        layout=findViewById(R.id.containerFavoriteCard);
         findViewById(R.id.loadingPanel).bringToFront();
         findViewById(R.id.loadingPanel).setVisibility(View.VISIBLE);
         getFavoriteRecipe();
@@ -173,6 +173,7 @@ public class FavouritesRecipesActivity extends AppCompatActivity {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         removeFavorite(favoriteId);
+                        layout.removeAllViews();
                         getFavoriteRecipe();
                     }
                 })
@@ -216,6 +217,18 @@ public class FavouritesRecipesActivity extends AppCompatActivity {
                 System.out.println(t.getMessage());
             }
         });
+    }
+
+    public void iniciarProfileActivity(View view) {
+
+        Intent intent = new Intent(this, UserProfileActivity.class);
+        startActivity(intent);
+    }
+    public void iniciarFavouriteActivity(View view) {
+
+        //Intent intent = new Intent(this, FavouritesRecipesActivity.class);
+        Intent intent = new Intent(this, FavouritesRecipesActivity.class);
+        startActivity(intent);
     }
 
 }

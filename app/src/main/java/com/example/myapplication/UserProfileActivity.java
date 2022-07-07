@@ -98,13 +98,16 @@ public class UserProfileActivity extends AppCompatActivity {
         finish();
     }
     private void createCards(JsonArray listOfRecipes) {
-        String nameRecipe, descriptionRecipe,time,totalRating, stepsrecipe,status;
+        String recipeId,nameRecipe, descriptionRecipe,time,totalRating, stepsrecipe,status;
         if (listOfRecipes.size() ==0){
             TextView EmptyListTextView = findViewById(R.id.EmptyListTextView);
             EmptyListTextView.setVisibility(View.VISIBLE);
             return;
         }
         for (int i = 0; i < listOfRecipes.size(); i++) {
+            System.out.println("acaaa");
+            System.out.println(listOfRecipes.get(i).getAsJsonObject());
+            recipeId = listOfRecipes.get(i).getAsJsonObject().get("id").getAsString();
             nameRecipe = listOfRecipes.get(i).getAsJsonObject().get("name").getAsString();
             descriptionRecipe = listOfRecipes.get(i).getAsJsonObject().get("description").getAsString();
             time = listOfRecipes.get(i).getAsJsonObject().get("time").getAsString();
@@ -112,20 +115,46 @@ public class UserProfileActivity extends AppCompatActivity {
             stepsrecipe = listOfRecipes.get(i).getAsJsonObject().get("totalSteps").getAsString();
             status = listOfRecipes.get(i).getAsJsonObject().get("status").getAsJsonObject().get("description").getAsString();
             //JsonObject status1 = listOfRecipes.get(i).getAsJsonObject();
-            System.out.println("acaaa"+status);
-            addCard(nameRecipe,descriptionRecipe,time,totalRating,stepsrecipe,status);
+
+            addCard(recipeId,nameRecipe,descriptionRecipe,time,totalRating,stepsrecipe,status);
         }
     }
-    private void addCard(String nameRecipe,String descriptionRecipe,String time,String totalRating,String stepsrecipe,String status) {
-        final View view = getLayoutInflater().inflate(R.layout.material_io_card, null);
-        TextView nameView = view.findViewById(R.id.title_card);
-        nameView.setText(nameRecipe);
-        TextView descriptionView = view.findViewById(R.id.description_card);
-        descriptionView.setVisibility(View.INVISIBLE);
-        TextView subtitleView = view.findViewById(R.id.subtitle_card);
-        subtitleView.setText("Pasos: "+ stepsrecipe + " | " + time+" minutos");
+    private void addCard(String recipeId,String nameRecipe,String descriptionRecipe,String time,String totalRating,String stepsrecipe,String status) {
+
+        final View view = getLayoutInflater().inflate(R.layout.material_io_card_porfile_rescipe, null);
+        TextView ratingView = view.findViewById(R.id.rating1);
+        ratingView.setText(totalRating);
+        TextView recipeTitleView = view.findViewById(R.id.recipeTitle2);
+        recipeTitleView.setText(nameRecipe);
+        TextView UserNameView = view.findViewById(R.id.inredientesTime);
+        UserNameView.setText(stepsrecipe + " ingredientes | " +time+" minutos");
+        TextView timeView = view.findViewById(R.id.recipeStatus);
+        timeView.setText(status);
+        view.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(v.getContext(), ShowRecipeActivity.class);
+                intent.putExtra("key",recipeId);
+                System.out.println(recipeId);
+                startActivity(intent);
+            }
+        });
         layout.addView(view);
 
+
+
+    }
+
+    public void iniciarProfileActivity(View view) {
+
+        Intent intent = new Intent(this, UserProfileActivity.class);
+        startActivity(intent);
+    }
+    public void iniciarFavouriteActivity(View view) {
+
+        //Intent intent = new Intent(this, FavouritesRecipesActivity.class);
+        Intent intent = new Intent(this, FavouritesRecipesActivity.class);
+        startActivity(intent);
     }
 
 }

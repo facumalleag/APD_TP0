@@ -25,6 +25,7 @@ import com.example.myapplication.services.FavoriteService;
 import com.example.myapplication.services.RecipeService;
 import com.example.myapplication.services.UserService;
 import com.google.android.material.dialog.MaterialAlertDialogBuilder;
+import com.google.gson.Gson;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
@@ -47,7 +48,7 @@ public class AfterSearchActivity extends AppCompatActivity implements AdapterVie
     private JsonArray listOfFavorites;
     AlertDialog dialog;
     Integer favoriteId;
-    String[] options = { "Ordenar Por", "Fecha de creación",
+    String[] options = { "Ordenar por", "Fecha de creación",
             "Nombre de usuario", "Nombre de Receta"};
 
     @Override
@@ -62,7 +63,8 @@ public class AfterSearchActivity extends AppCompatActivity implements AdapterVie
         layout=findViewById(R.id.containerAfterSearch);
         getFavoriteRecipe();
         order = 0;
-        searchRecipes();
+
+        searchRecipes("0","name");
 
         searchView.setVisibility(View.INVISIBLE);
         Spinner spino = findViewById(R.id.orderSpinner);
@@ -108,7 +110,7 @@ public class AfterSearchActivity extends AppCompatActivity implements AdapterVie
         finish();
     }
 
-    private void searchRecipes(){
+    private void searchRecipes(String ord,String ordrAtr){
 
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl("http://10.0.2.2:8000")
@@ -121,7 +123,8 @@ public class AfterSearchActivity extends AppCompatActivity implements AdapterVie
         List cat = RecpCont.getCategory_for_search();
         List ingrList = RecpCont.getIngredients_for_search();
         List ingrLackList = RecpCont.getLack_of_ingredients_for_search();
-        Search srch = new Search( recipeSearch,  cat,  usrName,  ingrList,  ingrLackList,  order,"");
+        Search srch = new Search( recipeSearch,  cat,  usrName,  ingrList,  ingrLackList,  ord,ordrAtr);
+
         Call<JsonElement> call = rs.searchRecipe(srch);
 
         call.enqueue(new Callback<JsonElement>() {
@@ -252,13 +255,34 @@ public class AfterSearchActivity extends AppCompatActivity implements AdapterVie
 
     @Override
     public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
-        System.out.println("i "+ i);
-        System.out.println("l "+ l);
+        ScrollView scrollv = findViewById(R.id.scrollViewAfterSearch);
+
+
+        if(i!=0){layout.removeAllViews();}
+
+        if(i==1){searchRecipes("0","createdAt");}
+        if(i==2){searchRecipes("name","user");}
+        if(i==3){searchRecipes("0","name");}
+
+
 
     }
 
     @Override
     public void onNothingSelected(AdapterView<?> adapterView) {
 
+    }
+
+
+    public void iniciarProfileActivity(View view) {
+
+        Intent intent = new Intent(this, UserProfileActivity.class);
+        startActivity(intent);
+    }
+    public void iniciarFavouriteActivity(View view) {
+
+        //Intent intent = new Intent(this, FavouritesRecipesActivity.class);
+        Intent intent = new Intent(this, FavouritesRecipesActivity.class);
+        startActivity(intent);
     }
 }

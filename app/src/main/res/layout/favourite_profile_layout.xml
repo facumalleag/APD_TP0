@@ -68,7 +68,7 @@
             android:scrollbars="none">
 
             <LinearLayout
-                android:id="@+id/container"
+                android:id="@+id/containerFavoriteCard"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"></LinearLayout>
@@ -169,6 +169,7 @@
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:src="@drawable/ic_baseline_person_24"
+                        android:onClick="iniciarProfileActivity"
                         app:backgroundTint="@android:color/white"
                         app:layout_constraintBottom_toBottomOf="@+id/first_menu_item"
                         app:layout_constraintEnd_toEndOf="parent"
