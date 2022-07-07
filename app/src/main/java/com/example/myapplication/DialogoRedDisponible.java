@@ -26,8 +26,8 @@ public class DialogoRedDisponible extends DialogFragment {
 
 
     public interface NoticeDialogListener {
-        public void onDialogPositiveClick(DialogFragment dialog);
-        public void onDialogNegativeClick(DialogFragment dialog);
+        public void enDialogoPositivoClick(DialogFragment dialog);
+        public void enDialogoNegativoClick(DialogFragment dialog);
     }
 
     // Use this instance of the interface to deliver action events
@@ -58,14 +58,12 @@ public class DialogoRedDisponible extends DialogFragment {
                 .setPositiveButton("Aceptar", new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int id) {
                         // COMPLETAR LA OPERACION GUARDANDO EN LA BASE DE DATOS
-                        listener.onDialogPositiveClick(DialogoRedDisponible.this);
-
-
+                        listener.enDialogoPositivoClick(DialogoRedDisponible.this);
                     }
                 })
                 .setNegativeButton("Aguardar", new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int id) {
-                        listener.onDialogNegativeClick(DialogoRedDisponible.this);
+                        listener.enDialogoNegativoClick(DialogoRedDisponible.this);
                         // NO SUBIR A LA BASE DE DATOS Y VOLVER A INTENTARLO PARA SUBIRLO CUANDO HAYA WIFI. GUARDARLO EN ALMACENAMIENTO INTERNO
                     }
                 });

@@ -85,6 +85,9 @@ public class CreateFirstRecipeActivity extends AppCompatActivity implements Dial
     }
 
     public void checkTitleRecipe(String title){
+        checkRecipeSuccesful();
+        /*
+
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl(Constants.BASE_URL)
                 .addConverterFactory(GsonConverterFactory.create())
@@ -114,7 +117,7 @@ public class CreateFirstRecipeActivity extends AppCompatActivity implements Dial
             public void onFailure(Call<JsonElement> call, Throwable t) {
                 System.out.println(t.getMessage());
             }
-        });
+        });*/
     }
 
     private void checkRecipeSuccesful() {

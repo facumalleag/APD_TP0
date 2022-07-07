@@ -7,6 +7,9 @@ import android.os.AsyncTask;
 import android.util.Log;
 import com.example.myapplication.MainActivity;
 import com.example.myapplication.model.Receta;
+import com.google.gson.Gson;
+import com.google.gson.JsonObject;
+import com.google.gson.JsonParser;
 
 import java.io.BufferedReader;
 import java.io.File;
@@ -19,7 +22,7 @@ import java.util.ArrayList;
 public class RecipesController {
 
     private ArrayList<Receta> coleccion_recetas= new ArrayList<Receta>();
-    private static final String FILE_NAME = "Receta a Subir.txt";
+    private static final String FILE_NAME = "Receta a Subir "+ System.currentTimeMillis()+" .txt";
     private static RecipesController instancia;
 
 
@@ -31,7 +34,8 @@ public class RecipesController {
     }
 
     public void guardarRecetaEnAlmInterno(Context context) {
-        String textoASalvar = "Receta de hamburguesas a Guardar en formato JSON";//etFile.getText().toString();
+        Receta receta=coleccion_recetas.get(coleccion_recetas.size()-1);
+        String textoASalvar = new Gson().toJson(receta);//etFile.getText().toString();
         FileOutputStream fileOutputStream = null;
 
         try {
@@ -52,6 +56,10 @@ public class RecipesController {
 
     }
 
+    public void agregarreceta(Receta receta){
+        coleccion_recetas.add(receta);
+    }
+
 
     public void leerArchivoReceta(Context context) {
         FileInputStream fileInputStream = null;
@@ -64,7 +72,11 @@ public class RecipesController {
             while((lineaTexto = bufferedReader.readLine())!=null){
                 stringBuilder.append(lineaTexto).append("\n");
             }
-            Log.d("TAG2", "El texto leido es "+stringBuilder);
+            String aux=stringBuilder.toString();
+            JsonObject obj = new JsonParser().parse(aux).getAsJsonObject();//new JsonObject(lineaTexto);
+            Log.d("TAG2", "El texto leido es "+ obj);
+            Log.d("TAG2", obj.get("name").getAsString());
+
         }catch (Exception e){
 
         }finally {
