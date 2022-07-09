@@ -1,5 +1,7 @@
 package com.example.myapplication;
 
+import static com.example.myapplication.Constants.BASE_URL;
+
 import android.app.AlertDialog;
 import android.app.Dialog;
 import android.content.Context;
@@ -13,8 +15,24 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.Spinner;
+import android.widget.Toast;
 
 import androidx.fragment.app.DialogFragment;
+
+import com.example.myapplication.model.Measurement;
+import com.example.myapplication.services.MeasurementService;
+import com.example.myapplication.services.RecipeService;
+import com.google.gson.JsonArray;
+import com.google.gson.JsonElement;
+
+import java.io.IOException;
+import java.util.List;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+import retrofit2.Retrofit;
+import retrofit2.converter.gson.GsonConverterFactory;
 
 public class DialogoAgregarIngrediente extends DialogFragment {
 
@@ -25,6 +43,7 @@ public class DialogoAgregarIngrediente extends DialogFragment {
 
     // Use this instance of the interface to deliver action events
     NoticeDialogListener listener;
+    Spinner spinner;
 
     // Override the Fragment.onAttach() method to instantiate the NoticeDialogListener
     @Override
@@ -51,16 +70,8 @@ public class DialogoAgregarIngrediente extends DialogFragment {
         // Inflate and set the layout for the dialog
         // Pass null as the parent view because its going in the dialog layout
         View view = inflater.inflate(R.layout.dialog_agregaringrediente, null);
-        Spinner spinner = view.findViewById(R.id.spinner_cant);
-        // Create an ArrayAdapter using the string array and a default spinner layout
-
-        ArrayAdapter<CharSequence> adapter=ArrayAdapter.createFromResource(getContext(), R.array.medidas, android.R.layout.simple_spinner_item);
-
-        adapter.setDropDownViewResource(android.R.layout.simple_spinner_item);
-// Specify the layout to use when the list of choices appears
-        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-// Apply the adapter to the spinner
-        spinner.setAdapter(adapter);
+        spinner = view.findViewById(R.id.spinner_cant);
+        getMedidas();
         builder.setView(view)
                 // Add action buttons
                 .setPositiveButton(R.string.agregar, new DialogInterface.OnClickListener() {
@@ -92,6 +103,48 @@ public class DialogoAgregarIngrediente extends DialogFragment {
         leftSpacer.setVisibility(View.GONE);
         return alert;
     }
+
+    private void getMedidas() {
+        Retrofit retrofit = new Retrofit.Builder()
+                .baseUrl(BASE_URL)
+                .addConverterFactory(GsonConverterFactory.create())
+                .build();
+
+        MeasurementService fs = retrofit.create(MeasurementService.class);
+        Call<JsonElement> call = fs.listMeasurement();
+        call.enqueue(new Callback<JsonElement>() {
+            @Override
+            public void onResponse(Call<JsonElement> call, Response<JsonElement> response) {
+
+                if (response.isSuccessful()) {
+                    int id = 0;
+                    JsonArray measurements = response.body().getAsJsonObject().get("listedMeasurements").getAsJsonArray();
+                    String [] options = new String[measurements.size()];
+                    for(JsonElement measurement : measurements){
+                        String description = measurement.getAsJsonObject().get("description").getAsString();
+                        options[id] = description;
+                        id ++;
+                    }
+                    // Create an ArrayAdapter using the string array and a default spinner layout
+                    ArrayAdapter<CharSequence> adapter = new ArrayAdapter<CharSequence>(getContext(),android.R.layout.simple_spinner_item, options);
+                    adapter.setDropDownViewResource(android.R.layout.simple_spinner_item);
+// Specify the layout to use when the list of choices appears
+                    adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+// Apply the adapter to the spinner
+                    spinner.setAdapter(adapter);
+                } else {
+                    if (response.code() == 400) {
+                    }
+                }
+            }
+
+            @Override
+            public void onFailure(Call<JsonElement> call, Throwable t) {
+                System.out.println(t.getMessage());
+            }
+        });
+    }
+
 
 
 }

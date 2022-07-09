@@ -142,7 +142,7 @@ public class EditRecipeActivity extends AppCompatActivity implements DialogoAgre
                 Integer cantidadIngrediente = ingredientsList.get(i).getAsJsonObject().get("cantidad").getAsInt();
                 String nombreIngrediente = ingredientsList.get(i).getAsJsonObject().get("cantidad").getAsString();
                 String medida = ingredientsList.get(i).getAsJsonObject().get("cantidad").getAsString();
-                agregarIngrediente(cantidadIngrediente, nombreIngrediente, medida);
+                agregarIngrediente(cantidadIngrediente, nombreIngrediente, medida, 0);
             }
         }
 
@@ -308,6 +308,7 @@ public class EditRecipeActivity extends AppCompatActivity implements DialogoAgre
         Integer cantidadIngrediente = 0;
         String nombreIngrediente= txtNombreIngrediente.getText().toString().trim();
         String medida= txtMedida.getSelectedItem().toString();
+        int posicionSpinner = txtMedida.getSelectedItemPosition();
 
         if (nombreIngrediente == null || nombreIngrediente.isEmpty()){
             txtNombreIngrediente.setError("El ingrediente no puede estar vacio");
@@ -320,11 +321,11 @@ public class EditRecipeActivity extends AppCompatActivity implements DialogoAgre
             cantidadIngrediente = Integer.valueOf(txtCantIngrediente.getText().toString().trim());
         }
 
-        agregarIngrediente(cantidadIngrediente, nombreIngrediente, medida);
+        agregarIngrediente(cantidadIngrediente, nombreIngrediente, medida, posicionSpinner);
     }
 
-    private void agregarIngrediente(Integer cantidadIngrediente, String nombreIngrediente, String medida) {
-        Ingrediente ingrediente = new Ingrediente(idIngrediente, nombreIngrediente, cantidadIngrediente, medida);
+    private void agregarIngrediente(Integer cantidadIngrediente, String nombreIngrediente, String medida, int posicionSpinner) {
+        Ingrediente ingrediente = new Ingrediente(idIngrediente, nombreIngrediente, cantidadIngrediente, medida, posicionSpinner);
         ingredientes.add(ingrediente);
 
         LinearLayout ingredienteContainer = findViewById(R.id.container_ingredientes);
