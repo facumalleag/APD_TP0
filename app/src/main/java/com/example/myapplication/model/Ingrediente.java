@@ -3,22 +3,25 @@ package com.example.myapplication.model;
 public class Ingrediente {
 
     private int id;
-    private String nombre;
+    private String description;
     private Integer cantidad;
     private String medida;
+    private int idMeasurement;
 
-    public Ingrediente(int id, String nombre, Integer cantidad, String medida) {
+    public Ingrediente(int id, String description, Integer cantidad, String medida, int idMeasurement) {
         this.id = id;
-        this.nombre = nombre;
+        this.description = description;
         this.cantidad = cantidad;
         this.medida = medida;
+        this.idMeasurement = idMeasurement;
     }
+
     public String getNombre() {
-        return nombre;
+        return description;
     }
 
     public void setNombre(String nombre) {
-        this.nombre = nombre;
+        this.description = nombre;
     }
 
     public Integer getCantidad() {
@@ -43,5 +46,21 @@ public class Ingrediente {
 
     public void setId(int id) {
         this.id = id;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public int getIdMeasurement() {
+        return idMeasurement;
+    }
+
+    public void setIdMeasurement(int idMeasurement) {
+        this.idMeasurement = idMeasurement;
     }
 }

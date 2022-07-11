@@ -1,5 +1,7 @@
 package com.example.myapplication;
 
+import static com.example.myapplication.Constants.BASE_URL;
+
 import android.content.Intent;
 import android.os.Bundle;
 
@@ -85,7 +87,7 @@ public class SearchActivity extends AppCompatActivity {
     }
     public void getCategories(){
         Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl("http://10.0.2.2:8000")
+                .baseUrl(BASE_URL)
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
         CategoryService cs = retrofit.create(CategoryService.class);
@@ -117,7 +119,7 @@ public class SearchActivity extends AppCompatActivity {
     }
     public void getIngredient(){
         Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl("http://10.0.2.2:8000")
+                .baseUrl(BASE_URL)
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
         IngredientService ings = retrofit.create(IngredientService.class);

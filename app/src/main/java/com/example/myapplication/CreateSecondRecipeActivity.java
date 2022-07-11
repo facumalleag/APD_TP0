@@ -1,5 +1,6 @@
 package com.example.myapplication;
 
+import static com.example.myapplication.Constants.BASE_URL;
 import static com.example.myapplication.Constants.ID_RECIPE;
 
 import android.app.Activity;
@@ -29,6 +30,7 @@ import com.example.myapplication.model.Ingrediente;
 import com.example.myapplication.model.Paso;
 import com.example.myapplication.model.Receta;
 import com.example.myapplication.services.CategoryService;
+import com.example.myapplication.services.MeasurementService;
 import com.example.myapplication.services.RecipeService;
 import com.google.android.material.chip.Chip;
 import com.google.android.material.chip.ChipGroup;
@@ -95,8 +97,7 @@ public class CreateSecondRecipeActivity extends AppCompatActivity implements Dia
 
     public void getCategories(){
         Retrofit retrofit = new Retrofit.Builder()
-                //.baseUrl(Constants.BASE_URL)
-                .baseUrl("https://tpoapd2022.herokuapp.com")
+                .baseUrl(Constants.BASE_URL)
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
 
@@ -283,6 +284,7 @@ public class CreateSecondRecipeActivity extends AppCompatActivity implements Dia
         EditText txtCantIngrediente = dialogo.findViewById(R.id.cantidadIngrediente);
         EditText txtNombreIngrediente = dialogo.findViewById(R.id.nombreIngrediente);
         Spinner txtMedida = dialogo.findViewById(R.id.spinner_cant);
+        int posicionSpinner = txtMedida.getSelectedItemPosition()+1;
         Integer cantidadIngrediente = 0;
         String nombreIngrediente= txtNombreIngrediente.getText().toString().trim();
         String medida= txtMedida.getSelectedItem().toString();
@@ -298,7 +300,7 @@ public class CreateSecondRecipeActivity extends AppCompatActivity implements Dia
             cantidadIngrediente = Integer.valueOf(txtCantIngrediente.getText().toString().trim());
         }
 
-        Ingrediente ingrediente = new Ingrediente(idIngrediente, nombreIngrediente, cantidadIngrediente, medida);
+        Ingrediente ingrediente = new Ingrediente(idIngrediente, nombreIngrediente, cantidadIngrediente, medida, posicionSpinner);
         ingredientes.add(ingrediente);
 
         LinearLayout ingredienteContainer = findViewById(R.id.container_ingredientes);
@@ -423,8 +425,7 @@ public class CreateSecondRecipeActivity extends AppCompatActivity implements Dia
 
     private void guardarReceta(Receta receta){
         Retrofit retrofit = new Retrofit.Builder()
-                //.baseUrl(Constants.BASE_URL)
-                .baseUrl("https://tpoapd2022.herokuapp.com")
+                .baseUrl(BASE_URL)
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
 
@@ -461,7 +462,7 @@ public class CreateSecondRecipeActivity extends AppCompatActivity implements Dia
     private void eliminarReceta(String idRecipe) {
         Retrofit retrofit = new Retrofit.Builder()
                 //.baseUrl(Constants.BASE_URL)
-                .baseUrl("https://tpoapd2022.herokuapp.com")
+                .baseUrl(BASE_URL)
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
 
@@ -498,5 +499,4 @@ public class CreateSecondRecipeActivity extends AppCompatActivity implements Dia
         startActivity(intent);
         finish();
     }
-
 }
