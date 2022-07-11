@@ -93,8 +93,6 @@ public class MainActivity extends AppCompatActivity implements NetworkController
      */
 
     public void ActionLogin(View view){
-        doLogin();
-/*
         EditText emailEditText=findViewById(R.id.editTextEmailRecupero);
         EditText passwordEditText=findViewById(R.id.editTextTextPassword);
         String email1=emailEditText.getText().toString().trim();
@@ -110,7 +108,6 @@ public class MainActivity extends AppCompatActivity implements NetworkController
         String password=passwordEditText.getText().toString();
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl(BASE_URL)
-                //.baseUrl("https://tpoapd.herokuapp.com:15745")
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
 
@@ -143,8 +140,6 @@ public class MainActivity extends AppCompatActivity implements NetworkController
                 System.out.println(t.getMessage());
             }
         });
-*/
-
     }
 
 

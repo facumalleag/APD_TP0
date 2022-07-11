@@ -1,5 +1,7 @@
 package com.example.myapplication.ui.main;
 
+import static com.example.myapplication.Constants.BASE_URL;
+
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -172,7 +174,7 @@ public class PlaceholderFragment extends Fragment {
 
     public void getCategories(){
         Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl("http://10.0.2.2:8000")
+                .baseUrl(BASE_URL)
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
         CategoryService cs = retrofit.create(CategoryService.class);
@@ -207,12 +209,11 @@ public class PlaceholderFragment extends Fragment {
 
      public void getIngredient(){
          Retrofit retrofit = new Retrofit.Builder()
-                 .baseUrl("http://10.0.2.2:8000")
+                 .baseUrl(BASE_URL)
                  .addConverterFactory(GsonConverterFactory.create())
                  .build();
          IngredientService ings = retrofit.create(IngredientService.class);
          Call<JsonElement> call = ings.listIngredient();
-         //OJO el id del usuario esta hardcodeado
          call.enqueue(new Callback<JsonElement>() {
              @Override
              public void onResponse(Call<JsonElement> call, Response<JsonElement> response) {

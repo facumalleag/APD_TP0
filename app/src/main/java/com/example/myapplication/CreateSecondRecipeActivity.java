@@ -97,8 +97,7 @@ public class CreateSecondRecipeActivity extends AppCompatActivity implements Dia
 
     public void getCategories(){
         Retrofit retrofit = new Retrofit.Builder()
-                //.baseUrl(Constants.BASE_URL)
-                .baseUrl("https://tpoapd2022.herokuapp.com")
+                .baseUrl(Constants.BASE_URL)
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
 
@@ -426,7 +425,6 @@ public class CreateSecondRecipeActivity extends AppCompatActivity implements Dia
 
     private void guardarReceta(Receta receta){
         Retrofit retrofit = new Retrofit.Builder()
-                //.baseUrl(Constants.BASE_URL)
                 .baseUrl(BASE_URL)
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();

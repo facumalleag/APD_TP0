@@ -1,5 +1,7 @@
 package com.example.myapplication;
 
+import static com.example.myapplication.Constants.BASE_URL;
+
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
@@ -65,7 +67,7 @@ public class ShowRecipeActivity extends AppCompatActivity {
     public void getRecipe(){
         fragmentoFiltros = new RecetaFiltroFragment();
         Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl("http://10.0.2.2:8000")
+                .baseUrl(BASE_URL)
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
 
@@ -176,7 +178,7 @@ public class ShowRecipeActivity extends AppCompatActivity {
     private void getFavoritesByUserId(){
 
         Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl("http://10.0.2.2:8000")
+                .baseUrl(BASE_URL)
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
 
@@ -232,13 +234,12 @@ public class ShowRecipeActivity extends AppCompatActivity {
         }else{
 
             Retrofit retrofit = new Retrofit.Builder()
-                    .baseUrl("http://10.0.2.2:8000")
+                    .baseUrl(BASE_URL)
                     .addConverterFactory(GsonConverterFactory.create())
                     .build();
 
             FavoriteService fs = retrofit.create(FavoriteService.class);
             //favorite newFavorite = new favorite(recipeId,  Integer.toString(UserController.getInstancia().getUserId()),"...");
-            //OJO EL DATO DEL USUARIO ESTA HARDCODEADO
             favorite newFavorite = new favorite(recipeId, Integer.toString(1),"...");
             Call<JsonElement> call = fs.createFavorite( newFavorite);
 
@@ -292,7 +293,7 @@ public class ShowRecipeActivity extends AppCompatActivity {
     private void removeFavorite(String favoriteId){
 
         Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl("http://10.0.2.2:8000")
+                .baseUrl(BASE_URL)
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
 
