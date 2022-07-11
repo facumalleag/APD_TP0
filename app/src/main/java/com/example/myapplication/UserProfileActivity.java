@@ -1,5 +1,7 @@
 package com.example.myapplication;
 
+import static com.example.myapplication.Constants.BASE_URL;
+
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -45,7 +47,7 @@ public class UserProfileActivity extends AppCompatActivity {
         fragmentoFiltros = new RecetaFiltroFragment();
 
         Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl("http://10.0.2.2:8000")
+                .baseUrl(BASE_URL)
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
 
