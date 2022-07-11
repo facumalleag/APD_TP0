@@ -7,6 +7,22 @@
     android:background="@color/white"
     tools:context=".RecuperoPWDActivity">
 
+    <ImageButton
+        android:id="@+id/btnVolver"
+        android:layout_width="24dp"
+        android:layout_height="22dp"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentRight="true"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:onClick="onBackPressed"
+        android:width="16dp"
+        android:height="14dp"
+        android:background="#FFFFFF"
+        android:scaleType="fitCenter"
+        android:src="@drawable/union"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <ImageView
         android:id="@+id/imgViewLogo"

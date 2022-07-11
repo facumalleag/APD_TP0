@@ -6,13 +6,28 @@
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
 
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/Theme.MyApplication.NoActionBar">
+        android:theme="@style/Theme.MyApplication.NoActionBar"
+        android:usesCleartextTraffic="true">
+        <activity
+            android:name=".AlertaRedWifiActivity"
+            android:exported="false" />
+        <activity
+            android:name=".RecipesListActivity"
+            android:exported="false" />
+        <activity
+            android:name=".SoporteUsuarioActivity"
+            android:exported="false" />
+        <activity
+            android:name=".SearchActivity"
+            android:exported="false" />
         <activity
             android:name=".RestablecerPwdActivity"
             android:exported="false" />
@@ -26,6 +41,9 @@
             android:name=".CodeRecoveryActivity"
             android:exported="false" />
         <activity
+            android:name=".CodeForRegisterActivity"
+            android:exported="false" />
+        <activity
             android:name=".HomeApplicationActivity"
             android:exported="false" />
         <activity
@@ -35,12 +53,27 @@
             android:name=".AltaUsuarioActivity"
             android:exported="false" />
         <activity
-            android:name=".LoginLayout"
-            android:parentActivityName=".MainActivity">
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value=".MainActivity" />
-        </activity>
+            android:name=".CreateFirstRecipeActivity"
+            android:exported="false" />
+        <activity
+            android:name=".CreateSecondRecipeActivity"
+            android:exported="false" />
+        <activity
+            android:name=".AfterSearchActivity"
+            android:exported="false" />
+        <activity
+            android:name=".AfterSearchActivity2"
+            android:exported="false" />
+        <activity
+            android:name=".UserProfileActivity"
+            android:exported="false" />
+        <activity
+            android:name=".FavouritesRecipesActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ShowRecipeActivity"
+            android:exported="false" />
+
         <activity
             android:name=".RegisterLayout"
             android:parentActivityName=".MainActivity">
@@ -50,6 +83,12 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".MainActivity" />
         </activity>
+        <activity
+            android:name=".RecetaGuardadaLayout"
+            android:exported="false" />
+        <activity
+            android:name=".EditRecipeActivity"
+            android:exported="false" />
         <activity
             android:name=".MainActivity"
             android:exported="true">

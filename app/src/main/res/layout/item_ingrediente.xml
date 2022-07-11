@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="100dp"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:gravity="center"
+    android:orientation="horizontal">
+
+    <TextView
+        android:id="@+id/txtViewIngrediente"
+        android:layout_width="100dp"
+        android:layout_height="27dp"
+        android:textColor="@android:color/black"
+        android:textSize="15sp"
+        android:layout_marginStart="30dp"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/txtViewCantidad"
+        android:layout_width="100dp"
+        android:layout_height="27dp"
+        android:textColor="@android:color/black"
+        android:textSize="15sp"
+        android:layout_marginStart="5dp"
+        android:textStyle="normal" />
+
+    <ImageButton
+        android:id="@+id/btnEliminarIngrediente"
+        android:layout_width="16dp"
+        android:layout_height="15dp"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentRight="true"
+        android:width="16dp"
+        android:height="14dp"
+        android:background="#FFFFFF"
+        android:onClick="eliminarIngrediente"
+        android:scaleType="fitCenter"
+        android:layout_marginStart="10dp"
+        android:layout_marginEnd="10dp"
+        android:src="@drawable/minus_border"
+        app:layout_constraintStart_toEndOf="@+id/txtViewIngrediente"
+        app:layout_constraintTop_toTopOf="parent" />
+
+
+    <TextView
+        android:id="@+id/txtViewId"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="30dp"
+        android:textColor="@android:color/black"
+        android:textSize="15sp"
+        android:textStyle="bold"
+        android:visibility="invisible" />
+
+</LinearLayout>

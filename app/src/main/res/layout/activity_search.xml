@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+
+    tools:context=".SearchActivity">
+    <SearchView
+        android:id="@+id/SearchViewRecipe"
+        android:layout_width="fill_parent"
+        android:layout_height="50dp"
+        android:layout_marginTop="10dp"
+        app:cornerRadius="@dimen/corner_button"
+        app:queryHint="@string/prompt_search_recipe"
+        android:queryHint="@string/prompt_search_recipe"
+        app:defaultQueryHint="@string/prompt_search_recipe"
+        android:iconifiedByDefault="false"
+        android:background="#E8E7E7"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+    </SearchView>
+    <RelativeLayout
+        android:id="@+id/ppppp2"
+        android:layout_width="fill_parent"
+        android:layout_height="400dp"
+        android:layout_marginTop="70dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+
+    <com.google.android.material.appbar.AppBarLayout
+        android:id="@+id/contenedor_tabs"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:theme="@style/Theme.MyApplication.NoActionBar.AppBarOverlay">
+
+                <com.google.android.material.tabs.TabLayout
+                    android:id="@+id/tabs"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:tabGravity="fill"
+                    app:tabMode="scrollable"
+                    app:tabIndicatorColor="@color/color_boton"
+                    app:tabSelectedTextColor="@color/color_boton"
+                    />
+            </com.google.android.material.appbar.AppBarLayout>
+
+
+        <androidx.viewpager.widget.ViewPager
+            android:id="@+id/view_pager"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:layout_behavior="@string/appbar_scrolling_view_behavior"
+            tools:ignore="SpeakableTextPresentCheck">
+
+            <LinearLayout
+                android:id="@+id/layout_linear"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="horizontal"></LinearLayout>
+
+        </androidx.viewpager.widget.ViewPager>
+    </RelativeLayout>
+
+
+    <Button
+
+        android:id="@+id/btnSearchRecipe"
+        android:layout_width="200dp"
+        android:layout_height="75dp"
+        android:layout_marginStart="100dp"
+        android:layout_marginTop="575dp"
+        android:backgroundTint="@color/color_boton"
+        android:fontFamily="sans-serif-medium"
+        android:gravity="center"
+        android:includeFontPadding="true"
+        android:onClick="search"
+        android:scaleType="fitCenter"
+        android:text="@string/btn_searchRecipe"
+        android:textColor="@color/white"
+        app:cornerRadius="@dimen/corner_button"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+
+        tools:ignore="TextContrastCheck" />
+
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

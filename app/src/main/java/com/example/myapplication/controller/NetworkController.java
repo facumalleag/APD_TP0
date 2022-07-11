@@ -7,14 +7,17 @@ import android.content.IntentFilter;
 import android.net.ConnectivityManager;
 import android.net.Network;
 import android.net.NetworkInfo;
+import android.os.Build;
 import android.util.Log;
 
+import androidx.annotation.RequiresApi;
 import androidx.fragment.app.DialogFragment;
 
 import com.example.myapplication.DialogoRedDisponible;
 
 public class NetworkController extends BroadcastReceiver {
     private static NetworkController instancia;
+    private boolean opcion_red;
 
     // initialize listener
     public static ReceiverListener Listener;
@@ -28,18 +31,20 @@ public class NetworkController extends BroadcastReceiver {
         return instancia;
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.M)
     public String verificarTipoRed(Context context){
         String respuesta="";
         ConnectivityManager connMgr =
                 (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);
         boolean isWifiConn = false;
         boolean isMobileConn = false;
-
         for (Network network : connMgr.getAllNetworks()) {
             NetworkInfo networkInfo = connMgr.getNetworkInfo(network);
             if (networkInfo.getType() == ConnectivityManager.TYPE_WIFI) {
                 respuesta="WIFI";
                 isWifiConn |= networkInfo.isConnected();
+                Log.d(DEBUG_TAG, "Wifi connected: " + isWifiConn);
+                return respuesta;
             }else{
                 if (networkInfo.getType() == ConnectivityManager.TYPE_MOBILE) {
                     isMobileConn |= networkInfo.isConnected();
@@ -47,12 +52,9 @@ public class NetworkController extends BroadcastReceiver {
                 }else{
                     respuesta="NO_RED";
                 }
-
             }
-
-
         }
-        Log.d(DEBUG_TAG, "Wifi connected: " + isWifiConn);
+
         Log.d(DEBUG_TAG, "Mobile connected: " + isMobileConn);
         return respuesta;
     }
@@ -77,6 +79,14 @@ public class NetworkController extends BroadcastReceiver {
             // call listener method
             Listener.onNetworkChange(isConnected);
         }
+    }
+
+    public void setNavegarSinWifi(boolean eleccion_user) {
+        opcion_red=eleccion_user;
+    }
+
+    public boolean getOpcionNavegarSinWifi (){
+        return opcion_red;
     }
 
 

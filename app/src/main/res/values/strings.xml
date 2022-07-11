@@ -1,5 +1,4 @@
 <resources>
-    <string name="app_name">InstaMorfi</string>
     <!-- Strings used for activity Welocme -->
     <string name="welcome">Cocina con nosotros</string>
     <string name="frase_bienvenida">"Encontrá las mejores recetas"</string>
@@ -18,11 +17,11 @@
 
 
     <!-- Strings used for activty Register -->
-    <string name="edit_message">Enter a message</string>
-    <string name="button_send">Send</string>
     <string name="boton_registro">Comenzar registro</string>
     <string name="alias">Alias</string>
     <string name="recupero_contraseña">El mail ingresado ya se encuentra registrado. Si no recuerda su contraseña puede recuperar la misma: <u>recuperar contraseña</u></string>
+    <string name="registro_Incompleto">Parece que el proceso de registracion ya se habia iniciado para este mail. Por favor <u>presiona aquí para ir continuar</u></string>
+
 
     <!-- Strings used for activty RecuperoPassword -->
     <string name="btn_restablecer">Restablecer contraseña</string>
@@ -31,6 +30,10 @@
     <string name="Nueva_pwd">Nueva contraseña</string>
     <string name="Confirmar_pwd">Confirmar contraseña</string>
 
+    <!-- Strings used for activty Soporte de Sitio -->
+    <string name="Msj_Soporte">Parece que tu registración con tal correo electrónico expiró. \n \nTe solicitamos que envíes un mail a soporte del sitio (<u><b>aplicacionmorfi@gmail.com</b></u>) para continuar con tu alta</string>
+    <string name="Continuar">Continuar</string>
+    <string name="Soporte_Titulo">Registración Caducada</string>
 
 
     <!-- Strings used for activty Ingreso Codigo Recupero -->
@@ -50,37 +53,118 @@
     <string name="finalizar">Finalizar registro</string>
     <string name="terminosYcondiciones">Estoy de acuerdo y acepto los terminos y condiciones</string>
     <string name="RegistroExitoso">Registro exitoso</string>
+    <string name="recetaGuardada">Receta guardada con exito</string>
     <string name="Frase_reg_exitoso">Dentro de un momento te redireccionaremos a la pagina de inicio de la aplicación.</string>
+    <string name="fraseRecetaGuardad">La receta se encuentra en evaluación. Le avisaremos cuando este disponible.</string>
+
+    <!-- Strings used for activty Dialogo de Red Disponible -->
+    <string name="titulo_dialogo_red">Conexión WIFI no encontrada</string>
+    <string name="body_dialogo_red">No se encuentra conectado a una red de WIFI. ¿Desea utilizar una red con cargo a su cuenta para cpmpletar la operacion o desea aguardar a que se disponga de una conexion Wireless?</string>
+    <string name="body_alerta_red">Se encuentra navegando a una red con costo. Por lo que esta operacion repercutirá en gastos a su cuenta</string>
 
 
     <!-- Strings used for activty Dialogo de Red Disponible -->
-    <string name="titulo_dialogo_red">Conexión a internet no encontrada</string>
-    <string name="body_dialogo_red">No se encuentra conectado a una red sin cargo. ¿Desea utilizar una red con cargo a su cuenta o desea aguardar a que se disponga de una conexion gratuita?</string>
+    <string name="titulo_dialogo_recipe">Receta creada anteriormente.</string>
+    <string name="body_dialogo_recipe">La receta ya fue creada anteriormente, ¿Desea reemplazar la receta existente o editarla?</string>
+    <string name="editar">Editar</string>
+    <string name="reemplazar">Reemplazar</string>
+
+    <!-- Strings used for Home Application -->
+    <string name="texto_saludo">Hola </string>
+    <string name="texto_home">¿Que quieres cocinar?</string>
+
+    <string name="titulo_recomendaciones">Ver Recomendaciones</string>
+
+    <!-- Strings used for Search Activity -->
+    <string name="Receta_filtro">Nombre de receta</string>
+    <string name="Categoria_filtro">Categorías</string>
+    <string name="Con_Ingredientes_filtro">Con ingredientes</string>
+    <string name="Sin_Ingredientes_filtro">Sin Ingredientes</string>
+    <string name="Usuario_filtro">Nombre de Usuario</string>
+
+    <!-- Strings used for Create Recipe -->
+    <string name="btn_create">Crear receta</string>
+    <string name="btn_save">Guardar receta</string>
+    <string name="title_recipe">Crear receta</string>
+    <string name="titulo">Titulo</string>
+    <integer name="dos">2</integer>
+    <integer name="treinta">30</integer>
+    <string name="imagen">"Imagen"</string>
+    <string name="descripcion">"Descripción"</string>
+    <string name="porciones">"Porciones"</string>
+    <string name="minutos">"Minutos"</string>
+    <string name="minuto">"Minuto"</string>
+    <string name="agregar">"Agregar"</string>
+    <string name="cancelar">"Cancelar"</string>
+    <string name="cantidad">"Cantidad"</string>
+    <string name="porcion">"Porcion"</string>
+    <string name="ingredientes">"Ingredientes"</string>
+    <string name="ingrediente">"Ingrediente"</string>
+    <string name="pasos">"Pasos"</string>
+    <string name="tiempo">"Tiempo"</string>
+    <string name="categorias">"Categorias"</string>
+    <string name="subtitle_Recipe">Para comenzar a crear tu receta necesitamos el titulo de la misma para verificar antes que la misma no exista.</string>
+    <string name="enter_title_recipe">Titulo. Ej : Pollo al horno</string>
+    <string name="enter_description">Descripción</string>
+    <string name="btn_agregarIngrediente">Agregar Ingrediente</string>
+    <string name="btn_agregarPaso">Agregar Paso</string>
+    <string name="pasta">"Pasta"</string>
+    <string name="desayuno">"Desayuno"</string>
+    <string name="almuerzo">"Almuerzo"</string>
+    <string name="cena">"Cena"</string>
+    <string name="snack">"Snack"</string>
+    <string name="postre">"Postre"</string>
+    <string name="cafe">"Café"</string>
+    <string name="americana">"Americana"</string>
+    <string name="argentina">"Argentina"</string>
+    <string name="saludable">"Saludable"</string>
+    <string name="mexicana">"Mexicana"</string>
+    <string name="vegetariana">"Vegetariana"</string>
+    <string name="italiana">"Italiana"</string>
+    <string name="pollos">"Pollos"</string>
+    <string name="vegano">"Vegano"</string>
+    <string name="pizzas">"Pizzas"</string>
+    <string name="salsas">"Salsas"</string>
+    <string name="singluten">"Sin Gluten"</string>
+    <string name="fitness">"Fitness"</string>
 
 
     <string name="imagen_login">nnsns</string>
     <string name="login">Iniciar Sesión</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 
+    <!-- Strings used for Create Recipe -->
+    <string name="register_code_title">Codigo de registro</string>
+    <!-- Strings used for material io card -->
+    <string name="title">Titulo de la Card</string>
+    <string name="secondary_text">subittulo</string>
+    <string name="content_description_media">descripcion media</string>
 
-    <string name="prompt_alias">Alias</string>
-    <string name="action_sign_in_short">Sign in</string>
+    <string name="supporting_text">Descripcion de la tarjeta. blah blah blah blah</string>
+    <string name="action_1">Boton 1</string>
+    <string name="action_2">Boton 2</string>
+    <!-- Strings used for activity UserProfile -->
+    <string name="Mi_perfil">Mi Perfil</string>
+    <string name="Editar_perfil">Editar Perfil</string>
+    <string name="Lista_vacia">Parece que todavia no creo ninguna receta</string>
 
-    <string name="invalid_username">Not a valid username</string>
-    <string name="invalid_password">Password must be >5 characters</string>
-    <string name="login_failed">"Login failed"</string>
+    <!-- Strings used for activity Favorites -->
+    <string name="favorites_title">Recetas guardadas</string>
+    <string name="empty_favorites">Parece que todavia no guardó ninguna receta</string>
+
+    <!-- Strings used for activity show_recipe -->
+    <string name="time_title">Tiempo</string>
+    <!-- Strings used for activity fragment_receta_filtro -->
+    <string name="btn_searchRecipe">Buscar receta</string>
+    <string name="empty_search">No se encontró receta que coincida con la busqueda. Por favor, intente denuevo</string>
+    <string name="txt_ayuda_search">Si desea buscar todas las recetas de un usuario se solicita dejar vacio el buscador de receta</string>
+    <string name="prompt_search_user">Ingrese nombre de usuario</string>
+    <string name="prompt_search_recipe">Ingrese nombre de receta a buscar</string>
     <!-- Strings used for fragments for navigation -->
-
-    <string name="previous">Previous</string>
-
-    <string name="Add">Add</string>
-    <string name="title_activity_register">Title Activity</string>
 
     <!-- Strings used for activity RecoverPassword -->
 
 
-    <string name="UserName">Nombre</string>
-
-
-    <string name="Cancel">Cancel</string>
-    <string name="RecoveryCode">Codigo Recupero</string>
+    <!-- TODO: Remove or change this placeholder text -->
 </resources>

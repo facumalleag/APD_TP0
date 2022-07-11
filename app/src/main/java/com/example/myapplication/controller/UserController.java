@@ -36,13 +36,18 @@ public class UserController {
 
     private String contenidoMail="Felicidades, se ha registrado en la aplicacion correctamente con su alias: ";
     private String correrohost="aplicacionmorfi@gmail.com";
-    private String subject="Registro exitoso!";
-    private  String passwordmail="AndroidTPO123";
-
+    private String subject="Registro Cook!";
+    //private  String passwordmail="AndroidTPO123";password real
+    private  String passwordmail="fbbrywazxtwwngmk";//token
     private String subjectRecupero="Mail de Recupero de Contraseña";
-    private String mailCodigoRecupero= "Su codigo de verificacion es: ";
+    private String mailCodigoRecupero= "Su codigo de verificacion es:\n ";
+    private String ContinueRegister="Para continuar con su registro ingrese el siguiente codigo:\n";
 
+    private int userId;
     private int codigo;
+    private String email;
+    private String alias;
+    private String name;
 
     Session session;
 
@@ -84,6 +89,9 @@ public class UserController {
         properties.put("mail.smtp.auth", "true");
         properties.put("mail.smtp.port", "465");
 
+        Random r = new Random();
+        int codigoRandom = (r.nextInt(9999-1000 +1) + 1000);
+
         try{
         session = Session.getDefaultInstance(properties, new Authenticator() {
                     @Override
@@ -96,7 +104,7 @@ public class UserController {
                 message.setFrom(new InternetAddress((correrohost)));
                 message.setSubject(subject);
                 message.setRecipients(Message.RecipientType.TO,InternetAddress.parse(dato_email));
-                message.setContent(contenidoMail + dato_alias,"text/html; chrset=utf-8");
+                message.setContent(ContinueRegister +"<h1>"+ codigoRandom+"</h1>","text/html; chrset=utf-8");
                 Transport.send(message);
             }
 
@@ -104,8 +112,9 @@ public class UserController {
         }catch (Exception e){
             e.printStackTrace();
         }
-
-
+        email = dato_email;
+        codigo = codigoRandom;
+        alias = dato_alias;
     }
 
     public void enviarMailCodeRecovery(String dato_email) {
@@ -120,7 +129,7 @@ public class UserController {
         properties.put("mail.smtp.port", "465");
 
         Random r = new Random();
-        int codigo = (r.nextInt(9999-1000 +1) + 1000);
+        int codigoRandom = (r.nextInt(9999-1000 +1) + 1000);
 
         try{
             session = Session.getDefaultInstance(properties, new Authenticator() {
@@ -134,7 +143,7 @@ public class UserController {
                 message.setFrom(new InternetAddress((correrohost)));
                 message.setSubject(subjectRecupero);
                 message.setRecipients(Message.RecipientType.TO,InternetAddress.parse(dato_email));
-                message.setContent(mailCodigoRecupero + codigo,"text/html; chrset=utf-8");
+                message.setContent(mailCodigoRecupero +"<h1>" +codigoRandom+"</h1>","text/html; chrset=utf-8");
                 Transport.send(message);
             }
 
@@ -142,7 +151,8 @@ public class UserController {
         }catch (Exception e){
             e.printStackTrace();
         }
-
+        email = dato_email;
+        codigo = codigoRandom;
 
     }
 
@@ -160,6 +170,38 @@ public class UserController {
             }
         }
         return resultado;
+    }
+
+    public String getEmail(){
+        return email;
+    }
+    public String getAlias(){
+        return alias;
+    }
+    public Integer getUserId(){
+        return userId;
+    }
+    public String getName(){
+        return name;
+    }
+
+    public void setEmail(String email){
+        this.email = email;
+    }
+    public void setAlias(String alias){
+        this.alias = alias;
+    }
+    public void setUserId(Integer userId){
+        this.userId = userId;
+    }
+    public void setName(String name){
+        this.name = name;
+    }
+    public void setDatosUsuarios(String email,String alias,Integer userId,String name){
+        this.email = email;
+        this.alias = alias;
+        this.userId = userId;
+        this.name = name;
     }
 
     public boolean comprobarCodigoRecupero(int codigo_input){
