@@ -51,8 +51,8 @@ public class UserProfileActivity extends AppCompatActivity {
 
         RecipeService rs = retrofit.create(RecipeService.class);
         //Call<JsonElement> call = rs.listRecipeByUserId( Integer.toString(UserController.getInstancia().getUserId()),Integer.toString(0));
-        Call<JsonElement> call = rs.listRecipeByUserId( Integer.toString(1),Integer.toString(0));
-        //OJO el id del usuario esta hardcodeado
+        Call<JsonElement> call = rs.listRecipeByUserId( Integer.toString(UserController.getInstancia().getUserId()),Integer.toString(0));
+
         call.enqueue(new Callback<JsonElement>() {
             @Override
             public void onResponse(Call<JsonElement> call, Response<JsonElement> response) {

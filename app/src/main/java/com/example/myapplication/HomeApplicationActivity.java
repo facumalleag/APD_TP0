@@ -9,11 +9,14 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.KeyEvent;
 import android.view.View;
+import android.widget.TextView;
+
 import androidx.appcompat.widget.SearchView;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentContainerView;
 
 import com.example.myapplication.adapter.SliderAdapter;
+import com.example.myapplication.controller.UserController;
 //import com.smarteist.autoimageslider.SliderView;
 
 public class HomeApplicationActivity extends AppCompatActivity{
@@ -35,7 +38,8 @@ public class HomeApplicationActivity extends AppCompatActivity{
                 iniciarBusquedaActivity(view);
             }
         });
-
+        TextView se = findViewById(R.id.textView7);
+        se.setText(UserController.getInstancia().getName());
 
 
     }

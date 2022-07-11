@@ -66,7 +66,7 @@ public class FavouritesRecipesActivity extends AppCompatActivity {
 
         FavoriteService fs = retrofit.create(FavoriteService.class);
         //Call<JsonElement> call = fs.listFavoriteRecipesByUserId( Integer.toString(UserController.getInstancia().getUserId()));
-        Call<JsonElement> call = fs.listFavoriteRecipesByUserId( Integer.toString(1));
+        Call<JsonElement> call = fs.listFavoriteRecipesByUserId( Integer.toString(UserController.getInstancia().getUserId()));
         //OJO el id del usuario esta hardcodeado
         call.enqueue(new Callback<JsonElement>() {
             @Override
