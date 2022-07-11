@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     tools:context=".UserProfileActivity">
 
-    <EditText
+    <TextView
         android:id="@+id/editTextTextPersonName7"
         android:layout_width="91dp"
         android:layout_height="47dp"
@@ -32,30 +32,13 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/editTextTextPersonName7"
         tools:srcCompat="@tools:sample/avatars" />
-    <Button
-        android:id="@+id/button"
-        android:layout_width="181dp"
-        android:layout_height="64dp"
-        android:layout_marginStart="260dp"
-
-        android:layout_marginBottom="100dp"
-        android:backgroundTint="#FFFFFF"
-        android:fontFamily="sans-serif-medium"
-        android:text="@string/Editar_perfil"
-
-        android:textColor="#2196F3"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toStartOf="@+id/imageViewUserProfile"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.253" />
 
     <TextView
         android:id="@+id/userNameView"
         android:layout_width="147dp"
         android:layout_height="39dp"
-        android:layout_marginTop="125dp"
+        android:layout_marginTop="25dp"
+        android:layout_marginStart="120dp"
         android:text="&quot;UserNAme&quot;"
         app:layout_constraintTop_toBottomOf="@+id/editTextTextPersonName7"
         android:textSize="20sp"
@@ -107,7 +90,7 @@
             android:layout_height="0dp"
             android:layout_above="@+id/BottomAppBarLayout"
             android:layout_alignParentTop="true"
-            android:layout_marginTop="394dp"
+            android:layout_marginTop="245dp"
             android:scrollbars="none">
 
             <LinearLayout
@@ -199,6 +182,7 @@
                         android:id="@+id/third_menu_item"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
+                        android:onClick="iniciarFavouriteActivity"
                         android:src="@drawable/ic_baseline_heart_24"
                         app:backgroundTint="@android:color/white"
                         app:layout_constraintBottom_toBottomOf="@+id/first_menu_item"
@@ -212,6 +196,7 @@
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:src="@drawable/ic_baseline_person_24"
+
                         app:backgroundTint="@android:color/white"
                         app:layout_constraintBottom_toBottomOf="@+id/first_menu_item"
                         app:layout_constraintEnd_toEndOf="parent"

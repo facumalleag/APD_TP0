@@ -1,5 +1,6 @@
 package com.example.myapplication;
 
+import static com.example.myapplication.Constants.BASE_URL;
 import static com.example.myapplication.R.id.editTextTextAlias;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -132,7 +133,7 @@ public class RegisterLayout extends AppCompatActivity {
         }
 
         Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl("http://10.0.2.2:8000")
+                .baseUrl(BASE_URL)
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
 
@@ -190,7 +191,7 @@ public class RegisterLayout extends AppCompatActivity {
 
     public void halfRegister(String email, String alias){
         Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl("http://10.0.2.2:8000")
+                .baseUrl(BASE_URL)
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
 

@@ -146,6 +146,12 @@ public class SearchActivity extends AppCompatActivity {
             }
         });
     }
+
+    /**
+     *
+     * Este seria el lugar ideal para buscar los datos pero no lo hice funcionar.
+     * Los datos se cargan en Placeholder fragment
+     */
     public void createCategoryChips (JsonArray listCategories){
 
         for(JsonElement category : listCategories){

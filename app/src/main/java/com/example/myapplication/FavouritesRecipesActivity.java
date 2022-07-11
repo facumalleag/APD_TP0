@@ -1,5 +1,7 @@
 package com.example.myapplication;
 
+import static com.example.myapplication.Constants.BASE_URL;
+
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
@@ -49,7 +51,7 @@ public class FavouritesRecipesActivity extends AppCompatActivity {
 
         buildDialog();
 
-        layout=findViewById(R.id.container);
+        layout=findViewById(R.id.containerFavoriteCard);
         findViewById(R.id.loadingPanel).bringToFront();
         findViewById(R.id.loadingPanel).setVisibility(View.VISIBLE);
         getFavoriteRecipe();
@@ -60,13 +62,13 @@ public class FavouritesRecipesActivity extends AppCompatActivity {
     }
     public void getFavoriteRecipe(){
         Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl("http://10.0.2.2:8000")
+                .baseUrl(BASE_URL)
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
 
         FavoriteService fs = retrofit.create(FavoriteService.class);
         //Call<JsonElement> call = fs.listFavoriteRecipesByUserId( Integer.toString(UserController.getInstancia().getUserId()));
-        Call<JsonElement> call = fs.listFavoriteRecipesByUserId( Integer.toString(1));
+        Call<JsonElement> call = fs.listFavoriteRecipesByUserId( Integer.toString(UserController.getInstancia().getUserId()));
         //OJO el id del usuario esta hardcodeado
         call.enqueue(new Callback<JsonElement>() {
             @Override
@@ -173,6 +175,7 @@ public class FavouritesRecipesActivity extends AppCompatActivity {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         removeFavorite(favoriteId);
+                        layout.removeAllViews();
                         getFavoriteRecipe();
                     }
                 })
@@ -216,6 +219,18 @@ public class FavouritesRecipesActivity extends AppCompatActivity {
                 System.out.println(t.getMessage());
             }
         });
+    }
+
+    public void iniciarProfileActivity(View view) {
+
+        Intent intent = new Intent(this, UserProfileActivity.class);
+        startActivity(intent);
+    }
+    public void iniciarFavouriteActivity(View view) {
+
+        //Intent intent = new Intent(this, FavouritesRecipesActivity.class);
+        Intent intent = new Intent(this, FavouritesRecipesActivity.class);
+        startActivity(intent);
     }
 
 }

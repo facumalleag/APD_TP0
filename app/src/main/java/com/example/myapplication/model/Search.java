@@ -8,11 +8,11 @@ public class Search {
     private String userName;
     private List<Integer> ingredientsList;
     private List<Integer> lackOfIngredientsList;
-    private Integer order;
+    private String order;
     private String orderAtr;
 
 
-    public Search(String recipeName, List<Integer> categoryList, String userName, List<Integer> ingredientsList, List<Integer> lackOfIngredientsList, Integer order,String orderAtr){
+    public Search(String recipeName, List<Integer> categoryList, String userName, List<Integer> ingredientsList, List<Integer> lackOfIngredientsList, String order,String orderAtr){
         super();
         this.recipeName = recipeName;
         this.categoryList = categoryList;

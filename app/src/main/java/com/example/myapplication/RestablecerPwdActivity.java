@@ -1,5 +1,7 @@
 package com.example.myapplication;
 
+import static com.example.myapplication.Constants.BASE_URL;
+
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
@@ -44,7 +46,7 @@ public class RestablecerPwdActivity extends AppCompatActivity {
                     return;
                 }
                 Retrofit retrofit = new Retrofit.Builder()
-                        .baseUrl("http://10.0.2.2:8000")
+                        .baseUrl(BASE_URL)
                         .addConverterFactory(GsonConverterFactory.create())
                         .build();
 

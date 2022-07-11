@@ -60,7 +60,13 @@ public class ShowRecipeActivity extends AppCompatActivity {
         //findViewById(R.id.loadingPanel).setVisibility(View.VISIBLE);
         getRecipe();
         //findViewById(R.id.loadingPanel).setVisibility(View.INVISIBLE);
-
+        ImageView fav= findViewById(R.id.favoriteRecipe);
+        fav.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                addOrRemoveFromFavorite();
+            }
+        });
 
 
     }
@@ -117,7 +123,7 @@ public class ShowRecipeActivity extends AppCompatActivity {
         TextView ratingView = findViewById(R.id.rating);
         ratingView.setText(recipeFetched.get("totalRating").getAsString());
         TextView timeView = findViewById(R.id.time);
-        timeView.setText(recipeFetched.get("time").getAsString());
+        timeView.setText(recipeFetched.get("time").getAsString() + " min");
 
         TextView userNameView = findViewById(R.id.userName);
         userNameView.setText(recipeFetched.get("user").getAsJsonObject().get("name").getAsString());
@@ -225,10 +231,11 @@ public class ShowRecipeActivity extends AppCompatActivity {
             ImageView favoriteRecipe = findViewById(R.id.favoriteRecipe);
             favoriteRecipe.setImageResource(R.drawable.ic_baseline_heart_blue_24);
             favoriteId = "";
+            this.isFavorite=false;
         }
     }
 
-    private void addOrRemoveFromFavorite(){
+    public void addOrRemoveFromFavorite(){
         if (isFavorite){
             showDialog2();
         }else{
@@ -307,6 +314,7 @@ public class ShowRecipeActivity extends AppCompatActivity {
                 if (response.isSuccessful()) {
                     Toast toast = Toast.makeText(getApplication().getApplicationContext(), "Recete eliminada de lista de favoritos", Toast.LENGTH_SHORT);
                     toast.show();
+                    changeFavoriteIcon(false);
                 } else {
                     if (response.code() == 400) {
                         Toast toast = Toast.makeText(getApplication().getApplicationContext(), "Ocurrio un error, intente mas tarde", Toast.LENGTH_SHORT);
